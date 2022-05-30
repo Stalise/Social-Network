@@ -1,0 +1,10 @@
+node_modules/
+desktop.ini
+
+client/node_modules/
+client/build/
+client/coverage/
+client/.env
+
+server/node_modules/
+server/.env
