@@ -1,9 +1,9 @@
 @import "./null.css";
 @import "./icofont.css";
-/* @import "./toast.css"; */
+@import "./toast.css";
 
 /*======================================================================*/
 
 body {
-   font-family: "Proxima-Nova";
+   font-family: 'Roboto', sans-serif;
 }

@@ -1,5 +1,9 @@
+const jwt = require('jsonwebtoken')
 const db = require('../utils/db');
 const { cloudinary } = require('../utils/cloudinary');
+
+const responseMessages = require('../constants/responseMessages');
+// const TokensHandler = require('../utils/tokensHandler')
 
 
 class PostController {
@@ -35,19 +39,18 @@ class PostController {
    }
 
    async getPosts(req, res) {
-      const id = req.params.id
-
+      console.log('in')
       try {
+         const decoded = jwt.decode(req.cookies.token)
+         const username = decoded.username
 
-         const getPosts = await db.query(`SELECT * FROM post WHERE user_id = $1 ORDER BY id DESC`, [id])
-         const posts = getPosts.rows
+         const response = await db.query("SELECT * FROM posts WHERE user_username = $1 ORDER BY id DESC", [username])
+         const posts = response.rows
 
-         res.json(posts)
-
+         res.status(200).json({ message: responseMessages.success, posts })
       } catch (error) {
-         console.log(error)
+         res.status(500).json({ message: responseMessages.unexpected })
       }
-
    }
 
    async deletePost(req, res) {

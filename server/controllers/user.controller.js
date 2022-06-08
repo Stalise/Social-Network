@@ -1,56 +1,120 @@
+const jwt = require('jsonwebtoken')
 const db = require('../utils/db');
 const { cloudinary } = require('../utils/cloudinary');
 
+const responseMessages = require('../constants/responseMessages');
+const TokensHandler = require('../utils/tokensHandler')
+
 class UserController {
 
-   async createUser(req, res) {
-      const { username, name, surname, birth, city, password, img } = req.body
+   async checkAuthUser(req, res) {
+      try {
+         res.status(200).json({ message: responseMessages.success })
+      } catch (error) {
+         res.status(500).json({ message: responseMessages.unexpected })
+      }
+   }
+
+   async authUser(req, res) {
+      const { username, password } = req.body
 
       try {
-         const uploadCloudinary = await cloudinary.uploader.upload(img, {
+         // проверяем username в базе данных
+         const checkUsername = await db.query(
+            `SELECT username FROM persons WHERE username = $1`,
+            [username]
+         )
+
+         if (!checkUsername.rows.length) {
+            return res.status(401).json({ message: responseMessages.missingUsername });
+         }
+
+         // если username выше есть, то проверяем в базе пароль
+         const checkPassword = await db.query(
+            `SELECT * FROM persons WHERE username = $1 AND password = $2`,
+            [username, password]
+         )
+
+         if (!checkPassword.rows.length) {
+            return res.status(401).json({ message: responseMessages.invalidPassword });
+         }
+
+         const jwtAccess = TokensHandler.generateAccessToken({ username })
+         const jwtRefresh = TokensHandler.generateRefreshToken({ username })
+
+         await db.query(`UPDATE persons SET token = $1 WHERE username = $2`, [jwtRefresh, username])
+
+         res.cookie('token', jwtAccess, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true })
+         res.status(200).json({ message: responseMessages.successAuth })
+
+      } catch (error) {
+         res.status(500).json({ message: responseMessages.unexpected })
+      }
+   }
+
+   async regUser(req, res) {
+      const { username, name, surname, birth, city, file, password } = req.body;
+
+      try {
+         const checkUsername = await db.query(`SELECT username FROM persons WHERE username = $1`, [username])
+
+         if (checkUsername.rows.length) {
+            return res.status(401).json({ message: responseMessages.existUsername });
+         }
+
+         const uploadCloudinary = await cloudinary.uploader.upload(file, {
             upload_preset: 'op6ycuoi'
          })
 
-         const newPerson = await db.query(
-            `INSERT INTO person (username, name, surname, birth, city, img, password) 
-         values ($1, $2, $3, $4, $5, $6, $7) RETURNING *`,
-            [username, name, surname, birth, city, uploadCloudinary.public_id, password])
+         const jwtAccess = TokensHandler.generateAccessToken({ username })
+         const jwtRefresh = TokensHandler.generateRefreshToken({ username })
 
-         const userInfo = newPerson.rows[0]
+         await db.query(
+            "INSERT INTO persons (username, name, surname, birth, city, avatar, password, token) values ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
+            [username, name, surname, birth, city, uploadCloudinary.public_id, password, jwtRefresh]
+         )
 
-         res.json({
-            id: userInfo.id,
-            surname: userInfo.surname,
-            username: userInfo.username,
-            name: userInfo.name,
-            birth: userInfo.birth,
-            city: userInfo.city,
-            img: userInfo.img,
-         })
-
-      } catch (e) {
-         console.log(e)
+         res.cookie("token", jwtAccess, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true })
+         res.status(200).json({ message: responseMessages.successReg })
+      } catch (error) {
+         res.status(500).json({ message: responseMessages.unexpected })
       }
-
    }
 
-   async getUser(req, res) {
+   async logoutUser(req, res) {
       try {
-         const username = req.params.username;
-         const userDb = await db.query(`SELECT * FROM person WHERE username = $1`, [username])
-         const userData = userDb.rows[0]
+         const decoded = jwt.decode(req.cookies.token)
+         const username = decoded.username
 
-         res.json({
-            id: userData.id,
+         res.clearCookie("token");
+         await db.query(`UPDATE persons SET token = '' WHERE username = $1`, [username])
+
+         res.status(200).json({ message: responseMessages.success })
+      } catch (error) {
+         res.status(500).json({ message: responseMessages.unexpected })
+      }
+   }
+
+   async getUserData(req, res) {
+      try {
+         const decoded = jwt.decode(req.cookies.token)
+         const username = decoded.username
+
+         const response = await db.query(`SELECT * FROM persons WHERE username = $1`, [username])
+         let userData = response.rows[0]
+
+         userData = {
             username: userData.username,
             name: userData.name,
             surname: userData.surname,
             birth: userData.birth,
             city: userData.city,
-            img: userData.img,
-         })
-      } catch (e) {
-         console.log(e)
+            avatar: userData.avatar,
+         }
+
+         res.status(200).json({ message: responseMessages.success, userData })
+      } catch (error) {
+         res.status(500).json({ message: responseMessages.unexpected })
       }
    }
 
@@ -92,23 +156,6 @@ class UserController {
             city: userData.city,
             img: userData.img,
          })
-
-      } catch (error) {
-         console.log(error)
-      }
-
-   }
-
-   async checkUser(req, res) {
-      const { username, password } = req.body
-
-      try {
-
-         const sendCheck = await db.query('SELECT username FROM person WHERE username = $1 AND password = $2', [username, password])
-
-         if (sendCheck.rows.length) {
-            res.send('true')
-         } else { res.send('false') }
 
       } catch (error) {
          console.log(error)

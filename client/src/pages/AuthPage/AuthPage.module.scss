@@ -1,0 +1,69 @@
+.wrapper {
+   min-height: 100vh;
+   width: 100%;
+   overflow: hidden;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: #d7e7fc;
+   padding: 50px 15px 100px 15px;
+   .container {
+      max-width: 700px;
+      width: 100%;
+      padding: 20px 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 10px;
+      background-color: #fff;
+      .tabs {
+         max-width: 600px;
+         width: 100%;
+         display: flex;
+         justify-content: center;
+         margin-bottom: 40px;
+         .tabsReg {
+            max-width: 150px;
+            width: 100%;
+            height: 45px;
+            background-color: #d7e7fc;
+            font-size: 20px;
+            border-radius: 5px;
+            letter-spacing: 0.5px;
+            transition-duration: 0.3s;
+            margin-right: 25px;
+            &:hover {
+               background-color: #ccc;
+               color: #ffffff;
+            }
+            &:active {
+               transform: translateY(-5px);
+            }
+         }
+         .tabsAuth {
+            max-width: 150px;
+            width: 100%;
+            height: 45px;
+            font-size: 20px;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+            letter-spacing: 0.5px;
+            transition-duration: 0.3s;
+            &:hover {
+               background-color: #ccc;
+               color: #ffffff;
+            }
+            &:active {
+               transform: translateY(-5px);
+            }
+         }
+      }
+      .forms {
+         max-width: 600px;
+         width: 100%;
+         padding: 20px 15px;
+         border: 1px solid #ccc;
+         border-radius: 10px;
+      }
+   }
+}

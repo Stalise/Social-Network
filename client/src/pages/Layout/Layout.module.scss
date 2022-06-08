@@ -1,0 +1,35 @@
+.wrapper {
+   min-height: 100vh;
+   width: 100%;
+   overflow: hidden;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   background-color: #d7e7fc;
+   padding: 50px 15px 100px 15px;
+}
+
+.main {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   .mainContainer {
+      max-width: 1230px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-start;
+   }
+}
+
+@media (max-width: 992px) {
+   .wrapper {
+      padding: 90px 15px 70px 15px;
+   }
+}
+
+@media (max-width: 487px) {
+   .wrapper {
+      padding: 80px 15px 70px 15px;
+   }
+}

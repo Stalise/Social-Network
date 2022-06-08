@@ -1,0 +1,146 @@
+.form {
+   display: flex;
+   flex-direction: column;
+   align-items: left;
+   display: none;
+   &._active {
+      display: flex;
+   }
+   .inputContainer {
+      max-width: 100%;
+      width: 100%;
+      display: block;
+      margin-bottom: 5px;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      margin-bottom: 20px;
+      color: #2d2d2d;
+      .field {
+         max-width: 100%;
+         width: 100%;
+         border: 1px solid #ccc;
+         padding: 10px 15px;
+         border-radius: 5px;
+         font-size: 20px;
+         margin-top: 5px;
+      }
+      .error {
+         font-weight: 400;
+         color: #f25c5c;
+         position: relative;
+         font-size: 18px;
+         padding-left: 25px;
+         margin: 7px 0 5px 0;
+         &:before {
+            font-family: "IcoFont";
+            content: "\ef1b";
+            position: absolute;
+            font-size: 20px;
+            color: #f25c5c;
+            top: -2px;
+            left: 0px;
+            transition-duration: 0.3s;
+         }
+      }
+      input[type="date"] {
+         position: relative;
+      }
+      input[type="date"]::-webkit-calendar-picker-indicator {
+         position: absolute;
+         top: 0;
+         left: 0;
+         right: 0;
+         bottom: 0;
+         width: auto;
+         height: auto;
+         color: transparent;
+         background: transparent;
+      }
+      input[type="date"]::-webkit-inner-spin-button,
+      input[type="date"]::-webkit-clear-button {
+         z-index: 1;
+      }
+   }
+   .photoContainer {
+      max-width: 100%;
+      width: 100%;
+      margin-bottom: 30px;
+      .photoLabel {
+         display: inline-block;
+         width: 130px;
+         height: 45px;
+         background-color: #d7e7fc;
+         font-size: 20px;
+         border-radius: 5px;
+         position: relative;
+         padding: 12px 15px 0 50px;
+         cursor: pointer;
+         text-align: center;
+         transition: background-color 0.3s, color 0.3s, transform 0.3s;
+         &:before {
+            font-family: "IcoFont";
+            content: "\eece";
+            position: absolute;
+            font-size: 30px;
+            color: #2d2d2d;
+            top: 6px;
+            left: 15px;
+            transition: color 0.3s;
+         }
+         &:after {
+            font-family: "IcoFont";
+            content: "\eed8";
+            position: absolute;
+            font-size: 47px;
+            color: #aafab7;
+            top: 1px;
+            right: -50px;
+            transition: opacity 0.1s, transform 0.3s;
+            transform: scale(0.3, 0.3);
+            opacity: 0;
+         }
+         &:hover {
+            background-color: #ccc;
+            color: #ffffff;
+            &:before {
+               color: #ffffff;
+            }
+         }
+         &:active {
+            transform: translateY(-5px);
+         }
+         .photoField {
+            display: none;
+         }
+      }
+      &._active {
+         .photoLabel {
+            &:after {
+               transform: scale(1, 1);
+               opacity: 1;
+            }
+         }
+      }
+   }
+   .submit {
+      max-width: 100%;
+      width: 100%;
+      height: 45px;
+      font-size: 20px;
+      border-radius: 5px;
+      background-color: #f0f0f0;
+      letter-spacing: 0.5px;
+      transition-duration: 0.3s;
+      &:hover {
+         background-color: #ccc;
+         color: #ffffff;
+      }
+      &:active {
+         transform: scale(0.9, 0.9);
+      }
+      &:disabled {
+         pointer-events: none;
+      }
+   }
+}
