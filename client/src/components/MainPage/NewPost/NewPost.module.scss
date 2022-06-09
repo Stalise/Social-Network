@@ -1,0 +1,125 @@
+.form {
+   width: 100%;
+   background-color: #ffffff;
+   border-radius: 10px;
+   padding: 20px 15px;
+   margin-bottom: 20px;
+
+   .text {
+      margin-bottom: 15px;
+      position: relative;
+
+      .textField {
+         max-width: 930px;
+         width: 100%;
+         box-sizing: border-box;
+         height: 70px;
+         border: 1px solid #ccc;
+         border-radius: 5px;
+         resize: none;
+         font-size: 20px;
+         overflow: hidden;
+         line-height: 20px;
+         padding: 10px 15px;
+
+         &::-webkit-scrollbar {
+            width: 8px;
+         }
+
+         &::-webkit-scrollbar-track {
+            background-color: #fffff0;
+         }
+
+         &::-webkit-scrollbar-thumb {
+            background-color: lightgray;
+         }
+
+         &._auto {
+            overflow: auto;
+         }
+      }
+
+      .textFieldClone {
+         max-width: 930px;
+         width: 100%;
+         height: auto;
+         min-height: 70px;
+         border: 1px solid #ccc;
+         border-radius: 5px;
+         font-size: 20px;
+         word-wrap: break-word;
+         // background-color: red;
+         position: absolute;
+         top: 0;
+         left: 0;
+         z-index: -1;
+         opacity: 0;
+         pointer-events: none;
+         line-height: 20px;
+         padding: 10px 15px;
+      }
+   }
+
+   .actions {
+      display: flex;
+      justify-content: space-between;
+
+      .inputContainer {
+         max-width: 50px;
+         width: 100%;
+         position: relative;
+
+         &::before {
+            font-family: "IcoFont";
+            content: "\ef4b";
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 50px;
+            cursor: pointer;
+            transition-duration: 0.3s;
+         }
+
+         &:hover {
+            &::before {
+               transform: translateY(-3px);
+            }
+         }
+
+         &._active {
+            &::after {
+               font-family: "IcoFont";
+               content: "\eed8";
+               position: absolute;
+               top: 6px;
+               left: 50px;
+               font-size: 35px;
+               color: #aafab7;
+            }
+         }
+
+         .field {
+            display: none;
+         }
+      }
+
+      .submit {
+         display: inline-block;
+         width: 100px;
+         height: 45px;
+         background-color: #d7e7fc;
+         font-size: 20px;
+         border-radius: 5px;
+         transition-duration: 0.3s;
+
+         &:hover {
+            background-color: #ccc;
+            color: #ffffff;
+         }
+
+         &:active {
+            transform: translateY(-5px);
+         }
+      }
+   }
+}

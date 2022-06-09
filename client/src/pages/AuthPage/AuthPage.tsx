@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 
 import s from "./AuthPage.module.scss";
 import { useAppSelector } from "hooks/redux";
-import { KeyType } from "types/keyType";
+import { KeyType } from "types/common";
 
 import Intro from "components/AuthPage/Intro/Intro";
 import RegForm from "components/AuthPage/RegForm/RegForm";

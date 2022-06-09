@@ -6,7 +6,7 @@ const jwtCheck = require('../middleware/jwtCheck')
 const router = new Router()
 
 router.get('/post', jwtCheck, postController.getPosts)
-
+router.post('/post', jwtCheck, postController.createPost)
 
 // router.post('/post', postController.createPost)
 // router.get('/post/:id', postController.getPosts)

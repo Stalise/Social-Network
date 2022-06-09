@@ -5,6 +5,7 @@ import { Urls } from "mock/constants/api";
 import { apiResponsesMessage } from "mock/constants/api";
 import { defaultToast } from "mock/constants/toast";
 import { IPost } from "types/user";
+import { INewPostData } from "components/MainPage/NewPost/types";
 
 export const instance = axios.create({
    baseURL: Urls.server_url,
@@ -21,6 +22,20 @@ export const postApi = {
          if (error.response?.status === 401) {
             return error.response.data.message;
          }
+
+         toast.warn(apiResponsesMessage.unexpected, defaultToast);
+         return apiResponsesMessage.unexpected;
+      }
+   },
+
+   createPost: async (data: INewPostData) => {
+      try {
+         const response = await instance.post<{ message: string, post: IPost }>(Urls.post, { ...data }, {
+            headers: { "Content-Type": "application/json" },
+         });
+
+         return response.data.post;
+      } catch (error) {
 
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
          return apiResponsesMessage.unexpected;

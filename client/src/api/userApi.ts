@@ -81,7 +81,7 @@ export const userApi = {
    getUserData: async (): Promise<IUserData | string> => {
       try {
          const response = await instance.get<{ message: string, userData: IUserData }>(Urls.user);
-         
+
          return response.data.userData;
       } catch (error) {
          toast.warn(apiResponsesMessage.unexpected, defaultToast);

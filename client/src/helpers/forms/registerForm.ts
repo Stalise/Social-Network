@@ -31,16 +31,3 @@ export const validationSchema = Yup.object({
       .max(15, "Maximum 15 characters")
       .matches(/^[a-zA-Z0-9]+$/, "Invalid characters"),
 });
-
-export const transformFile = async (file: File): Promise<string> => {
-
-   return new Promise(resolve => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-         if (typeof (reader.result) === "string") {
-            resolve(reader.result);
-         }
-      };
-   });
-};

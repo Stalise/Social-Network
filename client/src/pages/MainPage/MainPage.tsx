@@ -4,6 +4,7 @@ import s from "./MainPage.module.scss";
 
 import Avatar from "components/MainPage/Avatar/Avatar";
 import UserInfo from "components/MainPage/UserInfo/UserInfo";
+import NewPost from "components/MainPage/NewPost/NewPost";
 
 const MainPage: FC = () => {
 
@@ -14,9 +15,7 @@ const MainPage: FC = () => {
             <UserInfo />
          </div>
          <div className="page__bottom-container">
-            {/* <NewPost
-               setAllPosts={setAllPosts}
-            /> */}
+            <NewPost />
             {/* <AllPosts
                allPosts={allPosts}
                setAllPosts={setAllPosts}

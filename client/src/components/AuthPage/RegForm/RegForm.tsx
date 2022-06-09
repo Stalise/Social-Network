@@ -3,8 +3,9 @@ import { useFormik } from 'formik';
 
 import s from "./RegForm.module.scss";
 import { useAppDispatch } from "hooks/redux";
+import { validationSchema } from "helpers/forms/registerForm";
+import { transformFile } from "helpers/commonHelpers";
 import { initialValues } from "mock/registerFormMock";
-import { validationSchema, transformFile } from "helpers/forms/registerForm";
 import { sagasConstants, sagaActionCreator } from "mock/constants/saga";
 import { IRegFormState } from "./types";
 
@@ -100,7 +101,8 @@ const RegForm: FC<IProps> = ({ tabStatus }) => {
                   className={s.photoField}
                   type="file"
                   name="file"
-                  onChange={event => formik.setFieldValue("file", event.target.files?.length ? event.target.files[0] : null)}
+                  accept="image/jpeg, image/png"
+                  onChange={event => formik.setFieldValue("file", event.target.files?.length ? event.target.files[0] : "")}
                />
             </label>
 

@@ -6,6 +6,7 @@ import { apiResponsesMessage } from "mock/constants/api";
 import { IAuthFormState } from "components/AuthPage/AuthForm/types";
 import { IRegFormState } from "components/AuthPage/RegForm/types";
 import { IUserData } from "types/user";
+import { IWorker } from "types/common";
 
 export function* workerCheckAuth() {
    const response: string = yield call(userApi.checkAuth);
@@ -17,7 +18,7 @@ export function* workerCheckAuth() {
    }
 };
 
-export function* workerRegUser(data: { type: string, payload: IRegFormState }) {
+export function* workerRegUser(data: IWorker<IRegFormState>) {
    yield put(changeUserStatusAction("auth"));
 
    const response: string = yield call<any>(userApi.regUser, data.payload);
@@ -29,7 +30,7 @@ export function* workerRegUser(data: { type: string, payload: IRegFormState }) {
    yield put(changeUserStatusAction("ready"));
 };
 
-export function* workerAuthUser(data: { type: string, payload: IAuthFormState }) {
+export function* workerAuthUser(data: IWorker<IAuthFormState>) {
    yield put(changeUserStatusAction("auth"));
 
    const response: string = yield call<any>(userApi.authUser, data.payload);

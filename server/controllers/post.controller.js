@@ -9,37 +9,34 @@ const responseMessages = require('../constants/responseMessages');
 class PostController {
 
    async createPost(req, res) {
-      const { name, surname, text, date, user_id, img } = req.body
-      let uploadCloudinary = ''
+      const { text, img, date } = req.body
+      let uploadCloudinary = ""
+
+      const decoded = jwt.decode(req.cookies.token)
+      const username = decoded.username
 
       try {
-         // если есть картинка с постом, то отправляем её с облачное хранилище
-         if (img.length > 0) {
+         // если есть картинка с постом, то отправляем её в облачное хранилище
+         if (img.length) {
             uploadCloudinary = await cloudinary.uploader.upload(img, {
                upload_preset: 'op6ycuoi'
             })
          }
 
-         // добавляем в response фото создателя поста, чтобы потом отображать в news
-         const img_user = await db.query('SELECT img FROM person WHERE id = $1', [user_id])
+         const response = await db.query(`
+            INSERT INTO posts (text, img, date, user_username) 
+            values ($1, $2, $3, $4) RETURNING *
+         `, [text, uploadCloudinary.public_id ? uploadCloudinary.public_id : "", date, username])
 
-         const newPost = await db.query(
-            `INSERT INTO post (name, surname, img_user, text, date, img_post, user_id) 
-            values ($1, $2, $3, $4, $5, $6, $7) RETURNING *`,
-            [name, surname, img_user.rows[0].img, text, date,
-               uploadCloudinary.public_id ? uploadCloudinary.public_id : ''
-               , user_id])
+         const post = response.rows[0]
 
-         const allUserPost = await db.query('SELECT * FROM post WHERE user_id = $1 ORDER BY id DESC', [user_id])
-
-         res.json(allUserPost.rows)
+         res.status(200).json({ message: responseMessages.success, post })
       } catch (error) {
-         console.log(error)
+         res.status(500).json({ message: responseMessages.unexpected })
       }
    }
 
    async getPosts(req, res) {
-      console.log('in')
       try {
          const decoded = jwt.decode(req.cookies.token)
          const username = decoded.username
