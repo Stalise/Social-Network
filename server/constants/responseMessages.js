@@ -7,6 +7,7 @@ const responseMessages = {
    existUsername: "User with this username already exists.",
    successAuth: "You are successfully logged in.",
    successReg: "You have successfully registered.",
+   entityExist: "Entity already exists."
 }
 
 module.exports = responseMessages

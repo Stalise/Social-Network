@@ -9,7 +9,7 @@ import Loader from '../Loader/Loader';
 
 const App: FC = () => {
 
-   const { status } = useAppSelector(state => state.userSlice);
+   const { status } = useAppSelector(state => state.personSlice);
    const dispatch = useAppDispatch();
 
    useEffect(() => {

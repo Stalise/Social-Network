@@ -23,9 +23,9 @@ create TABLE posts(
 create TABLE likes(
    id SERIAL PRIMARY KEY,
    user_username VARCHAR(255),
-   FOREIGN KEY (user_username) REFERENCES persons (username) ON DELETE CASCADE,
    post_id INTEGER,
-   FOREIGN KEY (post_id) REFERENCES post (id) ON DELETE CASCADE
+   FOREIGN KEY (user_username) REFERENCES persons (username) ON DELETE CASCADE,
+   FOREIGN KEY (post_id) REFERENCES posts (id) ON DELETE CASCADE
 );
 
 create TABLE person_photos(

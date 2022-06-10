@@ -5,6 +5,7 @@ export enum Urls {
    userAuth = "user/auth",
    userLogout = "user/logout",
    post = "post",
+   like = "post/like"
 };
 
 export enum apiResponsesMessage {

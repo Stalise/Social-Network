@@ -10,7 +10,7 @@ import AuthPage from 'pages/AuthPage/AuthPage';
 
 const AppRoutes: FC = () => {
 
-   const { isAuth } = useAppSelector(state => state.userSlice);
+   const { isAuth } = useAppSelector(state => state.personSlice);
 
    return (
       <Routes>

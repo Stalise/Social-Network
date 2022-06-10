@@ -1,7 +1,23 @@
-//! этот тип расширяет выбранный interface, чтобы его ключами могли быть строки
-export type KeyType<T> = { [key: string]: T }
+export interface IPersonData {
+   username: string,
+   name: string,
+   surname: string,
+   birth: string,
+   city: string,
+   avatar: string,
+}
 
-export interface IWorker<T> {
-   type: string,
-   payload: T
-};
+export interface IPost {
+   id: number,
+   text: string,
+   img: string,
+   date: string,
+   likes: number,
+   user_username: string,
+   isLike: boolean,
+}
+
+export interface ILike {
+   username: string,
+   postId: number,
+}

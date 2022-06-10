@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 
 import s from "./AuthPage.module.scss";
 import { useAppSelector } from "hooks/redux";
-import { KeyType } from "types/common";
+import { KeyType } from "types/helpers";
 
 import Intro from "components/AuthPage/Intro/Intro";
 import RegForm from "components/AuthPage/RegForm/RegForm";
@@ -16,7 +16,7 @@ interface ITabs extends KeyType<boolean> {
 
 const AuthPage: FC = () => {
 
-   const { status } = useAppSelector(state => state.userSlice);
+   const { status } = useAppSelector(state => state.personSlice);
 
    const [tabsState, tabsStateHandler] = useState<ITabs>({
       register: true,

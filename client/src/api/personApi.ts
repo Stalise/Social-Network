@@ -5,7 +5,7 @@ import { Urls } from "mock/constants/api";
 import { apiResponsesMessage } from "mock/constants/api";
 import { defaultToast } from "mock/constants/toast";
 import { IRegFormState } from "components/AuthPage/RegForm/types";
-import { IUserData } from "types/user";
+import { IPersonData } from "types/common";
 
 export const instance = axios.create({
    baseURL: Urls.server_url,
@@ -28,7 +28,7 @@ export const userApi = {
       }
    },
 
-   authUser: async (data: { username: string, password: string }): Promise<string> => {
+   authPerson: async (data: { username: string, password: string }): Promise<string> => {
       try {
          const response = await instance.post<{ message: string }>(Urls.userAuth, { ...data }, {
             headers: { 'Content-Type': 'application/json;charset=utf-8' },
@@ -47,7 +47,7 @@ export const userApi = {
       }
    },
 
-   regUser: async (data: IRegFormState): Promise<string> => {
+   regPerson: async (data: IRegFormState): Promise<string> => {
       try {
          const response = await instance.post(Urls.user, { ...data }, {
             headers: { 'Content-Type': 'application/json' },
@@ -66,7 +66,7 @@ export const userApi = {
       }
    },
 
-   logoutUser: async (): Promise<string> => {
+   logoutPerson: async (): Promise<string> => {
       try {
          await instance.get(Urls.userLogout);
 
@@ -78,9 +78,9 @@ export const userApi = {
       }
    },
 
-   getUserData: async (): Promise<IUserData | string> => {
+   getPersonData: async (): Promise<IPersonData | string> => {
       try {
-         const response = await instance.get<{ message: string, userData: IUserData }>(Urls.user);
+         const response = await instance.get<{ message: string, userData: IPersonData }>(Urls.user);
 
          return response.data.userData;
       } catch (error) {

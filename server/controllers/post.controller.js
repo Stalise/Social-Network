@@ -44,6 +44,21 @@ class PostController {
          const response = await db.query("SELECT * FROM posts WHERE user_username = $1 ORDER BY id DESC", [username])
          const posts = response.rows
 
+         // проверяем на наличие лайков пользователя под постом
+         if (posts.length) {
+            for (let i = 0; i < posts.length; i++) {
+               const response = await db.query(`
+               SELECT * FROM likes WHERE user_username = $1 AND post_id = $2`,
+                  [username, posts[i].id])
+
+               if (response.rows.length) {
+                  posts[i].isLike = true
+               } else {
+                  posts[i].isLike = false
+               }
+            }
+         }
+
          res.status(200).json({ message: responseMessages.success, posts })
       } catch (error) {
          res.status(500).json({ message: responseMessages.unexpected })
@@ -54,61 +69,62 @@ class PostController {
       const idPost = req.params.id
 
       try {
-         const postDB = await db.query(`SELECT * FROM post WHERE id = $1`, [idPost])
-         const user_id = postDB.rows[0].user_id
-         const img = postDB.rows[0].img_post
+         const response = await db.query(`SELECT * FROM posts WHERE id = $1`, [idPost])
+         const post = response.rows[0]
 
-         if (img.length > 0) {
+         if (post.img.length) {
             //если есть еще и картинка в посту, то сначала удаляем ее из облака
-            const deleteImg = await cloudinary.uploader.destroy(img)
+            await cloudinary.uploader.destroy(post.img)
          }
 
          // удаляем пост из таблицы
-         await db.query(`DELETE FROM post WHERE id = $1`, [idPost])
-         // получаем обновленный список постов из дб
-         const getPosts = await db.query(`SELECT * FROM post WHERE user_id = $1 ORDER BY id DESC`, [user_id])
-         const posts = getPosts.rows
+         await db.query(`DELETE FROM posts WHERE id = $1`, [idPost])
 
-         res.json(posts)
-
+         res.status(200).json({ message: responseMessages.success })
       } catch (error) {
-         console.log(error)
+         res.status(500).json({ message: responseMessages.unexpected })
       }
    }
 
    async createLike(req, res) {
-      const { user_id, post_id } = req.body
+      const { username, postId } = req.body
 
       try {
+         const response = await db.query(`
+         SELECT * FROM likes WHERE user_username = $1 AND post_id = $2`,
+            [username, postId])
 
-         const newLike = await db.query(
-            `INSERT INTO likes (user_id, post_id) 
+         if (response.rows.length) {
+            return res.status(409).json({ message: responseMessages.entityExist })
+         }
+
+         await db.query(
+            `INSERT INTO likes (user_username, post_id) 
             values ($1, $2) RETURNING *`,
-            [user_id, post_id])
+            [username, postId])
 
-         const allPostLikes = await db.query('SELECT * FROM likes WHERE post_id = $1', [post_id])
-         res.json(allPostLikes.rows)
+         await db.query(`UPDATE posts SET likes = likes + 1 WHERE id = $1`, [postId])
 
+         res.status(200).json({ message: responseMessages.success })
       } catch (error) {
-         console.log(error)
+         res.status(500).json({ message: responseMessages.unexpected })
       }
 
    }
 
-   async getLikes(req, res) {
-      const PostId = req.params.id
+   async deleteLike(req, res) {
+      const { username, postId } = req.body;
 
       try {
+         // удаляем лайк из таблицы
+         await db.query(`DELETE FROM likes WHERE user_username = $1 AND post_id = $2`, [username, postId])
 
-         const getLikes = await db.query(`SELECT * FROM likes WHERE post_id = $1`, [PostId])
-         const likes = getLikes.rows
+         await db.query(`UPDATE posts SET likes = likes - 1 WHERE id = $1`, [postId])
 
-         res.json(likes)
-
+         res.status(200).json({ message: responseMessages.success })
       } catch (error) {
-         console.log(error)
+         res.status(500).json({ message: responseMessages.unexpected })
       }
-
    }
 
 }

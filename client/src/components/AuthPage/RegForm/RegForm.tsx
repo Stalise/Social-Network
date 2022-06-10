@@ -27,7 +27,7 @@ const RegForm: FC<IProps> = ({ tabStatus }) => {
             const updatedFile: string = await transformFile(values.file);
 
             duplicateObj.file = updatedFile;
-            dispatch(sagaActionCreator<IRegFormState>(sagasConstants.SAGA_REG_USER, duplicateObj));
+            dispatch(sagaActionCreator<IRegFormState>(sagasConstants.SAGA_REG_PERSON, duplicateObj));
          }
       },
    });

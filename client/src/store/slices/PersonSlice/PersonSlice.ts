@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import { IState, StatusType } from './types';
-import { IUserData } from "types/user";
+import { IPersonData } from "types/common";
 
 const initialState: IState = {
    isAuth: false,
@@ -19,22 +19,22 @@ const initialState: IState = {
    photos: [],
 };
 
-export const userSlice = createSlice({
-   name: 'user',
+export const personSlice = createSlice({
+   name: 'person',
    initialState,
    reducers: {
-      changeUserStatusAction(state, { payload }: { payload: StatusType }) {
+      changePersonStatusAction(state, { payload }: { payload: StatusType }) {
          state.status = payload;
       },
-      changeAuthUserAction(state, { payload }: { payload: boolean }) {
+      changeAuthPersonAction(state, { payload }: { payload: boolean }) {
          state.isAuth = payload;
       },
-      addUserDataAction(state, { payload }: { payload: IUserData }) {
+      addPersonDataAction(state, { payload }: { payload: IPersonData }) {
          state.data = payload;
       },
    },
 });
 
-export const { changeUserStatusAction, changeAuthUserAction, addUserDataAction } = userSlice.actions;
+export const { changePersonStatusAction, changeAuthPersonAction, addPersonDataAction } = personSlice.actions;
 
-export default userSlice.reducer;
+export default personSlice.reducer;

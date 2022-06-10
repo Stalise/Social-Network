@@ -17,7 +17,7 @@ const AuthForm: FC<IProps> = ({ tabStatus }) => {
    const dispatch = useAppDispatch();
 
    const submitHandler = (values: IAuthFormState) => {
-      dispatch(sagaActionCreator<IAuthFormState>(sagasConstants.SAGA_AUTH_USER, values));
+      dispatch(sagaActionCreator<IAuthFormState>(sagasConstants.SAGA_AUTH_PERSON, values));
    };
 
    return (

@@ -5,6 +5,7 @@ import s from "./MainPage.module.scss";
 import Avatar from "components/MainPage/Avatar/Avatar";
 import UserInfo from "components/MainPage/UserInfo/UserInfo";
 import NewPost from "components/MainPage/NewPost/NewPost";
+import Posts from "components/MainPage/Posts/Posts";
 
 const MainPage: FC = () => {
 
@@ -16,10 +17,7 @@ const MainPage: FC = () => {
          </div>
          <div className="page__bottom-container">
             <NewPost />
-            {/* <AllPosts
-               allPosts={allPosts}
-               setAllPosts={setAllPosts}
-            /> */}
+            <Posts />
          </div>
       </div>
    );

@@ -6,7 +6,7 @@ import { useAppSelector } from "hooks/redux";
 
 const Avatar: FC = () => {
 
-   const { avatar } = useAppSelector(state => state.userSlice.data);
+   const { avatar } = useAppSelector(state => state.personSlice.data);
 
    return (
       <div className={s.avatar}>

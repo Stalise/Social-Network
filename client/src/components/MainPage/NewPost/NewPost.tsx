@@ -14,7 +14,7 @@ const NewPost: FC = () => {
    const [fieldOverflow, setFieldOverflow] = useState<FieldOverflowType>("hidden");
    const cloneField = useRef<HTMLDivElement | null>(null);
    const dispatch = useAppDispatch();
-   const { status } = useAppSelector(state => state.postSlice);
+   const { status } = useAppSelector(state => state.postsSlice);
 
    const [heightField, setHeightField] = useState<number>(70);
    const [post, setPost] = useState<IPostState>({

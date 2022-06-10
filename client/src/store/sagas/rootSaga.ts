@@ -1,9 +1,9 @@
 import { call, spawn, all } from "redux-saga/effects";
-import { watcherGetUserData, watcherCheckAuth, watcherAuthUser, watcherLogoutUser, watcherRegUser } from './userSaga/watchers';
-import { watcherGetUserPosts, watcherCreatePost } from './postSaga/watchers';
+import { watcherGetUserData, watcherCheckAuth, watcherAuthUser, watcherLogoutUser, watcherRegUser } from './personSaga/watchers';
+import { watcherGetUserPosts, watcherCreatePost, watcherCreateLike, watcherDeletePost, watcherDeleteLike } from './postSaga/watchers';
 
 const userSagas = [watcherGetUserData, watcherCheckAuth, watcherAuthUser, watcherLogoutUser, watcherRegUser];
-const postsSagas = [watcherGetUserPosts, watcherCreatePost];
+const postsSagas = [watcherGetUserPosts, watcherCreatePost, watcherCreateLike, watcherDeletePost, watcherDeleteLike];
 
 export default function* rootSaga(): any {
 

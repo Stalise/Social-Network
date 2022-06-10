@@ -16,7 +16,7 @@ const Header: FC = () => {
          <div className={s.container}>
             <div className={s.exit}>
                <button
-                  onClick={() => dispatch(sagaActionCreator(sagasConstants.SAGA_LOGOUT_USER))}
+                  onClick={() => dispatch(sagaActionCreator(sagasConstants.SAGA_LOGOUT_PERSON))}
                   type="button"
                   className={s.exitButton}
                >

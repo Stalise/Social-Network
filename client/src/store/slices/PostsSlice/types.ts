@@ -1,4 +1,4 @@
-import { IPost } from "types/user";
+import { IPost } from "types/common";
 
 export type StatusType = "ready" | "pending" | "create";
 
