@@ -16,7 +16,7 @@ interface ITabs extends KeyType<boolean> {
 
 const AuthPage: FC = () => {
 
-   const { status } = useAppSelector(state => state.personSlice);
+   const { status } = useAppSelector(state => state.userSlice);
 
    const [tabsState, tabsStateHandler] = useState<ITabs>({
       register: true,

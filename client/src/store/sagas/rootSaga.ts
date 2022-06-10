@@ -1,5 +1,5 @@
 import { call, spawn, all } from "redux-saga/effects";
-import { watcherGetUserData, watcherCheckAuth, watcherAuthUser, watcherLogoutUser, watcherRegUser } from './personSaga/watchers';
+import { watcherGetUserData, watcherCheckAuth, watcherAuthUser, watcherLogoutUser, watcherRegUser } from './userSaga/watchers';
 import { watcherGetUserPosts, watcherCreatePost, watcherCreateLike, watcherDeletePost, watcherDeleteLike } from './postSaga/watchers';
 
 const userSagas = [watcherGetUserData, watcherCheckAuth, watcherAuthUser, watcherLogoutUser, watcherRegUser];

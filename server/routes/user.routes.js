@@ -5,11 +5,12 @@ const jwtCheck = require('../middleware/jwtCheck')
 
 const router = new Router()
 
-router.get('/user', jwtCheck, userController.getUserData)
 router.post('/user', userController.regUser)
+// router.get('/user/:id', jwtCheck, userController)
 router.get('/user/auth', jwtCheck, userController.checkAuthUser)
 router.post('/user/auth', userController.authUser)
 router.get('/user/logout', userController.logoutUser)
+router.get('/user/:username', jwtCheck, userController.getUser)
 
 // router.get('/user', jwtCheck, userController.checkUser)
 // router.post('/user', userController.createUser)

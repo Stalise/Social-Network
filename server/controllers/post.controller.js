@@ -3,7 +3,6 @@ const db = require('../utils/db');
 const { cloudinary } = require('../utils/cloudinary');
 
 const responseMessages = require('../constants/responseMessages');
-// const TokensHandler = require('../utils/tokensHandler')
 
 
 class PostController {
@@ -37,10 +36,9 @@ class PostController {
    }
 
    async getPosts(req, res) {
-      try {
-         const decoded = jwt.decode(req.cookies.token)
-         const username = decoded.username
+      const username = req.params.username
 
+      try {
          const response = await db.query("SELECT * FROM posts WHERE user_username = $1 ORDER BY id DESC", [username])
          const posts = response.rows
 

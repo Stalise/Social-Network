@@ -5,7 +5,7 @@ import { workerGetUserPosts, workerCreatePost, workerDeletePost, workerCreateLik
 
 
 export function* watcherGetUserPosts() {
-   yield takeLatest(sagasConstants.SAGA_GET_PERSON_POSTS, workerGetUserPosts);
+   yield takeLatest(sagasConstants.SAGA_GET_USER_POSTS, workerGetUserPosts);
 }
 
 export function* watcherCreatePost() {

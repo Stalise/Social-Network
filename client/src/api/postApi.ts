@@ -13,14 +13,14 @@ export const instance = axios.create({
 });
 
 export const postApi = {
-   getPosts: async () => {
+   getPosts: async (data: string) => {
       try {
-         const response = await instance.get<{ message: string, posts: IPost[] }>(Urls.post);
+         const response = await instance.get<{ message: string, posts: IPost[] }>(`${Urls.post}/${data}`);
 
          return response.data.posts;
       } catch (error: any) {
          if (error.response?.status === 401) {
-            return error.response.data.message;
+            return apiResponsesMessage.needAuth;
          }
 
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
@@ -35,7 +35,10 @@ export const postApi = {
          });
 
          return response.data.post;
-      } catch (error) {
+      } catch (error: any) {
+         if (error.response?.status === 401) {
+            return error.response.data.message;
+         }
 
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
          return apiResponsesMessage.unexpected;
@@ -48,6 +51,9 @@ export const postApi = {
 
          return apiResponsesMessage.success;
       } catch (error: any) {
+         if (error.response?.status === 401) {
+            return error.response.data.message;
+         }
 
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
          return apiResponsesMessage.unexpected;
@@ -62,6 +68,10 @@ export const postApi = {
 
          return apiResponsesMessage.success;
       } catch (error: any) {
+         if (error.response?.status === 401) {
+            return error.response.data.message;
+         }
+
          if (error.response?.status === 409) {
             return error.response.data.message;
          }
@@ -80,6 +90,9 @@ export const postApi = {
 
          return apiResponsesMessage.success;
       } catch (error: any) {
+         if (error.response?.status === 401) {
+            return error.response.data.message;
+         }
 
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
          return apiResponsesMessage.unexpected;

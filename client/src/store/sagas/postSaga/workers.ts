@@ -1,7 +1,7 @@
 import { call, put, select } from "redux-saga/effects";
 
-import { changeAuthPersonAction } from "store/slices/PersonSlice/PersonSlice";
-import { addPostsAction, addPostAction, deletePostAction, changePersonStatusAction, changeLikePostAction } from "store/slices/PostsSlice/PostsSlice";
+import { changeAuthUserAction } from "store/slices/UserSlice/UserSlice";
+import { addPostsAction, addPostAction, deletePostAction, changePostStatusAction, changeLikePostAction } from "store/slices/PostsSlice/PostsSlice";
 import { postApi } from "api/postApi";
 import { apiResponsesMessage } from "mock/constants/api";
 import { IPost, ILike } from "types/common";
@@ -9,19 +9,20 @@ import { IWorker } from "types/helpers";
 import { INewPostData } from "components/MainPage/NewPost/types";
 
 export function* workerGetUserPosts() {
-   const response: IPost[] | string = yield call(postApi.getPosts);
+   const { username } = yield select(store => store.userSlice.data);
+
+   const response: IPost[] | string = yield call(postApi.getPosts, username);
+
+   if (response === apiResponsesMessage.needAuth) yield put(changeAuthUserAction(false));
+   else if (response === apiResponsesMessage.unexpected) return;
 
    if (typeof (response) !== "string") {
       yield put(addPostsAction(response));
    }
-
-   if (response === apiResponsesMessage.needAuth) {
-      yield put(changeAuthPersonAction(false));
-   }
 };
 
 export function* workerCreatePost(data: IWorker<INewPostData>) {
-   yield put(changePersonStatusAction("create"));
+   yield put(changePostStatusAction("create"));
 
    const response: IPost | string = yield call(postApi.createPost, data.payload);
 
@@ -30,10 +31,10 @@ export function* workerCreatePost(data: IWorker<INewPostData>) {
    }
 
    if (response === apiResponsesMessage.needAuth) {
-      yield put(changeAuthPersonAction(false));
+      yield put(changeAuthUserAction(false));
    }
 
-   yield put(changePersonStatusAction("ready"));
+   yield put(changePostStatusAction("ready"));
 };
 
 export function* workerDeletePost(data: IWorker<number>) {
@@ -44,7 +45,7 @@ export function* workerDeletePost(data: IWorker<number>) {
    }
 
    if (response === apiResponsesMessage.needAuth) {
-      yield put(changeAuthPersonAction(false));
+      yield put(changeAuthUserAction(false));
    }
 };
 
@@ -63,7 +64,7 @@ export function* workerCreateLike(data: IWorker<ILike>) {
    }
 
    if (response === apiResponsesMessage.needAuth) {
-      yield put(changeAuthPersonAction(false));
+      yield put(changeAuthUserAction(false));
    }
 };
 
@@ -82,6 +83,6 @@ export function* workerDeleteLike(data: IWorker<ILike>) {
    }
 
    if (response === apiResponsesMessage.needAuth) {
-      yield put(changeAuthPersonAction(false));
+      yield put(changeAuthUserAction(false));
    }
 };

@@ -5,7 +5,7 @@ import s from "./UserInfo.module.scss";
 
 const UserInfo: FC = () => {
 
-   const { name, surname, username, birth, city } = useAppSelector(state => state.personSlice.data);
+   const { name, surname, username, birth, city } = useAppSelector(state => state.userSlice.data);
    const { posts } = useAppSelector(state => state.postsSlice);
 
    return (

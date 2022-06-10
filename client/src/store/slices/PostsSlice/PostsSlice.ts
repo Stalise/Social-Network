@@ -12,7 +12,7 @@ export const postsSlice = createSlice({
    name: "posts",
    initialState,
    reducers: {
-      changePersonStatusAction(state, { payload }: { payload: StatusType }) {
+      changePostStatusAction(state, { payload }: { payload: StatusType }) {
          state.status = payload;
       },
       addPostsAction(state, { payload }: { payload: IPost[] }) {
@@ -33,6 +33,6 @@ export const postsSlice = createSlice({
    },
 });
 
-export const { changePersonStatusAction, addPostsAction, addPostAction, deletePostAction, changeLikePostAction } = postsSlice.actions;
+export const { changePostStatusAction, addPostsAction, addPostAction, deletePostAction, changeLikePostAction } = postsSlice.actions;
 
 export default postsSlice.reducer;

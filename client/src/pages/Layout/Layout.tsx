@@ -14,8 +14,8 @@ const Layout: FC = () => {
    const dispatch = useAppDispatch();
 
    useEffect(() => {
-      dispatch(sagaActionCreator(sagasConstants.SAGA_GET_PERSON_DATA));
-      dispatch(sagaActionCreator(sagasConstants.SAGA_GET_PERSON_POSTS));
+      dispatch(sagaActionCreator(sagasConstants.SAGA_GET_USER_DATA));
+      dispatch(sagaActionCreator(sagasConstants.SAGA_GET_USER_POSTS));
    }, []);
 
    return (

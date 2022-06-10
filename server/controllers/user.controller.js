@@ -9,7 +9,10 @@ class UserController {
 
    async checkAuthUser(req, res) {
       try {
-         res.status(200).json({ message: responseMessages.success })
+         const decoded = jwt.decode(req.cookies.token)
+         const username = decoded.username
+
+         res.status(200).json({ message: responseMessages.success, username })
       } catch (error) {
          res.status(500).json({ message: responseMessages.unexpected })
       }
@@ -95,11 +98,10 @@ class UserController {
       }
    }
 
-   async getUserData(req, res) {
-      try {
-         const decoded = jwt.decode(req.cookies.token)
-         const username = decoded.username
+   async getUser(req, res) {
+      const username = req.params.username
 
+      try {
          const response = await db.query(`SELECT * FROM persons WHERE username = $1`, [username])
          let userData = response.rows[0]
 

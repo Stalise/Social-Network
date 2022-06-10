@@ -12,7 +12,7 @@ const Navigation: FC = () => {
             {navigationItems.map(elem => {
                return (
                   <li className={s.listItem} key={elem}>
-                     <Link to="/" className={s.listLink}></Link>
+                     <Link to={elem} className={s.listLink}></Link>
                   </li>
                );
             })}

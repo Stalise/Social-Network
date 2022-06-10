@@ -10,7 +10,7 @@ import AuthPage from 'pages/AuthPage/AuthPage';
 
 const AppRoutes: FC = () => {
 
-   const { isAuth } = useAppSelector(state => state.personSlice);
+   const { isAuth } = useAppSelector(state => state.userSlice);
 
    return (
       <Routes>
@@ -24,7 +24,6 @@ const AppRoutes: FC = () => {
             <Route path="/" element={<AuthPage />}>
                <Route path="*" element={<AuthPage />} />
             </Route>
-
          }
       </Routes >
    );

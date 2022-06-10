@@ -5,7 +5,7 @@ import { Urls } from "mock/constants/api";
 import { apiResponsesMessage } from "mock/constants/api";
 import { defaultToast } from "mock/constants/toast";
 import { IRegFormState } from "components/AuthPage/RegForm/types";
-import { IPersonData } from "types/common";
+import { IUserData } from "types/common";
 
 export const instance = axios.create({
    baseURL: Urls.server_url,
@@ -15,9 +15,9 @@ export const instance = axios.create({
 export const userApi = {
    checkAuth: async (): Promise<string> => {
       try {
-         await instance.get(Urls.userAuth);
+         const response = await instance.get<{ message: string, username: string }>(Urls.userAuth);
 
-         return apiResponsesMessage.success;
+         return response.data.username;
       } catch (error: any) {
          if (error.response?.status === 401) {
             return error.response.data.message;
@@ -28,7 +28,7 @@ export const userApi = {
       }
    },
 
-   authPerson: async (data: { username: string, password: string }): Promise<string> => {
+   authUser: async (data: { username: string, password: string }): Promise<string> => {
       try {
          const response = await instance.post<{ message: string }>(Urls.userAuth, { ...data }, {
             headers: { 'Content-Type': 'application/json;charset=utf-8' },
@@ -47,7 +47,7 @@ export const userApi = {
       }
    },
 
-   regPerson: async (data: IRegFormState): Promise<string> => {
+   regUser: async (data: IRegFormState): Promise<string> => {
       try {
          const response = await instance.post(Urls.user, { ...data }, {
             headers: { 'Content-Type': 'application/json' },
@@ -66,7 +66,7 @@ export const userApi = {
       }
    },
 
-   logoutPerson: async (): Promise<string> => {
+   logoutUser: async (): Promise<string> => {
       try {
          await instance.get(Urls.userLogout);
 
@@ -78,12 +78,16 @@ export const userApi = {
       }
    },
 
-   getPersonData: async (): Promise<IPersonData | string> => {
+   getUserData: async (data: string): Promise<IUserData | string> => {
       try {
-         const response = await instance.get<{ message: string, userData: IPersonData }>(Urls.user);
+         const response = await instance.get<{ message: string, userData: IUserData }>(`${Urls.user}/${data}`);
 
          return response.data.userData;
-      } catch (error) {
+      } catch (error: any) {
+         if (error.response?.status === 401) {
+            return apiResponsesMessage.needAuth;
+         }
+
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
          return apiResponsesMessage.unexpected;
       }
