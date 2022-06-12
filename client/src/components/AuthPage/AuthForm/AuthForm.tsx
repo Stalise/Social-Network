@@ -5,7 +5,7 @@ import s from "./AuthForm.module.scss";
 import { useAppDispatch } from "hooks/redux";
 import { initialValues } from "mock/authFromMock";
 import { validationSchema } from "helpers/forms/authFormValidate";
-import { sagasConstants, sagaActionCreator } from "mock/constants/saga";
+import { sagasConstantsUser, sagaActionCreator } from "mock/constants/saga";
 import { IAuthFormState } from "./types";
 
 interface IProps {
@@ -17,7 +17,7 @@ const AuthForm: FC<IProps> = ({ tabStatus }) => {
    const dispatch = useAppDispatch();
 
    const submitHandler = (values: IAuthFormState) => {
-      dispatch(sagaActionCreator<IAuthFormState>(sagasConstants.SAGA_AUTH_USER, values));
+      dispatch(sagaActionCreator<IAuthFormState>(sagasConstantsUser.SAGA_AUTH_USER, values));
    };
 
    return (

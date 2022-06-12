@@ -36,10 +36,11 @@ class PostController {
    }
 
    async getPosts(req, res) {
-      const username = req.params.username
+      const { user, person } = req.query
+      console.log(user, person)
 
       try {
-         const response = await db.query("SELECT * FROM posts WHERE user_username = $1 ORDER BY id DESC", [username])
+         const response = await db.query("SELECT * FROM posts WHERE user_username = $1 ORDER BY id DESC", [person ? person : user])
          const posts = response.rows
 
          // проверяем на наличие лайков пользователя под постом
@@ -47,7 +48,7 @@ class PostController {
             for (let i = 0; i < posts.length; i++) {
                const response = await db.query(`
                SELECT * FROM likes WHERE user_username = $1 AND post_id = $2`,
-                  [username, posts[i].id])
+                  [user, posts[i].id])
 
                if (response.rows.length) {
                   posts[i].isLike = true

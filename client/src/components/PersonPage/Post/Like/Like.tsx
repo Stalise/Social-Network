@@ -1,8 +1,8 @@
 import { FC } from "react";
 
 import s from "./Like.module.scss";
-import { useAppDispatch } from "hooks/redux";
-import { sagasConstantsPosts, sagaActionCreator } from "mock/constants/saga";
+import { useAppDispatch, useAppSelector } from "hooks/redux";
+import { sagaActionCreator, sagasConstantsPerson } from "mock/constants/saga";
 import { IPost, ILike } from "types/common";
 
 interface IProps {
@@ -12,17 +12,18 @@ interface IProps {
 const Like: FC<IProps> = ({ postData }) => {
 
    const dispatch = useAppDispatch();
+   const { username } = useAppSelector(state => state.userSlice.data);
 
    const clickHandler = () => {
       const likeData: ILike = {
-         username: postData.user_username,
+         username,
          postId: postData.id,
       };
 
       if (!postData.isLike) {
-         dispatch(sagaActionCreator<ILike>(sagasConstantsPosts.SAGA_USER_POST_CREATE_LIKE, likeData));
+         dispatch(sagaActionCreator<ILike>(sagasConstantsPerson.SAGA_PERSON_POST_CREATE_LIKE, likeData));
       } else {
-         dispatch(sagaActionCreator<ILike>(sagasConstantsPosts.SAGA_USER_POST_DELETE_LIKE, likeData));
+         dispatch(sagaActionCreator<ILike>(sagasConstantsPerson.SAGA_PERSON_POST_DELETE_LIKE, likeData));
       }
    };
 

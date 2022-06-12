@@ -2,7 +2,7 @@ import { FC, useEffect } from 'react';
 
 import s from "./App.module.scss";
 import { useAppDispatch, useAppSelector } from 'hooks/redux';
-import { sagasConstants, sagaActionCreator } from "mock/constants/saga";
+import { sagasConstantsUser, sagaActionCreator } from "mock/constants/saga";
 
 import AppRoutes from 'routes/AppRoutes';
 import Loader from '../Loader/Loader';
@@ -13,7 +13,7 @@ const App: FC = () => {
    const dispatch = useAppDispatch();
 
    useEffect(() => {
-      dispatch(sagaActionCreator(sagasConstants.SAGA_CHECK_AUTH));
+      dispatch(sagaActionCreator(sagasConstantsUser.SAGA_CHECK_AUTH));
    }, []);
 
    if (status === 'pending') {

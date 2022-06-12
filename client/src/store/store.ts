@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import createSagaMiddleware from 'redux-saga';
 
 import userSlice from "./slices/UserSlice/UserSlice";
+import personSlice from "./slices/PersonSlice/PersonSlice";
 import postsSlice from "./slices/PostsSlice/PostsSlice";
 import rootSaga from './sagas/rootSaga';
 
@@ -9,6 +10,7 @@ const sagaMiddleware = createSagaMiddleware();
 
 export const rootReducer = combineReducers({
    userSlice,
+   personSlice,
    postsSlice,
 });
 

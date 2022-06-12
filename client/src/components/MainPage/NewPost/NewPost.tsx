@@ -4,7 +4,7 @@ import s from "./NewPost.module.scss";
 import { useAppDispatch, useAppSelector } from "hooks/redux";
 import { heightHandler, dateHandler } from "helpers/postHelpers";
 import { transformFile } from "helpers/commonHelpers";
-import { sagasConstants, sagaActionCreator } from "mock/constants/saga";
+import { sagasConstantsPosts, sagaActionCreator } from "mock/constants/saga";
 import { IPostState, INewPostData, FieldOverflowType } from "./types";
 
 import Loader from "components/Common/Loader/Loader";
@@ -37,7 +37,7 @@ const NewPost: FC = () => {
          postData.img = await transformFile(post.img);
       }
 
-      dispatch(sagaActionCreator<INewPostData>(sagasConstants.SAGA_CREATE_POST, postData));
+      dispatch(sagaActionCreator<INewPostData>(sagasConstantsPosts.SAGA_USER_CREATE_POST, postData));
       setPost({ text: "", img: "" });
    };
 

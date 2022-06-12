@@ -15,7 +15,7 @@ const MainPage: FC = () => {
             <Avatar />
             <UserInfo />
          </div>
-         <div className="page__bottom-container">
+         <div>
             <NewPost />
             <Posts />
          </div>

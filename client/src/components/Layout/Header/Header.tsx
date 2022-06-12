@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import s from "./Header.module.scss";
 import { useAppDispatch } from "hooks/redux";
-import { sagasConstants, sagaActionCreator } from "mock/constants/saga";
+import { sagasConstantsUser, sagaActionCreator } from "mock/constants/saga";
 
 import Editing from "./EditingForm/EditingForm";
 
@@ -16,7 +16,7 @@ const Header: FC = () => {
          <div className={s.container}>
             <div className={s.exit}>
                <button
-                  onClick={() => dispatch(sagaActionCreator(sagasConstants.SAGA_LOGOUT_USER))}
+                  onClick={() => dispatch(sagaActionCreator(sagasConstantsUser.SAGA_LOGOUT_USER))}
                   type="button"
                   className={s.exitButton}
                >

@@ -13,9 +13,12 @@ export const instance = axios.create({
 });
 
 export const postApi = {
-   getPosts: async (data: string) => {
+   getPosts: async (data: string[]) => {
+      const query: string = data.length === 1 ? `?user=${data[0]}` : `?user=${data[0]}&person=${data[1]}`;
+
       try {
-         const response = await instance.get<{ message: string, posts: IPost[] }>(`${Urls.post}/${data}`);
+         // const response = await instance.get<{ message: string, posts: IPost[] }>(`${Urls.post}/${data}`);
+         const response = await instance.get<{ message: string, posts: IPost[] }>(`${Urls.post}${query}`);
 
          return response.data.posts;
       } catch (error: any) {

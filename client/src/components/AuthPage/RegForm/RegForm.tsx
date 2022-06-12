@@ -6,7 +6,7 @@ import { useAppDispatch } from "hooks/redux";
 import { validationSchema } from "helpers/forms/registerForm";
 import { transformFile } from "helpers/commonHelpers";
 import { initialValues } from "mock/registerFormMock";
-import { sagasConstants, sagaActionCreator } from "mock/constants/saga";
+import { sagasConstantsUser, sagaActionCreator } from "mock/constants/saga";
 import { IRegFormState } from "./types";
 
 interface IProps {
@@ -27,7 +27,7 @@ const RegForm: FC<IProps> = ({ tabStatus }) => {
             const updatedFile: string = await transformFile(values.file);
 
             duplicateObj.file = updatedFile;
-            dispatch(sagaActionCreator<IRegFormState>(sagasConstants.SAGA_REG_USER, duplicateObj));
+            dispatch(sagaActionCreator<IRegFormState>(sagasConstantsUser.SAGA_REG_USER, duplicateObj));
          }
       },
    });

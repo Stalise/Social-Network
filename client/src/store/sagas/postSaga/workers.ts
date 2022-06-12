@@ -11,7 +11,7 @@ import { INewPostData } from "components/MainPage/NewPost/types";
 export function* workerGetUserPosts() {
    const { username } = yield select(store => store.userSlice.data);
 
-   const response: IPost[] | string = yield call(postApi.getPosts, username);
+   const response: IPost[] | string = yield call(postApi.getPosts, [username]);
 
    if (response === apiResponsesMessage.needAuth) yield put(changeAuthUserAction(false));
    else if (response === apiResponsesMessage.unexpected) return;

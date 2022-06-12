@@ -1,0 +1,112 @@
+.wrapper {
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+
+   .write {
+      max-width: 100%;
+      width: 100%;
+      height: 45px;
+      background-color: #d7e7fc;
+      margin-bottom: 10px;
+      font-size: 20px;
+      border-radius: 5px;
+      letter-spacing: 0.5px;
+      transition-duration: 0.3s;
+
+      &:hover {
+         background-color: #ccc;
+         color: #ffffff;
+      }
+
+      &:active {
+         transform: translateY(-5px);
+      }
+   }
+
+   .add {
+      max-width: 100%;
+      width: 100%;
+      height: 45px;
+      font-size: 20px;
+      border-radius: 5px;
+      background-color: #f0f0f0;
+      letter-spacing: 0.5px;
+      transition-duration: 0.3s;
+      position: relative;
+
+      &._sent {
+         pointer-events: none;
+
+         &:before {
+            content: "Request sent";
+            position: absolute;
+            top: 10px;
+            left: calc(50% - 73px);
+         }
+
+         &:after {
+            font-family: "IcoFont";
+            content: "\efd1";
+            position: absolute;
+            top: 10px;
+            left: calc(50% + 55px);
+            font-size: 25px;
+         }
+      }
+
+      &._request {
+         &:before {
+            content: "Accept request";
+            position: absolute;
+            top: 10px;
+            left: calc(50% - 85px);
+         }
+
+         &:after {
+            font-family: "IcoFont";
+            content: "+";
+            position: absolute;
+            top: 10px;
+            left: calc(50% + 66px);
+            font-size: 25px;
+            font-weight: 700;
+         }
+      }
+
+      &._friend {
+         pointer-events: none;
+         background-color: #ccffd4;
+
+         &:before {
+            content: "Your friend";
+            position: absolute;
+            top: 10px;
+            left: calc(50% - 60px);
+         }
+
+         &:after {
+            font-family: "IcoFont";
+            content: "\eed8";
+            position: absolute;
+            top: 8px;
+            left: calc(50% + 43px);
+            font-size: 25px;
+         }
+      }
+
+      &:hover {
+         background-color: #ccc;
+         color: #ffffff;
+         -webkit-text-stroke-color: #ffffff;
+      }
+
+      &:active {
+         transform: translateY(-5px);
+      }
+
+      &:before {
+         content: "Add friend";
+      }
+   }
+}
