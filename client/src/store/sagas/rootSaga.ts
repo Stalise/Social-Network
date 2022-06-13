@@ -2,16 +2,18 @@ import { call, spawn, all } from "redux-saga/effects";
 import { watcherGetUserData, watcherCheckAuth, watcherAuthUser, watcherLogoutUser, watcherRegUser } from './userSaga/watchers';
 import { watcherGetUserPosts, watcherCreatePost, watcherCreateLike, watcherDeletePost, watcherDeleteLike } from './postSaga/watchers';
 import { watcherGetPersonData, watcherGetPersonPosts, watcherCreatePostLike, watcherDeletePostLike } from "./personSaga/watchers";
+import { watcherGetFriends, watcherCreateFriend, watcherAcceptFriend, watcherDeleteFriend } from "./friendSaga/watchers";
 import { watcherAllUserParams, watcherAllPersonParams } from "./commonSaga/watchers";
 
 const userSagas = [watcherGetUserData, watcherCheckAuth, watcherAuthUser, watcherLogoutUser, watcherRegUser];
 const postsSagas = [watcherGetUserPosts, watcherCreatePost, watcherCreateLike, watcherDeletePost, watcherDeleteLike];
 const personSagas = [watcherGetPersonData, watcherGetPersonPosts, watcherCreatePostLike, watcherDeletePostLike];
+const friendSagas = [watcherGetFriends, watcherCreateFriend, watcherAcceptFriend, watcherDeleteFriend];
 const commonSagas = [watcherAllUserParams, watcherAllPersonParams];
 
 export default function* rootSaga(): any {
 
-   const sagas = [...userSagas, ...postsSagas, ...personSagas, ...commonSagas];
+   const sagas = [...userSagas, ...postsSagas, ...personSagas, ...friendSagas, ...commonSagas];
 
    const retrySagas = yield sagas.map(saga => {
       // если сага возвращает ошибку, то её вызывает еще раз.

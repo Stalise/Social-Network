@@ -1,206 +1,113 @@
 const db = require('../utils/db');
 
+const responseMessages = require('../constants/responseMessages');
+
 class FriendController {
 
-   async createFriend(req, res) {
-      const { user_id, friend_id } = req.body
-
-      try {
-
-         const checkFriend = await db.query('SELECT * FROM friends WHERE user_id = $1 AND friend_id = $2', [user_id, friend_id])
-
-         // когда отправил заявку в друзья, создаются данные в таблице
-         if (checkFriend.rows[0] === undefined) {
-            // добавляем друга для юзера в таблице бд
-            const forUser = await db.query(
-               `INSERT INTO friends (user_id, friend_id, status)
-            values ($1, $2, $3) RETURNING *`, [user_id, friend_id, 'sent']
-            )
-
-            const forFriend = await db.query(
-               `INSERT INTO friends (user_id, friend_id, status)
-            values ($1, $2, $3) RETURNING *`, [friend_id, user_id, 'request']
-            )
-
-            //статус дружбы отправляется на клиент, для отображения
-            res.json(forUser.rows[0].status)
-         } else {
-            // если юзер уже есть в таблице друзей, но он нажал добавить в друзья до обновления компонента
-            const getStatus = await db.query(`SELECT status FROM friends WHERE user_id = $1 AND friend_id = $2`, [user_id, friend_id])
-
-            res.json(getStatus.rows[0].status)
-         }
-
-      } catch (error) {
-         console.log(error)
-      }
-   }
-
    async getFriends(req, res) {
-      const user_id = req.params.id
+      const { username } = req.params
 
       try {
+         const response = await db.query(`SELECT * FROM friends WHERE user_first = $1 OR user_second = $1`, [username]);
 
-         const userFriends = await db.query(`SELECT friend_id FROM friends WHERE user_id = $1 AND status = 'friend'`, [user_id])
-         const userRequests = await db.query(`SELECT friend_id FROM friends WHERE user_id = $1 AND status = 'request'`, [user_id])
+         const friends = [];
 
-         let friendsList = {
-            requests: [],
-            friends: []
+         // получаем всех друзей юзера с пришедших username, и устанавливаем статус дружбы для каждого
+         for (let item of response.rows) {
+            if (item.user_first === username) {
+               const response = await db.query('SELECT username, name, surname, avatar FROM persons WHERE username = $1', [item.user_second]);
+               response.rows[0].status = item.status;
+               friends.push(response.rows[0]);
+            } else {
+               const response = await db.query('SELECT username, name, surname, avatar FROM persons WHERE username = $1', [item.user_first])
+               let trueStatus;
+
+               if (item.status === "friend") trueStatus = "friend";
+               else if (item.status === "request") trueStatus = "sent";
+               else if (item.status === "sent") trueStatus = "request";
+
+               response.rows[0].status = trueStatus;
+               friends.push(response.rows[0])
+            }
          }
 
-         // получаем всех друзей юзера со статусом friend и request (ниже)
-         for (let i of userFriends.rows) {
-            const getFriend = await db.query('SELECT id, name, surname, img, username FROM person WHERE id = $1', [i.friend_id])
-
-            friendsList.friends.push(getFriend.rows[0])
-         }
-
-         for (let i of userRequests.rows) {
-            const getRequests = await db.query('SELECT id, name, surname, img, username FROM person WHERE id = $1', [i.friend_id])
-
-            friendsList.requests.push(getRequests.rows[0])
-         }
-
-         res.json(friendsList)
-
+         res.status(200).json({ message: responseMessages.success, friends })
       } catch (error) {
-         console.log(error)
+         res.status(500).json({ message: responseMessages.unexpected })
       }
 
    }
 
-   async deleteFriend(req, res) {
-      const { user_id, friend_id } = req.query
+   async createFriend(req, res) {
+      const { user_username, person_username } = req.body
 
       try {
+         const checkAvailable = await db.query(`SELECT * FROM friends WHERE (user_first = $1 AND user_second = $2) OR (user_first = $2 AND user_second = $1)`, [user_username, person_username])
 
-         // удаляем из таблицы друзей, как своей так и друга
-         await db.query(`DELETE FROM friends WHERE user_id = $1 AND friend_id = $2`, [user_id, friend_id])
-         await db.query(`DELETE FROM friends WHERE user_id = $1 AND friend_id = $2`, [friend_id, user_id])
+         // если друга не найдено в бд, то создаем сущность
+         if (!checkAvailable.rows.length) {
+            await db.query(
+               "INSERT INTO friends (user_first, user_second, status) values ($1, $2, $3) RETURNING *",
+               [user_username, person_username, "sent"]
+            )
 
-         // получаем обновленный список друзей по id после удаления
-         const userFriends = await db.query(`SELECT friend_id FROM friends WHERE user_id = $1 AND status = 'friend'`, [user_id])
+            const response = await db.query(`SELECT * FROM persons WHERE username = $1`, [person_username])
+            let friendData = response.rows[0]
 
-         let friendsList = {
-            friends: []
+            friendData = {
+               username: friendData.username,
+               name: friendData.name,
+               surname: friendData.surname,
+               img: friendData.avatar,
+               status: "sent",
+            }
+
+            res.status(200).json({ message: responseMessages.success, friendData })
+         } else {
+            const friendData = checkAvailable.rows[0]
+
+            if (friendData.status === "friend") {
+               res.status(409).json({ message: responseMessages.entityExist, status: friendData.status })
+            } else if (friendData.status === "sent" && friendData.user_first === user_username) {
+               res.status(409).json({ message: responseMessages.entityExist, status: friendData.status })
+            } else if (friendData.status === "request" && friendData.user_first === user_username) {
+               res.status(409).json({ message: responseMessages.entityExist, status: friendData.status })
+            } else if (friendData.status === "sent" && friendData.user_second === user_username) {
+               res.status(409).json({ message: responseMessages.entityExist, status: "request" })
+            } else if (friendData.status === "request" && friendData.user_second === user_username) {
+               res.status(409).json({ message: responseMessages.entityExist, status: "sent" })
+            }
          }
-
-         // заполняем массив друзей для отправки на клиент
-         for (let i of userFriends.rows) {
-            const getFriend = await db.query('SELECT id, name, surname, img FROM person WHERE id = $1', [i.friend_id])
-
-            friendsList.friends.push(getFriend.rows[0])
-         }
-
-         res.json(friendsList)
-
       } catch (error) {
-         console.log(error)
+         res.status(500).json({ message: responseMessages.unexpected })
       }
-
-   }
-
-   async rejectFriend(req, res) {
-      const { user_id, friend_id } = req.query
-
-      try {
-
-         // удаляем из таблицы друзей, когда получаем статус 'отклонено' с сервера
-         await db.query(`DELETE FROM friends WHERE user_id = $1 AND friend_id = $2`, [user_id, friend_id])
-         await db.query(`DELETE FROM friends WHERE user_id = $1 AND friend_id = $2`, [friend_id, user_id])
-
-         // получаем обновленный список запросов в друзья  по id после удаления
-         const userRequests = await db.query(`SELECT friend_id FROM friends WHERE user_id = $1 AND status = 'request'`, [user_id])
-
-         let friendsList = {
-            requests: []
-         }
-
-         for (let i of userRequests.rows) {
-            const getRequest = await db.query('SELECT id, name, surname, img FROM person WHERE id = $1', [i.friend_id])
-
-            friendsList.requests.push(getRequest.rows[0])
-         }
-
-         res.json(friendsList)
-
-      } catch (error) {
-         console.log(error)
-      }
-
    }
 
    async acceptFriend(req, res) {
-      const { user_id, friend_id, status } = req.body
+      const { user_username, person_username } = req.body
 
       try {
+         await db.query(`UPDATE friends SET status = 'friend' WHERE user_first = $1 AND user_second = $2`, [person_username, user_username])
 
-         // обновляем статус для юзера и его друга в бд
-         await db.query(`UPDATE friends SET status = $1 WHERE user_id = $2 AND friend_id = $3`, [status, user_id, friend_id])
-         await db.query(`UPDATE friends SET status = $1 WHERE user_id = $3 AND friend_id = $2`, [status, user_id, friend_id])
-
-         //получаем списки друзей и запросов в друзья
-         const userFriends = await db.query(`SELECT friend_id FROM friends WHERE user_id = $1 AND status = 'friend'`, [user_id])
-         const userRequests = await db.query(`SELECT friend_id FROM friends WHERE user_id = $1 AND status = 'request'`, [user_id])
-
-         let friendsList = {
-            requests: [],
-            friends: []
-         }
-
-         for (let i of userFriends.rows) {
-            const getFriend = await db.query('SELECT id, name, surname, img FROM person WHERE id = $1', [i.friend_id])
-
-            friendsList.friends.push(getFriend.rows[0])
-         }
-
-         for (let i of userRequests.rows) {
-            const getRequests = await db.query('SELECT id, name, surname, img FROM person WHERE id = $1', [i.friend_id])
-
-            friendsList.requests.push(getRequests.rows[0])
-         }
-
-         res.json(friendsList)
-
+         res.status(200).json({ message: responseMessages.success })
       } catch (error) {
-         console.log(error)
-      }
-
-   }
-
-   async getStatus(req, res) {
-      const { user_id, friend_id } = req.query
-
-      try {
-
-         const getStatus = await db.query(`SELECT status FROM friends WHERE user_id = $1 AND friend_id = $2`, [user_id, friend_id])
-
-         res.json(getStatus?.rows[0]?.status || '')
-
-      } catch (error) {
-         console.log(error)
+         res.status(500).json({ message: responseMessages.unexpected })
       }
    }
 
-   async changeStatus(req, res) {
-      const { user_id, friend_id, status } = req.body
+   async deleteFriend(req, res) {
+      const { user_username, person_username } = req.body
 
       try {
 
-         const forUser = await db.query(
-            `UPDATE friends SET status = $1 WHERE user_id = $2 AND friend_id = $3`, [status, user_id, friend_id]
-         )
+         const response = await db.query(`SELECT * FROM friends WHERE (user_first = $1 AND user_second = $2) OR (user_first = $2 AND user_second = $1)`, [user_username, person_username]);
 
-         const forFriend = await db.query(
-            `UPDATE friends SET status = $1 WHERE user_id = $3 AND friend_id = $2 RETURNING *`, [status, user_id, friend_id]
-         )
-         res.json(forFriend.rows[0].status)
+         await db.query(`DELETE FROM friends WHERE id = $1`, [response.rows[0].id]);
 
+         res.status(200).json({ message: responseMessages.success })
       } catch (error) {
-         console.log(error)
+         res.status(500).json({ message: responseMessages.unexpected })
       }
-
    }
 }
 

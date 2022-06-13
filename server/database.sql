@@ -37,11 +37,11 @@ create TABLE person_photos(
 
 create TABLE friends(
    id SERIAL PRIMARY KEY,
-   user_username VARCHAR(255),
-   friend_username VARCHAR(255),
+   user_first VARCHAR(255),
+   user_second VARCHAR(255),
    status VARCHAR(255),
-   FOREIGN KEY (user_username) REFERENCES persons (username) ON DELETE CASCADE,
-   FOREIGN KEY (friend_username) REFERENCES persons (username) ON DELETE CASCADE
+   FOREIGN KEY (user_first) REFERENCES persons (username) ON DELETE CASCADE,
+   FOREIGN KEY (user_second) REFERENCES persons (username) ON DELETE CASCADE
 );
 
 create TABLE chats(

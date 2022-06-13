@@ -37,7 +37,6 @@ class PostController {
 
    async getPosts(req, res) {
       const { user, person } = req.query
-      console.log(user, person)
 
       try {
          const response = await db.query("SELECT * FROM posts WHERE user_username = $1 ORDER BY id DESC", [person ? person : user])

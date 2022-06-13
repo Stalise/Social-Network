@@ -17,6 +17,16 @@ export interface IPost {
    isLike: boolean,
 }
 
+export interface IFriend {
+   username: string,
+   name: string,
+   surname: string,
+   avatar: string,
+   status: FriendStatusType,
+}
+
+export type FriendStatusType = "no" | "friend" | "request" | "sent"
+
 export interface ILike {
    username: string,
    postId: number,

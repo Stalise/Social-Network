@@ -5,7 +5,8 @@ export enum Urls {
    userAuth = "user/auth",
    userLogout = "user/logout",
    post = "post",
-   like = "post/like"
+   like = "post/like",
+   friend = "friend",
 };
 
 export enum apiResponsesMessage {
@@ -13,4 +14,5 @@ export enum apiResponsesMessage {
    needAuth = "Need authorization",
    notLogged = "Not logged",
    unexpected = "Unexpected error! Please try again later.",
+   deleteFriend = "User has been removed from friends."
 };

@@ -11,7 +11,10 @@ import { IWorker } from "types/helpers";
 export function* workerCheckAuth() {
    const response: string = yield call(userApi.checkAuth);
 
-   if (response === apiResponsesMessage.needAuth || response === apiResponsesMessage.unexpected) return;
+   if (response === apiResponsesMessage.needAuth || response === apiResponsesMessage.unexpected) {
+      yield put(changeUserStatusAction("ready"));
+      return;
+   }
 
    yield put(addUsernameAction(response));
 
@@ -26,6 +29,7 @@ export function* workerRegUser(data: IWorker<IRegFormState>) {
    const response: string = yield call<any>(userApi.regUser, data.payload);
 
    if (response === apiResponsesMessage.success) {
+      yield put(addUsernameAction(data.payload.username));
       yield put(changeAuthUserAction(true));
    }
 
@@ -38,6 +42,7 @@ export function* workerAuthUser(data: IWorker<IAuthFormState>) {
    const response: string = yield call<any>(userApi.authUser, data.payload);
 
    if (response === apiResponsesMessage.success) {
+      yield put(addUsernameAction(data.payload.username));
       yield put(changeAuthUserAction(true));
    }
    yield put(changeUserStatusAction("ready"));

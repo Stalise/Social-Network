@@ -1,4 +1,4 @@
-import { IUserData } from "types/common";
+import { IUserData, IFriend } from "types/common";
 
 export type StatusType = "ready" | "pending" | "auth" | "data";
 
@@ -7,14 +7,5 @@ export interface IState {
    status: StatusType,
    data: IUserData,
    friends: IFriend[],
-   requests_friends: IFriend[],
    photos: string[],
-}
-
-interface IFriend {
-   id: number,
-   name: string,
-   surname: string,
-   img: string,
-   username: string
 }

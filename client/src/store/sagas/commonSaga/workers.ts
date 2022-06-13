@@ -2,6 +2,7 @@ import { call, put } from "redux-saga/effects";
 
 import { workerGetUserData } from "store/sagas/userSaga/workers";
 import { workerGetUserPosts } from "store/sagas/postSaga/workers";
+import { workerGetFriends } from "store/sagas/friendSaga/workers";
 import { workerGetPersonData, workerGetPersonPosts } from "store/sagas/personSaga/workers";
 import { changeUserStatusAction } from "store/slices/UserSlice/UserSlice";
 import { changePersonStatusAction } from "store/slices/PersonSlice/PersonSlice";
@@ -12,6 +13,7 @@ export function* workerAllUserParams() {
    yield put(changeUserStatusAction("data"));
    yield call(workerGetUserData);
    yield call(workerGetUserPosts);
+   yield call(workerGetFriends);
    yield put(changeUserStatusAction("ready"));
 }
 
