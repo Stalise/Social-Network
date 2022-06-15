@@ -1,184 +1,98 @@
 const db = require('../utils/db');
-const events = require('events');
 
-const emitter = new events.EventEmitter();
+const responseMessages = require('../constants/responseMessages');
 
 class ChatController {
 
-   async chatJoin(req, res) {
-
-      const { user_id, interlocutor_id } = req.query
-
-      try {
-         const checkChat = await db.query('SELECT * FROM chat WHERE user_first = $1 AND user_second=$2', [user_id, interlocutor_id])
-         const checkChatTwo = await db.query('SELECT * FROM chat WHERE user_first = $1 AND user_second=$2', [interlocutor_id, user_id])
-
-         // проверяем создан ли чат с данными юзерами в бд, если нет, то создаем
-         if (!checkChat.rows.length && !checkChatTwo.rows.length) {
-            const createChat = await db.query('INSERT INTO chat (user_first, user_second) values($1, $2) RETURNING *', [user_id, interlocutor_id])
-
-            res.json(createChat.rows[0].id)
-
-         } else if (checkChat.rows.length) {
-
-            res.json(checkChat.rows[0].id)
-
-         } else if (checkChatTwo.rows.length) {
-
-            res.json(checkChatTwo.rows[0].id)
-         }
-      } catch (error) {
-         console.log(error)
-      }
-   }
-
-   async chatAll(req, res) {
-      const user_id = req.params.id
+   async getChats(req, res) {
+      const { username } = req.params;
+      const result = []
 
       try {
+         const chats = await db.query(`SELECT * FROM chats WHERE user_first = $1 OR user_second = $1`, [username]);
 
-         const allChats = await db.query('SELECT * FROM chat WHERE user_first = $1 OR user_second = $1', [user_id])
-         const chatsInfo = [...allChats.rows]
+         for (let elem of chats.rows) {
+            const interlocutor = elem.user_first === username ? elem.user_second : elem.user_first
 
-         // в полученный массив с чатами, мы добавляем доп. информацию из других таблиц в бд
-         for (let i of chatsInfo) {
+            let person = await db.query(`SELECT * FROM persons WHERE username = $1`, [interlocutor])
+            person = person.rows[0];
 
-            let interlocutorId = 0;
+            const messages = await db.query(`
+               SELECT messages.id, messages.text, messages.date, persons.avatar, persons.name, persons.surname 
+               FROM messages 
+               JOIN persons ON messages.user_username = persons.username
+               WHERE chat_id = $1
+               ORDER BY id LIMIT 100`,
+               [elem.id]);
 
-            // определяем чему равен id собеседника для данного чата. Данные взяты из бд 
-            i.user_first === Number(user_id) ? interlocutorId = i.user_second : interlocutorId = i.user_first
-
-            // имя и фотография собеседника
-            const interlocutor = await db.query('SELECT img, name FROM person WHERE id = $1', [interlocutorId])
-            i.interlocutor_img = interlocutor.rows[0].img
-            i.interlocutor_name = interlocutor.rows[0].name
-
-            // есть есть сообщения в чате, то берем последнее для отображения на странице чатов
-            const lastMessage = await db.query(
-               'SELECT text, date, user_id FROM message WHERE chat_id = $1 ORDER BY id DESC LIMIT 1',
-               [i.id])
-
-            // если последнее сообщение от собеседника, то добавляем его данные в ответ
-            if (lastMessage.rows.length && lastMessage.rows[0].user_id !== Number(user_id)) {
-               i.text = lastMessage.rows[0].text
-               i.date = lastMessage.rows[0].date
-               i.user_id = lastMessage.rows[0].user_id
+            const chatData = {
+               id: elem.id,
+               username: person.username,
+               forename: person.name,
+               surname: person.surname,
+               avatar: person.avatar,
+               messages: messages.rows,
             }
+
+            result.push(chatData);
          }
 
-         res.json(chatsInfo)
-
+         res.status(200).json({ message: responseMessages.success, chats: result })
       } catch (error) {
-         console.log(error)
+         res.status(500).json({ message: responseMessages.unexpected })
       }
    }
 
-   async delChat(req, res) {
-      const { user_id, chat_id } = req.body
-      console.log(chat_id)
-      await db.query('DELETE FROM chat WHERE id = $1', [chat_id])
+   async createChat(req, res) {
+      const { user_username, person_username } = req.body
 
-      const allChats = await db.query('SELECT * FROM chat WHERE user_first = $1 OR user_second = $1', [user_id])
-
-      const chatsInfo = [...allChats.rows]
-
-      // в полученный массив с чатами, мы добавляем доп. информацию из других таблиц в бд
-      for (let i of chatsInfo) {
-
-         let interlocutorId = 0;
-
-         // определяем чему равен id собеседника для данного чата. Данные взяты из бд 
-         i.user_first === Number(user_id) ? interlocutorId = i.user_second : interlocutorId = i.user_first
-
-         // имя и фотография собеседника
-         const interlocutor = await db.query('SELECT img, name FROM person WHERE id = $1', [interlocutorId])
-         i.interlocutor_img = interlocutor.rows[0].img
-         i.interlocutor_name = interlocutor.rows[0].name
-
-         // есть есть сообщения в чате, то берем последнее для отображения на странице чатов
-         const lastMessage = await db.query(
-            'SELECT text, date, user_id FROM message WHERE chat_id = $1 ORDER BY id DESC LIMIT 1',
-            [i.id])
-
-         // если последнее сообщение от собеседника, то добавляем его данные в ответ
-         if (lastMessage.rows.length && lastMessage.rows[0].user_id !== Number(user_id)) {
-            i.text = lastMessage.rows[0].text
-            i.date = lastMessage.rows[0].date
-            i.user_id = lastMessage.rows[0].user_id
-         }
-      }
-
-      res.json(chatsInfo)
-   }
-
-   async getMessages(req, res) {
-      const { chat_id, user_id } = req.query
-
+      let person = await db.query(`SELECT * FROM persons WHERE username = $1`, [person_username])
+      person = person.rows[0];
 
       try {
-         const chat = await db.query('SELECT * FROM chat WHERE id = $1', [chat_id])
-         const chatData = chat.rows[0]
+         // проверка наличия чата в бд
+         const checkAvailable = await db.query(`SELECT * FROM chats WHERE (user_first = $1 AND user_second = $2) OR (user_first = $2 AND user_second = $1)`, [user_username, person_username])
 
-         let interlocutorId = 0;
-         // определяем чему равен id собеседника для данного чата. Данные взяты из бд 
-         chatData.user_first === Number(user_id) ? interlocutorId = chatData.user_second : interlocutorId = chatData.user_first
+         if (checkAvailable.rows.length) {
+            const messages = await db.query(`SELECT * FROM messages WHERE chat_id = $1 ORDER BY id DESC LIMIT 100`, [checkAvailable.rows[0].id])
 
-         const interlocutorData = {
-            name: '',
-            surname: '',
-            img: ''
+            const chatData = {
+               id: elem.id,
+               username: person.username,
+               forename: person.name,
+               surname: person.surname,
+               avatar: person.avatar,
+               messages: messages.rows,
+            }
+
+            res.status(200).json({ message: responseMessages.success, chat: chatData })
+         } else {
+            const response = await db.query(`INSERT INTO chats (user_first, user_second) values ($1, $2) RETURNING *`, [user_username, person_username]);
+
+            const chatData = {
+               id: response.rows[0].id,
+               username: person_username,
+               fullname: `${person.rows[0].name} ${person.rows[0].surname}`,
+               avatar: person.rows[0].avatar,
+               messages: [],
+            }
+
+            res.status(200).json({ message: responseMessages.success, chat: chatData })
          }
-
-         // имя, фамилия и фотография собеседника из бд, и помещение их в объект
-         const interlocutor = await db.query('SELECT name, surname, img FROM person WHERE id = $1', [interlocutorId])
-         interlocutorData.name = interlocutor.rows[0].name
-         interlocutorData.surname = interlocutor.rows[0].surname
-         interlocutorData.img = interlocutor.rows[0].img
-
-         const allMessages = await db.query('SELECT * FROM message WHERE chat_id = $1', [chat_id])
-
-         res.json([interlocutorData, allMessages.rows])
       } catch (error) {
-         console.log(error)
+         res.status(500).json({ message: responseMessages.unexpected })
       }
    }
 
-   async getMessageOne(req, res) {
-      const chatId = req.params.id
-
-      // обработчик который сработает при попадании сообщения на сервер
-      const listener = (message) => {
-         if (message.chat_id === Number(chatId)) {
-            clearTimeout(timeout)
-            res.json(message)
-         }
-      }
-
-      // объявление обработчика
-      emitter.once('newMessage', listener)
-
-      // таймаут для перезапуска long-pollinga
-      const timeout = setTimeout(() => {
-         emitter.removeListener('newMessage', listener)
-         res.sendStatus(500)
-      }, 60000)
-
-   }
-
-   async createMessages(req, res) {
-      const { text, chat_id, user_id, date } = req.body
+   async deleteChat(req, res) {
+      const { id } = req.params;
 
       try {
-         const newMessage = await db.query(
-            `INSERT INTO message (text, date, user_id, chat_id) 
-            values ($1, $2, $3, $4) RETURNING *`,
-            [text, date, user_id, chat_id])
+         await db.query(`DELETE FROM chats WHERE id = $1`, [id])
 
-         // отправляет сообщение с клиента в getMessageOne  
-         emitter.emit('newMessage', newMessage.rows[0])
-         res.status(200).send('New message')
+         res.status(200).json({ message: responseMessages.success })
       } catch (error) {
-         console.log(error)
+         res.status(500).json({ message: responseMessages.unexpected })
       }
    }
 

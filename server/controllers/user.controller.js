@@ -164,20 +164,6 @@ class UserController {
       }
 
    }
-
-   async getLikes(req, res) {
-      const user_id = req.params.id
-
-      try {
-         const getLikes = await db.query('SELECT * FROM likes WHERE user_id = $1', [user_id])
-
-         res.json(getLikes.rows)
-
-      } catch (error) {
-         console.log(error)
-      }
-
-   }
 }
 
 module.exports = new UserController()

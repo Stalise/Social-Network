@@ -7,6 +7,7 @@ export enum Urls {
    post = "post",
    like = "post/like",
    friend = "friend",
+   chat = "chat"
 };
 
 export enum apiResponsesMessage {

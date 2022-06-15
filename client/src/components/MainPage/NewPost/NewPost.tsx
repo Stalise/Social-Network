@@ -11,11 +11,11 @@ import Loader from "components/Common/Loader/Loader";
 
 const NewPost: FC = () => {
 
-   const [fieldOverflow, setFieldOverflow] = useState<FieldOverflowType>("hidden");
-   const cloneField = useRef<HTMLDivElement | null>(null);
    const dispatch = useAppDispatch();
    const { status } = useAppSelector(state => state.postsSlice);
+   const cloneField = useRef<HTMLDivElement | null>(null);
 
+   const [fieldOverflow, setFieldOverflow] = useState<FieldOverflowType>("hidden");
    const [heightField, setHeightField] = useState<number>(70);
    const [post, setPost] = useState<IPostState>({
       text: "",
@@ -45,7 +45,7 @@ const NewPost: FC = () => {
       const cloneCurrentHeight = cloneField.current?.offsetHeight;
 
       if (cloneCurrentHeight !== undefined && cloneCurrentHeight !== heightField) {
-         heightHandler(cloneCurrentHeight, heightField, setHeightField, setFieldOverflow);
+         heightHandler(cloneCurrentHeight, heightField, setHeightField, setFieldOverflow, 220, 70);
       }
    });
 

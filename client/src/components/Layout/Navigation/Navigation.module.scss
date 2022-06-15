@@ -5,12 +5,14 @@
    padding: 20px 15px;
    border-radius: 10px;
    margin-right: 20px;
+
    .list {
       .listItem {
          position: relative;
          padding-left: 40px;
          height: 25px;
-         // border: 1px solid black;
+         cursor: pointer;
+
          .listLink {
             &:before {
                font-family: "IcoFont";
@@ -21,6 +23,7 @@
                left: 0px;
                transition: 0.3s;
             }
+
             &:after {
                position: absolute;
                content: "My page";
@@ -31,6 +34,7 @@
                padding-left: 45px;
             }
          }
+
          &:hover {
             .listLink {
                &:before {
@@ -38,6 +42,7 @@
                }
             }
          }
+
          &:nth-child(1) {
             .listLink {
                &:before {
@@ -48,6 +53,7 @@
                }
             }
          }
+
          &:nth-child(2) {
             .listLink {
                &:before {
@@ -55,11 +61,13 @@
                   font-size: 24px;
                   top: -1px;
                }
+
                &:after {
                   content: "News";
                }
             }
          }
+
          &:nth-child(3) {
             .listLink {
                &:before {
@@ -67,11 +75,13 @@
                   font-size: 24px;
                   top: -1px;
                }
+
                &:after {
                   content: "Messages";
                }
             }
          }
+
          &:nth-child(4) {
             .listLink {
                &:before {
@@ -79,11 +89,13 @@
                   font-size: 24px;
                   top: -2px;
                }
+
                &:after {
                   content: "Friends";
                }
             }
          }
+
          &:nth-child(5) {
             .listLink {
                &:before {
@@ -91,11 +103,13 @@
                   font-size: 24px;
                   top: -2px;
                }
+
                &:after {
                   content: "Photos";
                }
             }
          }
+
          &:nth-child(6) {
             .listLink {
                &:before {
@@ -103,11 +117,13 @@
                   font-size: 24px;
                   top: -1px;
                }
+
                &:after {
                   content: "Search";
                }
             }
          }
+
          &:not(:last-child) {
             margin-bottom: 35px;
          }
@@ -127,17 +143,21 @@
       box-shadow: 0px 0px 8px 0px rgba(34, 60, 80, 0.2);
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
+
       .list {
          display: flex;
          justify-content: space-between;
          padding-right: 25px;
+
          .listItem {
             padding-left: 0;
+
             .listLink {
                &:after {
                   content: "";
                }
             }
+
             &:nth-child(2) {
                .listLink {
                   &:after {
@@ -145,6 +165,7 @@
                   }
                }
             }
+
             &:nth-child(3) {
                .listLink {
                   &:after {
@@ -152,6 +173,7 @@
                   }
                }
             }
+
             &:nth-child(4) {
                .listLink {
                   &:after {
@@ -159,6 +181,7 @@
                   }
                }
             }
+
             &:nth-child(5) {
                .listLink {
                   &:after {
@@ -166,6 +189,7 @@
                   }
                }
             }
+
             &:nth-child(6) {
                .listLink {
                   &:after {

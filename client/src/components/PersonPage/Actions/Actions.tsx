@@ -1,24 +1,43 @@
 import { FC, useLayoutEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import s from "./Actions.module.scss";
 import { useAppDispatch, useAppSelector } from "hooks/redux";
-import { sagasConstantsFriend, sagaActionCreator } from "mock/constants/saga";
+import { sagasConstantsFriend, sagasConstantsChat, sagaActionCreator } from "mock/constants/saga";
 import { FriendStatusType } from "types/common";
+
+interface IPayload {
+   person_username: string,
+   navigate: any,
+}
 
 const Actions: FC = () => {
 
    const dispatch = useAppDispatch();
-   const [status, setStatus] = useState<FriendStatusType>("no");
+   const navigate = useNavigate();
    const { friends } = useAppSelector(state => state.userSlice);
    const person_username = useAppSelector(state => state.personSlice.data.username);
+   const { chats } = useAppSelector(state => state.chatsSlice);
 
-   const clickHandler = () => {
+   const [status, setStatus] = useState<FriendStatusType>("no");
+
+   const friendHandler = () => {
       if (status === "friend" || status === "sent") return;
 
       if (status === "no") {
          dispatch(sagaActionCreator<string>(sagasConstantsFriend.SAGA_CREATE_FRIEND, person_username));
       } else if (status === "request") {
          dispatch(sagaActionCreator<string>(sagasConstantsFriend.SAGA_ACCEPT_FRIEND, person_username));
+      }
+   };
+
+   const writeHandler = () => {
+      const chat = chats.filter(elem => elem.username === person_username);
+
+      if (chat.length) {
+         navigate(`/chat/${chat[0].id}`);
+      } else {
+         dispatch(sagaActionCreator<IPayload>(sagasConstantsChat.SAGA_CREATE_CHAT, { person_username, navigate }));
       }
    };
 
@@ -32,9 +51,10 @@ const Actions: FC = () => {
 
    return (
       <div className={s.wrapper}>
-         <button type="button" className={s.write}>Write</button>
+         <button onClick={writeHandler} type="button" className={s.write}>Write</button>
+
          <button
-            onClick={clickHandler}
+            onClick={friendHandler}
             type="button"
             className={`
                ${s.add}

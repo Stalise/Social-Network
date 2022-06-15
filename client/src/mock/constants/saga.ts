@@ -22,6 +22,12 @@ export enum sagasConstantsFriend {
    SAGA_DELETE_FRIEND = "SAGA_DELETE_FRIEND",
 }
 
+export enum sagasConstantsChat {
+   SAGA_CREATE_CHAT = "SAGA_CREATE_CHAT",
+   SAGA_GET_CHATS = "SAGA_GET_CHATS",
+   SAGA_DELETE_CHAT = "SAGA_DELETE_CHAT",
+}
+
 export enum sagasConstantsPerson {
    SAGA_GET_PERSON_DATA = "SAGA_GET_PERSON_DATA",
    SAGA_GET_PERSON_POSTS = "SAGA_GET_PERSON_POSTS",

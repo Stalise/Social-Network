@@ -20,7 +20,7 @@ export function* workerCheckAuth() {
 
    yield put(changeAuthUserAction(true));
 
-   yield put(changeUserStatusAction("ready"));
+   yield put(changeUserStatusAction("data"));
 };
 
 export function* workerRegUser(data: IWorker<IRegFormState>) {

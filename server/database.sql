@@ -46,10 +46,10 @@ create TABLE friends(
 
 create TABLE chats(
    id SERIAL PRIMARY KEY,
-   first_user INTEGER,
-   second_user INTEGER,
-   FOREIGN KEY (first_user) REFERENCES persons (username),
-   FOREIGN KEY (second_user) REFERENCES persons (username)
+   user_first VARCHAR(255),
+   user_second VARCHAR(255),
+   FOREIGN KEY (user_first) REFERENCES persons (username) ON DELETE CASCADE,
+   FOREIGN KEY (user_second) REFERENCES persons (username) ON DELETE CASCADE
 );
 
 create TABLE messages(

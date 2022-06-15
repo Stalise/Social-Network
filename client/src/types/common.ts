@@ -31,3 +31,21 @@ export interface ILike {
    username: string,
    postId: number,
 }
+
+export interface IChat {
+   id: number,
+   username: string,
+   forename: string,
+   surname: string,
+   avatar: string,
+   messages: IMessage[]
+}
+
+export interface IMessage {
+   id: number,
+   text: string,
+   date: string,
+   avatar: string,
+   name: string,
+   surname: string,
+}

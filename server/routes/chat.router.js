@@ -1,14 +1,12 @@
 const Router = require('express');
-const router = new Router()
+
 const chatController = require('../controllers/chat.controller');
+const jwtCheck = require('../middleware/jwtCheck');
 
-router.get('/chat/join', chatController.chatJoin)
-router.get('/chat/all/:id', chatController.chatAll)
-router.delete('/chat', chatController.delChat)
-router.get('/messages', chatController.getMessages)
-router.get('/message-one/:id', chatController.getMessageOne)
-router.post('/messages', chatController.createMessages)
+const router = new Router();
 
-// router.get('/chat', friendController.getStatus)
+router.get('/chat/:username', jwtCheck, chatController.getChats);
+router.post('/chat', jwtCheck, chatController.createChat);
+router.delete('/chat/:id', jwtCheck, chatController.deleteChat);
 
 module.exports = router

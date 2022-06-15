@@ -1,5 +1,5 @@
 import { FC, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import s from "./PersonPage.module.scss";
 import { useAppDispatch, useAppSelector } from "hooks/redux";
@@ -13,15 +13,13 @@ import Loader from "components/Common/Loader/Loader";
 
 const PersonPage: FC = () => {
 
-   const location = useLocation();
+   const params = useParams();
    const dispatch = useAppDispatch();
    const { status } = useAppSelector(state => state.personSlice);
 
    useEffect(() => {
-      const username: string = location.pathname.slice(1);
-
-      dispatch(sagaActionCreator<string>(sagasConstantsPerson.SAGA_GET_ALL_PARAMS_PERSON, username));
-   }, [location.pathname]);
+      dispatch(sagaActionCreator<string>(sagasConstantsPerson.SAGA_GET_ALL_PARAMS_PERSON, params.username));
+   }, [params]);
 
    if (status === "data") return <Loader />;
 

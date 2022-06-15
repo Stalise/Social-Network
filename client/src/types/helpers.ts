@@ -5,3 +5,11 @@ export interface IWorker<T> {
    type: string,
    payload: T
 };
+
+// interface IApi<T> {
+//    [key: string]: T;
+// }
+
+// export type ApiType<T> = IApi<T> & {
+//    message: string,
+// }

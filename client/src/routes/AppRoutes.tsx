@@ -8,7 +8,8 @@ import MainPage from 'pages/MainPage/MainPage';
 import AuthPage from 'pages/AuthPage/AuthPage';
 import FriendsPage from 'pages/FriendsPage/FriendsPage';
 import PersonPage from 'pages/PersonPage/PersonPage';
-
+import MessagesPage from 'pages/MessagesPage/MessagesPage';
+import ChatPage from 'pages/ChatPage/ChatPage';
 
 const AppRoutes: FC = () => {
 
@@ -20,6 +21,8 @@ const AppRoutes: FC = () => {
             ?
             <Route path="/" element={<Layout />}>
                <Route index element={<MainPage />} />
+               <Route path="/messages" element={<MessagesPage />} />
+               <Route path="/chat/:id" element={<ChatPage />} />
                <Route path="/friends" element={<FriendsPage />} />
                <Route path="/:username" element={<PersonPage />} />
                <Route path="*" element={<MainPage />} />
