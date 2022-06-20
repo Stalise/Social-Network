@@ -5,11 +5,7 @@ import s from "./Actions.module.scss";
 import { useAppDispatch, useAppSelector } from "hooks/redux";
 import { sagasConstantsFriend, sagasConstantsChat, sagaActionCreator } from "mock/constants/saga";
 import { FriendStatusType } from "types/common";
-
-interface IPayload {
-   person_username: string,
-   navigate: any,
-}
+import { IPayload } from "./types";
 
 const Actions: FC = () => {
 

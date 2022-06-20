@@ -1,7 +1,7 @@
 import { call, put, select } from "redux-saga/effects";
 
 import { changeAuthUserAction, addFriends, addFriend, changeFriendStatus, deleteFriend } from "store/slices/UserSlice/UserSlice";
-import { friendApi } from "api/friendApi";
+import { friendApi } from "api/friendApi/friendApi";
 import { apiResponsesMessage } from "mock/constants/api";
 import { IWorker } from "types/helpers";
 import { IFriend } from "types/common";

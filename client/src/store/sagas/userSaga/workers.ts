@@ -1,7 +1,7 @@
 import { call, put, select } from "redux-saga/effects";
 
 import { changeUserStatusAction, changeAuthUserAction, addUserDataAction, addUsernameAction } from "store/slices/UserSlice/UserSlice";
-import { userApi } from "api/userApi";
+import { userApi } from "api/userApi/userApi";
 import { apiResponsesMessage } from "mock/constants/api";
 import { IAuthFormState } from "components/AuthPage/AuthForm/types";
 import { IRegFormState } from "components/AuthPage/RegForm/types";

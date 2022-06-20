@@ -7,7 +7,8 @@ const responseMessages = {
    existUsername: "User with this username already exists.",
    successAuth: "You are successfully logged in.",
    successReg: "You have successfully registered.",
-   entityExist: "Entity already exists."
+   entityExist: "Entity already exists.",
+   requestExpired: "The waiting time has expired, rejected by server. Please update the request.",
 }
 
-module.exports = responseMessages
+module.exports = responseMessages;

@@ -4,14 +4,14 @@ import { watcherGetUserData, watcherCheckAuth, watcherAuthUser, watcherLogoutUse
 import { watcherGetUserPosts, watcherCreatePost, watcherCreateLike, watcherDeletePost, watcherDeleteLike } from './postSaga/watchers';
 import { watcherGetPersonData, watcherGetPersonPosts, watcherCreatePostLike, watcherDeletePostLike } from "./personSaga/watchers";
 import { watcherGetFriends, watcherCreateFriend, watcherAcceptFriend, watcherDeleteFriend } from "./friendSaga/watchers";
-import { watcherGetChats, watcherCreateChat, watcherDeleteChat } from "./chatsSaga/watchers";
+import { watcherGetChats, watcherCreateChat, watcherDeleteChat, watcherCreateMessage, watcherGetMessage } from "./chatsSaga/watchers";
 import { watcherAllUserParams, watcherAllPersonParams } from "./commonSaga/watchers";
 
 const userSagas = [watcherGetUserData, watcherCheckAuth, watcherAuthUser, watcherLogoutUser, watcherRegUser];
 const postsSagas = [watcherGetUserPosts, watcherCreatePost, watcherCreateLike, watcherDeletePost, watcherDeleteLike];
 const personSagas = [watcherGetPersonData, watcherGetPersonPosts, watcherCreatePostLike, watcherDeletePostLike];
 const friendSagas = [watcherGetFriends, watcherCreateFriend, watcherAcceptFriend, watcherDeleteFriend];
-const chatSagas = [watcherGetChats, watcherCreateChat, watcherDeleteChat];
+const chatSagas = [watcherGetChats, watcherCreateChat, watcherDeleteChat, watcherCreateMessage, watcherGetMessage];
 const commonSagas = [watcherAllUserParams, watcherAllPersonParams];
 
 export default function* rootSaga(): any {

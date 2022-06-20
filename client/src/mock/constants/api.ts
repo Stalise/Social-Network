@@ -7,7 +7,8 @@ export enum Urls {
    post = "post",
    like = "post/like",
    friend = "friend",
-   chat = "chat"
+   chat = "chat",
+   message = "chat/message"
 };
 
 export enum apiResponsesMessage {
@@ -15,5 +16,6 @@ export enum apiResponsesMessage {
    needAuth = "Need authorization",
    notLogged = "Not logged",
    unexpected = "Unexpected error! Please try again later.",
-   deleteFriend = "User has been removed from friends."
+   deleteFriend = "User has been removed from friends.",
+   requestExpired = "The waiting time has expired, rejected by server. Please update the request.",
 };

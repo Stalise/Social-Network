@@ -4,7 +4,8 @@ import { toast } from 'react-toastify';
 import { Urls } from "mock/constants/api";
 import { apiResponsesMessage } from "mock/constants/api";
 import { defaultToast } from "mock/constants/toast";
-import { IChat } from "types/common";
+import { IChat, IMessage } from "types/common";
+import { CreateMessageData } from "./types";
 
 export const instance = axios.create({
    baseURL: Urls.server_url,
@@ -28,7 +29,6 @@ export const chatApi = {
    },
 
    createChat: async (data: string[]) => {
-
       try {
          const response = await instance.post<{ message: string, chat: IChat }>(
             Urls.chat,
@@ -52,6 +52,49 @@ export const chatApi = {
          if (error.response?.status === 401) {
             return apiResponsesMessage.needAuth;
          }
+
+         toast.warn(apiResponsesMessage.unexpected, defaultToast);
+         return apiResponsesMessage.unexpected;
+      }
+   },
+
+   createMessage: async (data: CreateMessageData) => {
+      try {
+         await instance.post<{ message: string }>(
+            Urls.message,
+            { ...data },
+            { headers: { "Content-Type": "application/json" } },
+         );
+
+         return apiResponsesMessage.success;
+      } catch (error) {
+         toast.warn(apiResponsesMessage.unexpected, defaultToast);
+         return apiResponsesMessage.unexpected;
+      }
+   },
+
+   getMessage: async (data: [number, any]) => {
+      try {
+         const response = await instance.get<{ message: string, data?: IMessage }>(
+            `${Urls.message}/${data[0]}`,
+            { signal: data[1].signal },
+         );
+
+         return response.data.data;
+      } catch (error: any) {
+         if (error.response?.status === 401) {
+            return apiResponsesMessage.needAuth;
+         }
+
+         // когда время ожидания заканчивается, сервер прерывает запрос
+         if (error.response?.status === 307) {
+            return apiResponsesMessage.requestExpired;
+         }
+
+         // проверка что запрос был отменен через AbortController
+         if (axios.isCancel(error)) {
+            return apiResponsesMessage.unexpected;
+         };
 
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
          return apiResponsesMessage.unexpected;

@@ -2,7 +2,7 @@ import { call, put, select } from "redux-saga/effects";
 
 import { changeAuthUserAction } from "store/slices/UserSlice/UserSlice";
 import { addPostsAction, addPostAction, deletePostAction, changePostStatusAction, changeLikePostAction } from "store/slices/PostsSlice/PostsSlice";
-import { postApi } from "api/postApi";
+import { postApi } from "api/postApi/postApi";
 import { apiResponsesMessage } from "mock/constants/api";
 import { IPost, ILike } from "types/common";
 import { IWorker } from "types/helpers";

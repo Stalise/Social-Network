@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { IState, StatusType } from './types';
+import { IState, StatusType, ICreateMessagePayload } from './types';
 import { IChat } from "types/common";
 
 const initialState: IState = {
-   status: "pending",
+   status: "ready",
    chats: [],
 };
 
@@ -24,6 +24,10 @@ export const chatsSlice = createSlice({
       deleteChatAction(state, { payload }: { payload: number }) {
          state.chats = state.chats.filter(elem => elem.id !== payload);
       },
+      addMessageAction(state, { payload }: { payload: ICreateMessagePayload }) {
+         const chat = state.chats.filter(elem => elem.id === payload.chat_id)[0];
+         chat.messages.push(payload.message);
+      },
    },
 });
 
@@ -32,6 +36,7 @@ export const {
    addChatsAction,
    addChatAction,
    deleteChatAction,
+   addMessageAction,
 } = chatsSlice.actions;
 
 export default chatsSlice.reducer;

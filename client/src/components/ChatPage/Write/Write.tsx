@@ -1,17 +1,40 @@
 import { FC, useState, useLayoutEffect, useRef } from "react";
 
 import s from "./Write.module.scss";
+import { useAppDispatch, useAppSelector } from "hooks/redux";
 import { heightHandler } from "helpers/postHelpers";
+import { getDate } from "helpers/chatHelpers";
+import { sagasConstantsChat, sagaActionCreator } from "mock/constants/saga";
+import { IChat } from "types/common";
+import { FieldOverflowType, IPayloadCreateMessage } from "./types";
 
-export type FieldOverflowType = "hidden" | "auto";
+interface IProps {
+   chat: IChat,
+}
 
-const Write: FC = () => {
+const Write: FC<IProps> = ({ chat }) => {
 
+   const dispatch = useAppDispatch();
+   const { status } = useAppSelector(state => state.chatsSlice);
    const cloneField = useRef<HTMLDivElement | null>(null);
 
    const [fieldOverflow, setFieldOverflow] = useState<FieldOverflowType>("hidden");
    const [heightField, setHeightField] = useState<number>(45);
    const [text, setText] = useState<string>("");
+
+   const writeHandler = () => {
+      if (!text.length) return;
+
+      const messageData: IPayloadCreateMessage = {
+         text,
+         date: getDate(),
+         user_username: chat.username,
+         chat_id: chat.id,
+      };
+
+      dispatch(sagaActionCreator<IPayloadCreateMessage>(sagasConstantsChat.SAGA_CREATE_MESSAGE, messageData));
+      setText("");
+   };
 
    useLayoutEffect(() => {
       const cloneCurrentHeight = cloneField.current?.offsetHeight;
@@ -36,7 +59,13 @@ const Write: FC = () => {
             <div ref={cloneField} className={s.textFieldClone}>{text}</div>
          </div>
 
-         <button className={s.send} type="button">Send</button>
+         <button
+            onClick={writeHandler}
+            className={`${s.send} ${status === "message" ? s._active : ""}`}
+            disabled={status === "message" ? true : false}
+            type="button">
+            Send
+         </button>
       </div>
    );
 };

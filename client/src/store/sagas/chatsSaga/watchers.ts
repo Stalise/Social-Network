@@ -1,7 +1,7 @@
 import { takeLatest } from "redux-saga/effects";
 
 import { sagasConstantsChat } from "mock/constants/saga";
-import { workerGetChats, workerCreateChat, workerDeleteChat } from "./workers";
+import { workerGetChats, workerCreateChat, workerDeleteChat, workerCreateMessage, workerGetMessage } from "./workers";
 
 export function* watcherGetChats() {
    yield takeLatest(sagasConstantsChat.SAGA_GET_CHATS, workerGetChats);
@@ -14,3 +14,12 @@ export function* watcherCreateChat() {
 export function* watcherDeleteChat() {
    yield takeLatest(sagasConstantsChat.SAGA_DELETE_CHAT, workerDeleteChat);
 }
+
+export function* watcherCreateMessage() {
+   yield takeLatest(sagasConstantsChat.SAGA_CREATE_MESSAGE, workerCreateMessage);
+}
+
+export function* watcherGetMessage() {
+   yield takeLatest(sagasConstantsChat.SAGA_GET_MESSAGE, workerGetMessage);
+}
+

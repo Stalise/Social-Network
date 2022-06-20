@@ -26,6 +26,8 @@ export enum sagasConstantsChat {
    SAGA_CREATE_CHAT = "SAGA_CREATE_CHAT",
    SAGA_GET_CHATS = "SAGA_GET_CHATS",
    SAGA_DELETE_CHAT = "SAGA_DELETE_CHAT",
+   SAGA_CREATE_MESSAGE = "SAGA_CREATE_MESSAGE",
+   SAGA_GET_MESSAGE = "SAGA_GET_MESSAGE",
 }
 
 export enum sagasConstantsPerson {
