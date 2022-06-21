@@ -152,7 +152,7 @@ class ChatController {
             [response.rows[0].id]);
 
          // отправляем новое сообщение в слушатель
-         emitter.emit("newMessage", message.rows[0]);
+         emitter.emit("action", message.rows[0]);
          res.status(200).json({ message: responseMessages.success });
       } catch (error) {
          res.status(500).json({ message: responseMessages.unexpected });
@@ -170,10 +170,10 @@ class ChatController {
             };
          }
 
-         emitter.once("newMessage", listener);
+         emitter.once("action", listener);
 
          const timeout = setTimeout(() => {
-            emitter.removeListener("newMessage", listener);
+            emitter.removeListener("action", listener);
             res.status(307).json({ message: responseMessages.requestExpired });
          }, 30000);
       } catch (error) {

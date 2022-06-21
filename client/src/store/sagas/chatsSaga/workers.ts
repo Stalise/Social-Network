@@ -69,15 +69,12 @@ export function* workerGetMessage(data: IWorker<IPayloadGetMessage>) {
 
    if (response === apiResponsesMessage.needAuth) {
       yield put(changeAuthUserAction(false));
-   }
-   else if (response === apiResponsesMessage.unexpected) {
+   } else if (response === apiResponsesMessage.unexpected) {
       return;
-   }
-   else if (response === apiResponsesMessage.requestExpired) {
+   } else if (response === apiResponsesMessage.requestExpired) {
       yield put(sagaActionCreator<IPayloadGetMessage>(sagasConstantsChat.SAGA_GET_MESSAGE, { chat_id, controller }));
-   }
-   else if (typeof (response) !== "string") {
+   } else if (typeof (response) !== "string") {
       yield put(addMessageAction({ chat_id: data.payload.chat_id, message: response }));
-      return put(sagaActionCreator<IPayloadGetMessage>(sagasConstantsChat.SAGA_GET_MESSAGE, { chat_id, controller }));
+      yield put(sagaActionCreator<IPayloadGetMessage>(sagasConstantsChat.SAGA_GET_MESSAGE, { chat_id, controller }));
    }
 }
