@@ -1,27 +1,40 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 
 import s from "./MessagesPage.module.scss";
+import { useAppDispatch, useAppSelector } from "hooks/redux";
+import { sagasConstantsChat, sagaActionCreator } from "mock/constants/saga";
 
 import Chat from "components/MessagesPage/Chat/Chat";
 import Empty from "components/MessagesPage/Empty/Empty";
-import { useAppSelector } from "hooks/redux";
+import Loader from "components/Common/Loader/Loader";
 
 const MessagesPage: FC = () => {
 
-   const { chats } = useAppSelector(state => state.chatsSlice);
+   const dispatch = useAppDispatch();
+   const { chats, status } = useAppSelector(state => state.chatsSlice);
+
+   useEffect(() => {
+      dispatch(sagaActionCreator(sagasConstantsChat.SAGA_GET_CHATS));
+   }, []);
 
    return (
       <div className={s.wrapper}>
          <p className={s.title}>My chats</p>
 
-         {!chats.length && <Empty />}
+         {status === "pending" && <Loader />}
 
-         {chats.length > 0 &&
-            <>
-               {chats.map(elem => {
-                  return <Chat data={elem} key={elem.id} />;
-               })}
-            </>
+         {status !== "pending" &&
+            <div className={s.container}>
+               {!chats.length && <Empty />}
+
+               {chats.length > 0 &&
+                  <>
+                     {chats.map(elem => {
+                        return <Chat data={elem} key={elem.id} />;
+                     })}
+                  </>
+               }
+            </div>
          }
       </div>
    );

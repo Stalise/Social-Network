@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import s from "./Message.module.scss";
+import s from "./Item.module.scss";
 import { Urls } from "mock/constants/api";
 import { IMessage } from "types/common";
 
@@ -8,7 +8,7 @@ interface IProps {
    data: IMessage,
 }
 
-const Message: FC<IProps> = ({ data }) => {
+const Item: FC<IProps> = ({ data }) => {
 
    return (
       <div className={s.wrapper}>
@@ -26,4 +26,4 @@ const Message: FC<IProps> = ({ data }) => {
    );
 };
 
-export default Message;
+export default Item;

@@ -1,59 +1,45 @@
-.wrapper {
-   max-width: 100%;
-   width: 100%;
-   border: 1px solid #ccc;
-   border-radius: 5px;
-   padding: 10px 15px;
-   display: flex;
-   justify-content: space-between;
-   cursor: pointer;
-   transition-duration: 0.3s;
-
-   &:hover {
-      background-color: #f5f5f5;
-   }
-
+.link {
    &:not(:last-child) {
+      display: block;
       margin-bottom: 20px;
    }
 
-   .content {
-      display: flex;
-      max-width: 650px;
+   .wrapper {
+      max-width: 100%;
       width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px 15px;
+      display: flex;
+      justify-content: space-between;
+      cursor: pointer;
+      transition-duration: 0.3s;
 
-      .imageContainer {
-         min-width: 70px;
-         max-width: 70px;
-         height: 70px;
-         border-radius: 10px;
-         overflow: hidden;
-         margin-right: 15px;
-
-         .image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-         }
+      &:hover {
+         background-color: #f5f5f5;
       }
 
-      .fullname {
-         font-size: 20px;
-         font-weight: 700;
-         letter-spacing: 0.7px;
-         margin-bottom: 5px;
-         color: #2d2d2d;
-      }
-
-      .text {
-         max-width: 500px;
-         width: 100%;
+      .content {
          display: flex;
-         flex-direction: column;
-         justify-content: center;
-         margin-right: 20px;
+         max-width: 650px;
+         width: 100%;
 
-         .name {
+         .imageContainer {
+            min-width: 70px;
+            max-width: 70px;
+            height: 70px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-right: 15px;
+
+            .image {
+               width: 100%;
+               height: 100%;
+               object-fit: cover;
+            }
+         }
+
+         .fullname {
             font-size: 20px;
             font-weight: 700;
             letter-spacing: 0.7px;
@@ -61,54 +47,71 @@
             color: #2d2d2d;
          }
 
-         .message {
+         .text {
             max-width: 500px;
-            font-size: 18px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            color: #2d2d2d;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-right: 20px;
 
-            @media (max-width: 1150px) {
-               max-width: 39vw;
+            .name {
+               font-size: 20px;
+               font-weight: 700;
+               letter-spacing: 0.7px;
+               margin-bottom: 5px;
+               color: #2d2d2d;
+            }
+
+            .message {
+               max-width: 500px;
+               font-size: 18px;
+               white-space: nowrap;
+               overflow: hidden;
+               text-overflow: ellipsis;
+               color: #2d2d2d;
+
+               @media (max-width: 1150px) {
+                  max-width: 39vw;
+               }
             }
          }
       }
-   }
 
-   .info {
-      max-width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      justify-content: space-between;
+      .info {
+         max-width: 100%;
+         display: flex;
+         flex-direction: column;
+         align-items: flex-end;
+         justify-content: space-between;
 
-      .date {
-         font-size: 18px;
-         color: #2d2d2d;
-         white-space: nowrap;
-      }
-
-      .delete {
-         width: 22px;
-         height: 20px;
-         position: relative;
-
-         &:before {
-            font-family: "IcoFont";
-            content: "\eee4";
-            position: absolute;
-            font-size: 26px;
+         .date {
+            font-size: 18px;
             color: #2d2d2d;
-            top: -1px;
-            left: -1px;
-            transition-duration: 0.3s;
-            cursor: pointer;
-            color: #ccc;
+            white-space: nowrap;
          }
 
-         &:hover:before {
-            color: #2d2d2d;
+         .delete {
+            width: 22px;
+            height: 20px;
+            position: relative;
+
+            &:before {
+               font-family: "IcoFont";
+               content: "\eee4";
+               position: absolute;
+               font-size: 26px;
+               color: #2d2d2d;
+               top: -1px;
+               left: -1px;
+               transition-duration: 0.3s;
+               cursor: pointer;
+               color: #ccc;
+            }
+
+            &:hover:before {
+               color: #2d2d2d;
+            }
          }
       }
    }

@@ -1,4 +1,5 @@
 import { FC, useState, useLayoutEffect, useRef } from "react";
+import { useParams } from "react-router-dom";
 
 import s from "./Write.module.scss";
 import { useAppDispatch, useAppSelector } from "hooks/redux";
@@ -8,13 +9,11 @@ import { sagasConstantsChat, sagaActionCreator } from "mock/constants/saga";
 import { IChat } from "types/common";
 import { FieldOverflowType, IPayloadCreateMessage } from "./types";
 
-interface IProps {
-   chat: IChat,
-}
+const Write: FC = () => {
 
-const Write: FC<IProps> = ({ chat }) => {
-
+   const params = useParams();
    const dispatch = useAppDispatch();
+   const chat: IChat = useAppSelector(state => state.chatsSlice.chats.filter(elem => elem.id === Number(params.id))[0]);
    const { status } = useAppSelector(state => state.chatsSlice);
    const cloneField = useRef<HTMLDivElement | null>(null);
 

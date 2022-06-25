@@ -6,19 +6,23 @@
    flex-direction: column;
    align-items: center;
    background-color: #d7e7fc;
-   padding: 50px 15px 100px 15px;
+   padding: 20px 15px 30px 15px;
 }
 
 .main {
    width: 100%;
+   flex: 1 1 auto;
    display: flex;
    flex-direction: column;
+
    .mainContainer {
       max-width: 1230px;
       width: 100%;
       margin: 0 auto;
+      flex: 1 1 auto;
       display: flex;
-      align-items: flex-start;
+      justify-content: flex-start;
+      position: relative;
    }
 }
 

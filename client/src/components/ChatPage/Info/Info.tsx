@@ -1,14 +1,15 @@
 import { FC } from "react";
+import { useParams } from "react-router-dom";
 
 import s from "./Info.module.scss";
+import { useAppSelector } from "hooks/redux";
 import { Urls } from "mock/constants/api";
 import { IChat } from "types/common";
 
-interface IProps {
-   chat: IChat,
-}
+const Info: FC = () => {
 
-const Info: FC<IProps> = ({ chat }) => {
+   const params = useParams();
+   const chat: IChat = useAppSelector(state => state.chatsSlice.chats.filter(elem => elem.id === Number(params.id))[0]);
 
    return (
       <div className={s.wrapper}>

@@ -12,14 +12,19 @@ import { IPayloadCreateChat, IPayloadCreateMessage, IPayloadGetMessage } from ".
 export function* workerGetChats() {
    const { username } = yield select(store => store.userSlice.data);
 
+   yield put(changeChatsStatusAction("pending"));
+
    const response: string | IChat[] = yield call<any>(chatApi.getChats, username);
 
-   if (response === apiResponsesMessage.needAuth) yield put(changeAuthUserAction(false));
-   else if (response === apiResponsesMessage.unexpected) return;
-
-   if (typeof (response) !== "string") {
+   if (response === apiResponsesMessage.needAuth) {
+      yield put(changeAuthUserAction(false));
+      yield put(changeChatsStatusAction("ready"));
+   } else if (response === apiResponsesMessage.unexpected) {
+      yield put(changeChatsStatusAction("ready"));
+   } else if (typeof (response) !== "string") {
       yield put(addChatsAction(response));
-   }
+      yield put(changeChatsStatusAction("ready"));
+   };
 }
 
 export function* workerCreateChat(data: IWorker<IPayloadCreateChat>) {

@@ -1,6 +1,14 @@
 .wrapper {
-   width: 100%;
+   max-width: 960px;
+   width: calc(100% - 270px);
+   height: 100%;
    background-color: #ffffff;
    border-radius: 10px;
    padding: 20px 15px;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   position: absolute;
+   top: 0;
+   right: 0;
 }
