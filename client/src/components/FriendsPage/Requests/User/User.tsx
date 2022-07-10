@@ -26,20 +26,20 @@ const User: FC<IProps> = ({ data }) => {
    };
 
    return (
-      <div className={s.wrapper}>
-         <Link to={`/${data.username}`} className={s.link}>
-            <div className={s.avatar}>
-               <img src={`${Urls.cloudinary_url}${data.avatar}`} className={s.avatarImage} alt="avatar" />
+      <div className={ s.wrapper }>
+         <Link to={ `/${data.username}` } className={ s.link }>
+            <div className={ s.avatar }>
+               <img src={ `${Urls.cloudinary_url}${data.avatar}` } className={ s.avatarImage } alt="avatar" />
             </div>
          </Link>
-         <div className={s.content}>
-            <div className={s.name}>
-               <p className={s.forename}>{data.name}</p>
-               <p className={s.surname}>{data.surname}</p>
+         <div className={ s.content }>
+            <div className={ s.name }>
+               <p className={ s.forename }>{ data.name }</p>
+               <p className={ s.surname }>{ data.surname }</p>
             </div>
-            <div className={s.actions}>
-               <button onClick={() => actionsHandler("accept")} type="button" className={s.accept}>Accept</button>
-               <button onClick={() => actionsHandler("reject")} type="button" className={s.reject}>Reject</button>
+            <div className={ s.actions }>
+               <button onClick={ () => actionsHandler("accept") } type="button" className={ s.accept }>Accept</button>
+               <button onClick={ () => actionsHandler("reject") } type="button" className={ s.reject }>Reject</button>
             </div>
          </div>
       </div>

@@ -33,98 +33,98 @@ const RegForm: FC<IProps> = ({ tabStatus }) => {
    });
 
    return (
-      <form onSubmit={formik.handleSubmit} className={`${s.form} ${tabStatus ? s._active : ''}`}>
-         <label className={s.inputContainer}>
+      <form onSubmit={ formik.handleSubmit } className={ `${s.form} ${tabStatus ? s._active : ''}` }>
+         <label className={ s.inputContainer }>
             Username
             <input
-               className={s.field}
+               className={ s.field }
                type="text"
                placeholder="Example: sun144"
-               {...formik.getFieldProps('username')}
+               { ...formik.getFieldProps('username') }
             />
 
-            {formik.errors.username && formik.touched.username && <div className={s.error}>{formik.errors.username}</div>}
+            { formik.errors.username && formik.touched.username && <div className={ s.error }>{ formik.errors.username }</div> }
          </label>
 
-         <label className={s.inputContainer}>
+         <label className={ s.inputContainer }>
             Name
             <input
-               className={s.field}
+               className={ s.field }
                type="text"
                placeholder="Example: John"
-               {...formik.getFieldProps('name')}
+               { ...formik.getFieldProps('name') }
             />
 
-            {formik.errors.name && formik.touched.name && <div className={s.error}>{formik.errors.name}</div>}
+            { formik.errors.name && formik.touched.name && <div className={ s.error }>{ formik.errors.name }</div> }
          </label>
 
-         <label className={s.inputContainer}>
+         <label className={ s.inputContainer }>
             Surname
             <input
-               className={s.field}
+               className={ s.field }
                type="text"
                placeholder="Example: Lingard"
-               {...formik.getFieldProps('surname')}
+               { ...formik.getFieldProps('surname') }
             />
 
-            {formik.errors.surname && formik.touched.surname && <div className={s.error}>{formik.errors.surname}</div>}
+            { formik.errors.surname && formik.touched.surname && <div className={ s.error }>{ formik.errors.surname }</div> }
          </label>
 
-         <label className={s.inputContainer}>
+         <label className={ s.inputContainer }>
             Date of birth
             <input
-               className={s.field}
+               className={ s.field }
                type="date"
                min="1960-01-01" max="2015-01-01"
-               {...formik.getFieldProps("birth")}
+               { ...formik.getFieldProps("birth") }
             />
 
-            {formik.errors.birth && formik.touched.birth && <div className={s.error}>{formik.errors.birth}</div>}
+            { formik.errors.birth && formik.touched.birth && <div className={ s.error }>{ formik.errors.birth }</div> }
          </label>
 
-         <label className={s.inputContainer}>
+         <label className={ s.inputContainer }>
             City
             <input
-               className={s.field}
+               className={ s.field }
                type="text"
-               placeholder={"London"}
-               {...formik.getFieldProps("city")}
+               placeholder={ "London" }
+               { ...formik.getFieldProps("city") }
             />
 
-            {formik.errors.city && formik.touched.city && <div className={s.error}>{formik.errors.city}</div>}
+            { formik.errors.city && formik.touched.city && <div className={ s.error }>{ formik.errors.city }</div> }
          </label>
 
-         <div className={`${s.photoContainer} ${formik.values.file ? s._active : ''}`}>
-            <label className={s.photoLabel}>
+         <div className={ `${s.photoContainer} ${formik.values.file ? s._active : ''}` }>
+            <label className={ s.photoLabel }>
                Photo
                <input
-                  className={s.photoField}
+                  className={ s.photoField }
                   type="file"
                   name="file"
                   accept="image/jpeg, image/png"
-                  onChange={event => formik.setFieldValue("file", event.target.files?.length ? event.target.files[0] : "")}
+                  onChange={ event => formik.setFieldValue("file", event.target.files?.length ? event.target.files[0] : "") }
                />
             </label>
 
-            {formik.errors.file && formik.touched.file && <div className={s.error}>{formik.errors.file}</div>}
+            { formik.errors.file && formik.touched.file && <div className={ s.error }>{ formik.errors.file }</div> }
          </div>
 
-         <label className={s.inputContainer}>
+         <label className={ s.inputContainer }>
             Password
             <input
-               className={s.field}
+               className={ s.field }
                type="password"
                placeholder="Example: bend12AW"
-               {...formik.getFieldProps("password")}
+               { ...formik.getFieldProps("password") }
             />
 
-            {formik.errors.password && formik.touched.password && <div className={s.error}>{formik.errors.password}</div>}
+            { formik.errors.password && formik.touched.password && <div className={ s.error }>{ formik.errors.password }</div> }
          </label>
 
          <button
             type="submit"
-            disabled={!formik.dirty || !formik.isValid}
-            className={s.submit}
+            disabled={ !formik.dirty || !formik.isValid }
+            className={ s.submit }
          >
             REGISTRATION
          </button>

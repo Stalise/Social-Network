@@ -18,20 +18,20 @@ const MessagesPage: FC = () => {
    }, []);
 
    return (
-      <div className={s.wrapper}>
-         <p className={s.title}>My chats</p>
+      <div className={ s.wrapper }>
+         <p className={ s.title }>My chats</p>
 
-         {status === "pending" && <Loader />}
+         { status === "pending" && <Loader /> }
 
-         {status !== "pending" &&
-            <div className={s.container}>
-               {!chats.length && <Empty />}
+         { status !== "pending" &&
+            <div className={ s.container }>
+               { !chats.length && <Empty /> }
 
-               {chats.length > 0 &&
+               { chats.length > 0 &&
                   <>
-                     {chats.map(elem => {
-                        return <Chat data={elem} key={elem.id} />;
-                     })}
+                     { chats.map(elem => {
+                        return <Chat data={ elem } key={ elem.id } />;
+                     }) }
                   </>
                }
             </div>

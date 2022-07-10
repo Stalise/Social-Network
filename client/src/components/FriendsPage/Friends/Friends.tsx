@@ -12,7 +12,7 @@ const Friends: FC<IProps> = ({ data }) => {
 
    return (
       <div>
-         {data.map(elem => <User data={elem} key={elem.username} />)}
+         { data.map(elem => <User data={ elem } key={ elem.username } />) }
       </div>
    );
 };

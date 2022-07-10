@@ -31,23 +31,23 @@ const AuthPage: FC = () => {
    };
 
    return (
-      <div className={s.wrapper}>
-         <div className={s.container}>
+      <div className={ s.wrapper }>
+         <div className={ s.container }>
             <Intro />
 
-            <div className={s.tabs}>
-               <button className={s.tabsReg} onClick={() => tabsHandler('register')}>Register</button>
-               <button className={s.tabsAuth} onClick={() => tabsHandler('auth')}>Sign in</button>
+            <div className={ s.tabs }>
+               <button className={ s.tabsReg } onClick={ () => tabsHandler('register') }>Register</button>
+               <button className={ s.tabsAuth } onClick={ () => tabsHandler('auth') }>Sign in</button>
             </div>
 
-            {status === "auth"
+            { status === "auth"
                ?
                <Loader />
                :
-               <div className={s.forms}>
-                  <RegForm tabStatus={tabsState.register} />
+               <div className={ s.forms }>
+                  <RegForm tabStatus={ tabsState.register } />
 
-                  <AuthForm tabStatus={tabsState.auth} />
+                  <AuthForm tabStatus={ tabsState.auth } />
                </div>
             }
          </div>

@@ -20,22 +20,22 @@ const User: FC<IProps> = ({ data }) => {
    };
 
    return (
-      <div className={s.wrapper}>
-         <div className={s.content}>
-            <Link to={`/${data.username}`} className={s.link}>
-               <div className={s.avatar}>
-                  <img src={`${Urls.cloudinary_url}${data.avatar}`} className={s.avatarImage} alt="avatar" />
+      <div className={ s.wrapper }>
+         <div className={ s.content }>
+            <Link to={ `/${data.username}` } className={ s.link }>
+               <div className={ s.avatar }>
+                  <img src={ `${Urls.cloudinary_url}${data.avatar}` } className={ s.avatarImage } alt="avatar" />
                </div>
             </Link>
-            <div className={s.text}>
-               <div className={s.name}>
-                  <p className={s.forename}>{data.name}</p>
-                  <p className={s.surname}>{data.surname}</p>
+            <div className={ s.text }>
+               <div className={ s.name }>
+                  <p className={ s.forename }>{ data.name }</p>
+                  <p className={ s.surname }>{ data.surname }</p>
                </div>
-               <button type="button" className={s.message}>Write</button>
+               <button type="button" className={ s.message }>Write</button>
             </div>
          </div>
-         <div onClick={deleteHandler} className={s.delete}></div>
+         <div onClick={ deleteHandler } className={ s.delete }></div>
       </div>
    );
 };

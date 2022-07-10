@@ -5,7 +5,7 @@ import "./Loader.scss";
 const Loader: FC = () => {
 
    return (
-      <div className="container">
+      <div className="container" data-test-id={ "loader-spinner" }>
          <div id="floatingCirclesG">
             <div className="f_circleG" id="frotateG_01"></div>
             <div className="f_circleG" id="frotateG_02"></div>

@@ -11,12 +11,12 @@ const Posts: FC = () => {
    const { posts } = useAppSelector(state => state.personSlice);
 
    return (
-      <div className={s.wrapper}>
-         {!posts.length && <Empty />}
+      <div className={ s.wrapper }>
+         { !posts.length && <Empty /> }
 
-         {posts.length > 0 &&
+         { posts.length > 0 &&
             <>
-               {posts.map(elem => <Post postData={elem} key={elem.id} />)}
+               { posts.map(elem => <Post postData={ elem } key={ elem.id } />) }
             </>
          }
       </div>

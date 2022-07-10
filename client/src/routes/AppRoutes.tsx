@@ -17,19 +17,19 @@ const AppRoutes: FC = () => {
 
    return (
       <Routes>
-         {isAuth
+         { isAuth
             ?
-            <Route path="/" element={<Layout />}>
-               <Route index element={<MainPage />} />
-               <Route path="/messages" element={<MessagesPage />} />
-               <Route path="/chat/:id" element={<ChatPage />} />
-               <Route path="/friends" element={<FriendsPage />} />
-               <Route path="/:username" element={<PersonPage />} />
-               <Route path="*" element={<MainPage />} />
+            <Route path="/" element={ <Layout /> }>
+               <Route index element={ <MainPage /> } />
+               <Route path="/messages" element={ <MessagesPage /> } />
+               <Route path="/chat/:id" element={ <ChatPage /> } />
+               <Route path="/friends" element={ <FriendsPage /> } />
+               <Route path="/:username" element={ <PersonPage /> } />
+               <Route path="*" element={ <MainPage /> } />
             </Route>
             :
-            <Route path="/" element={<AuthPage />}>
-               <Route path="*" element={<AuthPage />} />
+            <Route path="/" element={ <AuthPage /> }>
+               <Route path="*" element={ <AuthPage /> } />
             </Route>
          }
       </Routes >

@@ -1,7 +1,8 @@
 {
    "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "plugin:cypress/recommended"
    ],
    "rules": {
       "no-console": "warn",
@@ -40,8 +41,23 @@
             "ignorePattern": "import"
          }
       ],
+      "eol-last": [
+         "warn",
+         "always"
+      ],
+      "react/jsx-curly-spacing": [
+         "warn",
+         {
+            "when": "always",
+            "children": true,
+            "spacing": {
+               "objectLiterals": "never"
+            }
+         }
+      ],
       "no-useless-escape": "off",
       "react-hooks/exhaustive-deps": "off",
-      "testing-library/no-debugging-utils": "warn"
+      "testing-library/no-debugging-utils": "warn",
+      "testing-library/await-async-utils": "off"
    }
 }

@@ -22,29 +22,29 @@ const Chat: FC<IProps> = ({ data }) => {
 
    return (
 
-      <Link to={`/chat/${data.id}`} className={s.link}>
-         <div className={s.wrapper}>
-            <div className={s.content}>
-               <div className={s.imageContainer}>
-                  <img src={`${Urls.cloudinary_url}${data.avatar}`} className={s.image} alt="avatar" />
+      <Link to={ `/chat/${data.id}` } className={ s.link }>
+         <div className={ s.wrapper }>
+            <div className={ s.content }>
+               <div className={ s.imageContainer }>
+                  <img src={ `${Urls.cloudinary_url}${data.avatar}` } className={ s.image } alt="avatar" />
                </div>
-               {!data.messages.length
+               { !data.messages.length
                   ?
-                  <p className={s.fullname}>{`${data.forename} ${data.surname}`}</p>
+                  <p className={ s.fullname }>{ `${data.forename} ${data.surname}` }</p>
                   :
-                  <div className={s.text}>
-                     <p className={s.name}>
-                        {`${data.messages[data.messages.length - 1]?.name} ${data.messages[data.messages.length - 1]?.surname}`}:
+                  <div className={ s.text }>
+                     <p className={ s.name }>
+                        { `${data.messages[data.messages.length - 1]?.name} ${data.messages[data.messages.length - 1]?.surname}` }:
                      </p>
-                     <span className={s.message}>
-                        {data.messages[data.messages.length - 1]?.text ? data.messages[data.messages.length - 1]?.text : ""}
+                     <span className={ s.message }>
+                        { data.messages[data.messages.length - 1]?.text ? data.messages[data.messages.length - 1]?.text : "" }
                      </span>
                   </div>
                }
             </div>
-            <div className={s.info}>
-               <p className={s.date}>{data.messages[0]?.date ? data.messages[0].date : ""}</p>
-               <div onClick={deleteHandler} className={s.delete} />
+            <div className={ s.info }>
+               <p className={ s.date }>{ data.messages[0]?.date ? data.messages[0].date : "" }</p>
+               <div onClick={ deleteHandler } className={ s.delete } />
             </div>
          </div >
       </Link>

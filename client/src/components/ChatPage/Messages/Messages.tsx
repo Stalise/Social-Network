@@ -22,14 +22,14 @@ const Messages: FC = () => {
    }, []);
 
    return (
-      <div className={s.wrapper} ref={ref}>
-         {!chat.messages.length && <Empty />}
+      <div className={ s.wrapper } ref={ ref }>
+         { !chat.messages.length && <Empty /> }
 
-         {chat.messages.length > 0 &&
+         { chat.messages.length > 0 &&
             <>
-               {chat.messages.map(elem => {
-                  return <Item data={elem} key={elem.id} />;
-               })}
+               { chat.messages.map(elem => {
+                  return <Item data={ elem } key={ elem.id } />;
+               }) }
             </>
          }
       </div>

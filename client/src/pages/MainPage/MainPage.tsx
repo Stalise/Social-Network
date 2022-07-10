@@ -10,8 +10,8 @@ import Posts from "components/MainPage/Posts/Posts";
 const MainPage: FC = () => {
 
    return (
-      <div className={s.wrapper}>
-         <div className={s.info}>
+      <div className={ s.wrapper }>
+         <div className={ s.info }>
             <Avatar />
             <UserInfo />
          </div>

@@ -28,9 +28,9 @@ const Like: FC<IProps> = ({ postData }) => {
    };
 
    return (
-      <div className={s.wrapper}>
-         <div onClick={clickHandler} className={`${s.icon} ${postData.isLike ? s._active : ""}`}></div>
-         <div className={s.number}>{postData.likes}</div>
+      <div className={ s.wrapper }>
+         <div onClick={ clickHandler } className={ `${s.icon} ${postData.isLike ? s._active : ""}` }></div>
+         <div className={ s.number }>{ postData.likes }</div>
       </div>
    );
 };

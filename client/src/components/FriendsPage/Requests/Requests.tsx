@@ -12,10 +12,10 @@ interface IProps {
 const Requests: FC<IProps> = ({ data }) => {
 
    return (
-      <div className={s.wrapper}>
-         <p className={s.title}>Friend requests</p>
+      <div className={ s.wrapper }>
+         <p className={ s.title }>Friend requests</p>
 
-         {data.map(elem => <User data={elem} key={elem.username} />)}
+         { data.map(elem => <User data={ elem } key={ elem.username } />) }
       </div>
    );
 };

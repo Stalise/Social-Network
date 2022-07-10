@@ -11,10 +11,10 @@ import App from './components/Common/App/App';
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLDivElement);
 
 root.render(
-   <Provider store={store}>
+   <Provider store={ store }>
       <Router>
          <App />
-         <ToastContainer limit={3} />
+         <ToastContainer limit={ 3 } />
       </Router>
    </Provider>,
 );

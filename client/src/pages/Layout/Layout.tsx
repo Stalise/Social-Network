@@ -20,15 +20,15 @@ const Layout: FC = () => {
    }, []);
 
    return (
-      <div className={s.wrapper}>
+      <div className={ s.wrapper }>
          <Header />
-         <div className={s.main}>
-            <div className={s.mainContainer}>
+         <div className={ s.main }>
+            <div className={ s.mainContainer }>
                <Navigation />
 
-               {status === "data" && <Loader />}
+               { status === "data" && <Loader /> }
 
-               {status === "ready" && <Outlet />}
+               { status === "ready" && <Outlet /> }
             </div>
          </div>
       </div>

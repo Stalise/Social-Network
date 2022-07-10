@@ -4,6 +4,7 @@
    display: flex;
    justify-content: center;
    margin-bottom: 40px;
+
    .title {
       font-size: 60px;
       font-weight: 700;
@@ -11,17 +12,20 @@
       transform: rotate(-1.5deg);
       color: #2d2d2d;
    }
+
    .logo {
       display: block;
       max-width: 140px;
       width: 100%;
       display: flex;
       align-items: center;
+
       .logoIcon {
          position: relative;
          max-width: 70px;
          height: 60px;
          width: 100%;
+
          &:after {
             font-family: "IcoFont";
             content: "\ed1d";
@@ -32,6 +36,7 @@
             transition: 0.3s;
          }
       }
+
       .logoText {
          color: #2d2d2d;
          font-size: 21px;

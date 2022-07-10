@@ -21,21 +21,21 @@ const Post: FC<IProps> = ({ postData }) => {
    };
 
    return (
-      <div className={s.wrapper}>
-         <div className={s.top}>
-            <div className={s.data}>{postData.date}</div>
-            <div onClick={deleteHandler} className={s.delete}></div>
+      <div className={ s.wrapper }>
+         <div className={ s.top }>
+            <div className={ s.data }>{ postData.date }</div>
+            <div onClick={ deleteHandler } className={ s.delete }></div>
          </div>
-         <div className={s.content}>
-            <p className={s.text}>{postData.text}</p>
-            {postData.img &&
-               <div className={s.imageContainer}>
-                  <img src={`${Urls.cloudinary_url}${postData.img}`} className={s.image} alt="post" />
+         <div className={ s.content }>
+            <p className={ s.text }>{ postData.text }</p>
+            { postData.img &&
+               <div className={ s.imageContainer }>
+                  <img src={ `${Urls.cloudinary_url}${postData.img}` } className={ s.image } alt="post" />
                </div>
             }
          </div>
-         <div className={s.bottom}>
-            <Like postData={postData} />
+         <div className={ s.bottom }>
+            <Like postData={ postData } />
          </div>
       </div>
    );

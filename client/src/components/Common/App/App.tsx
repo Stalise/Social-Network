@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from 'hooks/redux';
 import { sagasConstantsUser, sagaActionCreator } from "mock/constants/saga";
 
 import AppRoutes from 'routes/AppRoutes';
-import Loader from '../Loader/Loader';
+import Loader from 'components/Common/Loader/Loader';
 
 const App: FC = () => {
 
@@ -18,7 +18,7 @@ const App: FC = () => {
 
    if (status === 'pending') {
       return (
-         <div className={s.wrapper}>
+         <div className={ s.wrapper }>
             <Loader />
          </div>
       );

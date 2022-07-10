@@ -32,6 +32,9 @@
       "eject": "react-scripts eject",
       "test": "react-scripts test --passWithNoTests",
       "test:once": "react-scripts test --watchAll=false",
+      "test:e2e": "start-server-and-test start http://localhost:3000 cypress:run",
+      "cypress:open": "cypress open",
+      "cypress:run": "cypress run",
       "lint": "eslint -c .eslintrc.json --ext .js,.jsx,.ts,.tsx --max-warnings=0 .",
       "lint:fix": "npm run lint -- --fix"
    },
@@ -46,5 +49,10 @@
          "last 1 firefox version",
          "last 1 safari version"
       ]
+   },
+   "devDependencies": {
+      "cypress": "^7.5.0",
+      "eslint-plugin-cypress": "^2.12.1",
+      "start-server-and-test": "^1.14.0"
    }
 }

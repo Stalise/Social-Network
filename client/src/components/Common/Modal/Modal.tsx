@@ -27,11 +27,11 @@ const Modal: FC<IProps> = ({ isModal, setIsModal, children }) => {
 
    return (
       <div
-         onClick={e => closeModal(e)}
-         className={`${styles.modalWrapper} ${isModal ? styles._active : ''}`}
+         onClick={ e => closeModal(e) }
+         className={ `${styles.modalWrapper} ${isModal ? styles._active : ''}` }
          id="modal"
       >
-         {children}
+         { children }
       </div>
    );
 };

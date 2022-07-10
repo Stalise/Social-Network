@@ -7,15 +7,15 @@ import { navigationItems } from "mock/navigationMock";
 const Navigation: FC = () => {
 
    return (
-      <aside className={s.navigation}>
-         <ul className={s.list}>
-            {navigationItems.map(elem => {
+      <aside className={ s.navigation }>
+         <ul className={ s.list }>
+            { navigationItems.map(elem => {
                return (
-                  <li className={s.listItem} key={elem}>
-                     <Link to={elem} className={s.listLink}></Link>
+                  <li className={ s.listItem } key={ elem }>
+                     <Link to={ elem } className={ s.listLink }></Link>
                   </li>
                );
-            })}
+            }) }
          </ul>
       </aside>
    );

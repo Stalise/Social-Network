@@ -19,87 +19,87 @@ const Editing: FC = () => {
    });
 
    return (
-      <div className={s.editing}>
-         <button onClick={() => setIsModal(!isModal)} className={s.editingButton}></button>
+      <div className={ s.editing }>
+         <button onClick={ () => setIsModal(!isModal) } className={ s.editingButton }></button>
 
-         <Modal isModal={isModal} setIsModal={setIsModal}>
-            <div className={s.container}>
-               <p className={s.title}>Edit profile</p>
-               <form className={s.editingForm} onSubmit={formik.handleSubmit}>
-                  <label className={s.inputContainer}>
+         <Modal isModal={ isModal } setIsModal={ setIsModal }>
+            <div className={ s.container }>
+               <p className={ s.title }>Edit profile</p>
+               <form className={ s.editingForm } onSubmit={ formik.handleSubmit }>
+                  <label className={ s.inputContainer }>
                      Name
                      <input
-                        className={s.field}
+                        className={ s.field }
                         type="text"
-                        placeholder={"Name"}
+                        placeholder={ "Name" }
                         name="forename"
-                        onChange={formik.handleChange}
-                        value={formik.values.forename}
+                        onChange={ formik.handleChange }
+                        value={ formik.values.forename }
                      />
 
-                     {formik.errors.forename ? <div className={s.error}>{formik.errors.forename}</div> : null}
+                     { formik.errors.forename ? <div className={ s.error }>{ formik.errors.forename }</div> : null }
                   </label>
 
-                  <label className={s.inputContainer}>
+                  <label className={ s.inputContainer }>
                      Surname
                      <input
-                        className={s.field}
+                        className={ s.field }
                         type="text"
-                        placeholder={"Surname"}
+                        placeholder={ "Surname" }
                         name="surname"
-                        onChange={formik.handleChange}
-                        value={formik.values.surname}
+                        onChange={ formik.handleChange }
+                        value={ formik.values.surname }
                      />
 
-                     {formik.errors.surname ? <div className={s.error}>{formik.errors.surname}</div> : null}
+                     { formik.errors.surname ? <div className={ s.error }>{ formik.errors.surname }</div> : null }
                   </label>
 
-                  <label className={s.inputContainer}>
+                  <label className={ s.inputContainer }>
                      Date of birth
                      <input
-                        className={s.field}
+                        className={ s.field }
                         type="date"
                         name="dateOfBirth"
-                        onChange={formik.handleChange}
-                        value={formik.values.dateOfBirth}
+                        onChange={ formik.handleChange }
+                        value={ formik.values.dateOfBirth }
                         min="1960-01-01" max="2015-01-01"
                      />
 
-                     {formik.errors.dateOfBirth ? <div className={s.error}>{formik.errors.dateOfBirth}</div> : null}
+                     { formik.errors.dateOfBirth ? <div className={ s.error }>{ formik.errors.dateOfBirth }</div> : null }
                   </label>
 
-                  <label className={s.inputContainer}>
+                  <label className={ s.inputContainer }>
                      City
                      <input
-                        className={s.field}
+                        className={ s.field }
                         type="text"
-                        placeholder={"London"}
+                        placeholder={ "London" }
                         name="city"
-                        onChange={formik.handleChange}
-                        value={formik.values.city}
+                        onChange={ formik.handleChange }
+                        value={ formik.values.city }
                      />
 
-                     {formik.errors.city ? <div className={s.error}>{formik.errors.city}</div> : null}
+                     { formik.errors.city ? <div className={ s.error }>{ formik.errors.city }</div> : null }
                   </label>
 
-                  <div className={`${s.photoContainer} ${formik.values.file ? s._active : ''}`}>
-                     <label className={s.photoLabel}>
+                  <div className={ `${s.photoContainer} ${formik.values.file ? s._active : ''}` }>
+                     <label className={ s.photoLabel }>
                         Photo
                         <input
-                           className={s.photoField}
+                           className={ s.photoField }
                            type="file"
                            name="file"
-                           onChange={event => formik.setFieldValue("file", event.target.files?.length ? event.target.files[0] : null)}
+                           onChange={ event => formik.setFieldValue("file", event.target.files?.length ? event.target.files[0] : null) }
                         />
                      </label>
 
-                     {formik.errors.file ? <div>{formik.errors.file}</div> : null}
+                     { formik.errors.file ? <div>{ formik.errors.file }</div> : null }
                   </div>
 
                   <button
                      type="submit"
-                     disabled={!formik.dirty ? true : false || !formik.isValid ? true : false}
-                     className={s.submit}
+                     disabled={ !formik.dirty ? true : false || !formik.isValid ? true : false }
+                     className={ s.submit }
                   >
                      CHANGE
                   </button>

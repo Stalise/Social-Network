@@ -12,13 +12,13 @@ const Info: FC = () => {
    const chat: IChat = useAppSelector(state => state.chatsSlice.chats.filter(elem => elem.id === Number(params.id))[0]);
 
    return (
-      <div className={s.wrapper}>
-         <div className={s.imageContainer}>
-            <img src={`${Urls.cloudinary_url}${chat.avatar}`} className={s.image} alt="avatar" />
+      <div className={ s.wrapper }>
+         <div className={ s.imageContainer }>
+            <img src={ `${Urls.cloudinary_url}${chat.avatar}` } className={ s.image } alt="avatar" />
          </div>
-         <div className={s.name}>
-            <p className={s.forename}>{chat.forename}</p>
-            <p className={s.surname}>{chat.surname}</p>
+         <div className={ s.name }>
+            <p className={ s.forename }>{ chat.forename }</p>
+            <p className={ s.surname }>{ chat.surname }</p>
          </div>
       </div>
    );

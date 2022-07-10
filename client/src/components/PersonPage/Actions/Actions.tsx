@@ -1,5 +1,5 @@
 import { FC, useLayoutEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 
 import s from "./Actions.module.scss";
 import { useAppDispatch, useAppSelector } from "hooks/redux";
@@ -10,7 +10,7 @@ import { IPayload } from "./types";
 const Actions: FC = () => {
 
    const dispatch = useAppDispatch();
-   const navigate = useNavigate();
+   const navigate: NavigateFunction = useNavigate();
    const { friends } = useAppSelector(state => state.userSlice);
    const person_username = useAppSelector(state => state.personSlice.data.username);
    const { chats } = useAppSelector(state => state.chatsSlice);
@@ -46,18 +46,18 @@ const Actions: FC = () => {
    }, [friends]);
 
    return (
-      <div className={s.wrapper}>
-         <button onClick={writeHandler} type="button" className={s.write}>Write</button>
+      <div className={ s.wrapper }>
+         <button onClick={ writeHandler } type="button" className={ s.write }>Write</button>
 
          <button
-            onClick={friendHandler}
+            onClick={ friendHandler }
             type="button"
-            className={`
+            className={ `
                ${s.add}
-               ${status === "friend" ? s._friend : ""} 
-               ${status === "request" ? s._request : ""} 
+               ${status === "friend" ? s._friend : ""}
+               ${status === "request" ? s._request : ""}
                ${status === "sent" ? s._sent : ""}
-            `}
+            ` }
          />
       </div>
    );

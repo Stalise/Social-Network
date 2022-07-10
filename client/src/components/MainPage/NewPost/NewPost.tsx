@@ -2,8 +2,8 @@ import { FC, useLayoutEffect, useRef, useState, FormEvent } from "react";
 
 import s from "./NewPost.module.scss";
 import { useAppDispatch, useAppSelector } from "hooks/redux";
-import { heightHandler, dateHandler } from "helpers/postHelpers";
-import { transformFile } from "helpers/commonHelpers";
+import { heightHandler } from "helpers/postHelpers";
+import { transformFile, dateHandler } from "helpers/commonHelpers";
 import { sagasConstantsPosts, sagaActionCreator } from "mock/constants/saga";
 import { IPostState, INewPostData, FieldOverflowType } from "./types";
 
@@ -50,34 +50,34 @@ const NewPost: FC = () => {
    });
 
    return (
-      <form onSubmit={submitHandler} className={s.form}>
-         {status === "create" && <Loader />}
+      <form onSubmit={ submitHandler } className={ s.form }>
+         { status === "create" && <Loader /> }
 
-         {status === "ready" &&
+         { status === "ready" &&
             <>
-               <div className={s.text}>
+               <div className={ s.text }>
                   <textarea
-                     className={`${s.textField} ${fieldOverflow === "auto" ? s._auto : ""}`}
-                     onChange={e => setPost({ ...post, text: e.target.value })}
-                     value={post.text}
+                     className={ `${s.textField} ${fieldOverflow === "auto" ? s._auto : ""}` }
+                     onChange={ e => setPost({ ...post, text: e.target.value }) }
+                     value={ post.text }
                      placeholder="Write something..."
                      style={{ height: heightField + "px" }}
                   >
                   </textarea>
 
-                  <div ref={cloneField} className={s.textFieldClone}>{post.text}</div>
+                  <div ref={ cloneField } className={ s.textFieldClone }>{ post.text }</div>
                </div>
-               <div className={s.actions}>
-                  <label className={`${s.inputContainer} ${post.img ? s._active : ""}`}>
+               <div className={ s.actions }>
+                  <label className={ `${s.inputContainer} ${post.img ? s._active : ""}` }>
                      <input
-                        className={s.field}
+                        className={ s.field }
                         type="file"
                         accept="image/jpeg, image/png"
-                        onChange={e => setPost({ ...post, img: e.target.files?.length ? e.target.files[0] : "" })}
+                        onChange={ e => setPost({ ...post, img: e.target.files?.length ? e.target.files[0] : "" }) }
                      />
                   </label>
 
-                  <button type="submit" className={s.submit}>Publish</button>
+                  <button type="submit" className={ s.submit }>Publish</button>
                </div>
             </>
          }

@@ -24,9 +24,9 @@ const PersonPage: FC = () => {
    if (status === "data") return <Loader />;
 
    return (
-      <div className={s.wrapper}>
-         <div className={s.info}>
-            <div className={s.actions}>
+      <div className={ s.wrapper }>
+         <div className={ s.info }>
+            <div className={ s.actions }>
                <Avatar />
                <Actions />
             </div>

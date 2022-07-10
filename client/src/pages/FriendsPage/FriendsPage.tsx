@@ -22,15 +22,15 @@ const FriendsPage: FC = () => {
    }, [allFriends]);
 
    return (
-      <div className={s.wrapper}>
-         <p className={s.title}>My friends</p>
+      <div className={ s.wrapper }>
+         <p className={ s.title }>My friends</p>
 
-         {!allFriends.length && <Empty />}
+         { !allFriends.length && <Empty /> }
 
-         <div className={s.container}>
-            {requests.length > 0 && <Requests data={requests} />}
+         <div className={ s.container }>
+            { requests.length > 0 && <Requests data={ requests } /> }
 
-            {friends.length > 0 && <Friends data={friends} />}
+            { friends.length > 0 && <Friends data={ friends } /> }
          </div>
       </div >
    );

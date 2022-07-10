@@ -25,15 +25,3 @@ export const heightHandler: IHeightHandlerArguments = (cloneHeight, heightField,
       setFieldOverflow("hidden");
    }
 };
-
-export const dateHandler = (): string => {
-   const month = new Date().toDateString().substr(4, 3);
-   const day = new Date().getDate();
-   const year = new Date().getFullYear();
-   const hour = new Date().getHours();
-   const minute = new Date().getMinutes();
-
-   const resultDate = `${month} ${day} ${year} at ${hour}:${minute < 10 ? '0' + minute : minute}`;
-
-   return resultDate;
-};

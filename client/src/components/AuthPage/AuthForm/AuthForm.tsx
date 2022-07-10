@@ -22,43 +22,43 @@ const AuthForm: FC<IProps> = ({ tabStatus }) => {
 
    return (
       <Formik
-         initialValues={initialValues}
-         validationSchema={validationSchema}
-         onSubmit={submitHandler}
+         initialValues={ initialValues }
+         validationSchema={ validationSchema }
+         onSubmit={ submitHandler }
       >
-         {({ isValid, dirty }) => (
-            <Form className={`${s.form} ${tabStatus ? s._active : ''}`}>
-               <label className={s.inputContainer}>
+         { ({ isValid, dirty }) => (
+            <Form className={ `${s.form} ${tabStatus ? s._active : ''}` }>
+               <label className={ s.inputContainer }>
                   Username
                   <Field
                      type="text"
                      name="username"
                      placeholder="Your username"
-                     className={s.field}
+                     className={ s.field }
                   />
-                  <ErrorMessage component="p" name="username" className={s.error} />
+                  <ErrorMessage component="p" name="username" className={ s.error } />
                </label>
 
-               <label className={s.inputContainer}>
+               <label className={ s.inputContainer }>
                   Password
                   <Field
                      type="password"
                      name="password"
                      placeholder="Your password"
-                     className={s.field}
+                     className={ s.field }
                   />
-                  <ErrorMessage component="p" name="password" className={s.error} />
+                  <ErrorMessage component="p" name="password" className={ s.error } />
                </label>
 
                <button
                   type="submit"
-                  disabled={!dirty || !isValid}
-                  className={s.submit}
+                  disabled={ !dirty || !isValid }
+                  className={ s.submit }
                >
                   AUTHORIZATION
                </button>
             </Form>
-         )}
+         ) }
       </Formik>
    );
 };

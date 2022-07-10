@@ -12,21 +12,21 @@ const Header: FC = () => {
    const dispatch = useAppDispatch();
 
    return (
-      <div className={s.header}>
-         <div className={s.container}>
-            <div className={s.exit}>
+      <div className={ s.header }>
+         <div className={ s.container }>
+            <div className={ s.exit }>
                <button
-                  onClick={() => dispatch(sagaActionCreator(sagasConstantsUser.SAGA_LOGOUT_USER))}
+                  onClick={ () => dispatch(sagaActionCreator(sagasConstantsUser.SAGA_LOGOUT_USER)) }
                   type="button"
-                  className={s.exitButton}
+                  className={ s.exitButton }
                >
                   Exit
                </button>
             </div>
 
-            <Link to="/" className={s.logo}>
-               <div className={s.logoIcon}></div>
-               <p className={s.logoText}>Social network</p>
+            <Link to="/" className={ s.logo }>
+               <div className={ s.logoIcon }></div>
+               <p className={ s.logoText }>Social network</p>
             </Link>
 
             <Editing />
