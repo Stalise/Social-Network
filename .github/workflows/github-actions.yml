@@ -1,0 +1,42 @@
+name: Github Actions
+
+on:
+  pull_request:
+    branches:
+      [ main ]
+  push:
+    branches:
+      [ main ]
+
+jobs:
+  init:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: 16.15.1
+    steps:
+      - uses: actions/checkout@v3
+      - name: Staring Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: install modules client
+        run: |
+          cd client
+          npm install
+      - name: build project client
+        run: |
+          cd client
+          npm run build
+      - name: lint client
+        run: |
+          cd client
+          npm run lint
+      - name: install modules server
+        run: |
+          cd server
+          npm install
+      - name: lint server
+        run: |
+          cd server
+          npm run lint

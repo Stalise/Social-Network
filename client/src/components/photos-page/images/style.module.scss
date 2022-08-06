@@ -1,0 +1,9 @@
+.wrapper {
+   max-width: 100%;
+   width: 100%;
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(150px, 215px));
+   grid-template-rows: auto;
+   gap: 30px 20px;
+   justify-content: center;
+}

@@ -1,9 +1,12 @@
 const Router = require('express');
-const router = new Router()
+
 const photoController = require('../controllers/photo.controller');
+const jwtCheck = require('../middleware/jwtCheck');
 
-router.post('/photos', photoController.createPhoto)
-router.get('/photos/:id', photoController.getPhotos)
-router.delete('/photos/:id', photoController.deletePhoto)
+const router = new Router();
 
-module.exports = router
+router.get('/photo', jwtCheck, photoController.getPhotos);
+router.post('/photo', jwtCheck, photoController.addPhoto);
+router.delete('/photo/:id', jwtCheck, photoController.deletePhoto);
+
+module.exports = router;

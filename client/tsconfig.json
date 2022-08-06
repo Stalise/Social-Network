@@ -6,6 +6,11 @@
          "dom.iterable",
          "esnext"
       ],
+      "types": [
+         "jest",
+         "node",
+         "cypress"
+      ],
       "allowJs": true,
       "skipLibCheck": true,
       "esModuleInterop": true,
@@ -27,6 +32,7 @@
       }
    },
    "include": [
-      "src"
+      "src",
+      "**/*.spec.ts",
    ]
 }

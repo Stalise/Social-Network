@@ -1,71 +1,69 @@
 const db = require('../utils/db');
-
 const { cloudinary } = require('../utils/cloudinary');
-
+const getUsername = require('../utils/helpers');
+const responseMessages = require('../constants/responseMessages');
 
 class PhotoController {
 
-   async createPhoto(req, res) {
-      const { user_id, img } = req.body
+   async getPhotos(req, res) {
+      const user_username = getUsername(req.cookies.token);
 
       try {
-         const uploadCloudinary = await cloudinary.uploader.upload(img, {
-            upload_preset: 'op6ycuoi'
-         })
+         let response = await db.query(
+            `SELECT * FROM photos WHERE user_username = $1 ORDER BY id DESC`,
+            [user_username],
+         );
+         response = response.rows;
 
-         const newPhoto = await db.query(
-            `INSERT INTO person_photos (img, user_id) 
-            values ($1, $2) RETURNING *`,
-            [uploadCloudinary.public_id, user_id]);
-
-         const allUserPhotos = await db.query('SELECT * FROM person_photos WHERE user_id = $1 ORDER BY id DESC', [user_id])
-
-         res.json(allUserPhotos.rows)
-      } catch (e) {
-         console.log(e)
+         res.status(200).json({ message: responseMessages.success, data: response });
+      } catch (error) {
+         res.status(500).json({ message: responseMessages.unexpected });
       }
    }
 
-   async getPhotos(req, res) {
-      const userId = req.params.id
+   async addPhoto(req, res) {
+      const { data } = req.body;
+
+      const user_username = getUsername(req.cookies.token);
 
       try {
+         const uploadCloudinary = await cloudinary.uploader.upload(data, {
+            upload_preset: 'op6ycuoi',
+         });
 
-         const getPosts = await db.query(`SELECT * FROM person_photos WHERE user_id = $1 ORDER BY id DESC`, [userId])
-         const photos = getPosts.rows
+         let response = await db.query(
+            `INSERT INTO photos (img, user_username)
+            values ($1, $2) RETURNING *`,
+            [uploadCloudinary.public_id, user_username],
+         );
 
-         res.json(photos)
+         response = response.rows[0];
 
+         res.status(200).json({ message: responseMessages.successAddPhoto, data: response });
       } catch (error) {
-         console.log(error)
+         res.status(500).json({ message: responseMessages.unexpected });
       }
-
    }
 
    async deletePhoto(req, res) {
-      const idPhoto = req.params.id
+      const idPhoto = req.params.id;
 
       try {
          // получаем данные фото из таблицы в бд
-         const photoDB = await db.query(`SELECT * FROM person_photos WHERE id = $1`, [idPhoto])
-         const user_id = photoDB.rows[0].user_id
-         const imgName = photoDB.rows[0].img
+         let response = await db.query(`SELECT img FROM photos WHERE id = $1`, [idPhoto]);
+         response = response.rows[0].img;
 
-         const deleteImg = await cloudinary.uploader.destroy(imgName)
+         // удаляем фото из облака
+         await cloudinary.uploader.destroy(response);
 
-         // удаляем фото из таблицы в бд
-         await db.query(`DELETE FROM person_photos WHERE id = $1`, [idPhoto])
-         // получаем обновленный список фото из дб
-         const getPhotos = await db.query(`SELECT * FROM person_photos WHERE user_id = $1 ORDER BY id DESC`, [user_id])
-         const photos = getPhotos.rows
+         await db.query(`DELETE FROM photos WHERE id = $1`, [idPhoto]);
 
-         res.json(photos)
-
+         res.status(200).json({ message: responseMessages.success });
       } catch (error) {
-         console.log(error)
+         res.status(500).json({ message: responseMessages.unexpected });
       }
    }
 
 }
 
-module.exports = new PhotoController()
+module.exports = new PhotoController();

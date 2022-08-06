@@ -55,6 +55,10 @@
             }
          }
       ],
+      "object-curly-spacing": [
+         "warn",
+         "always"
+      ],
       "no-useless-escape": "off",
       "react-hooks/exhaustive-deps": "off",
       "testing-library/no-debugging-utils": "warn",

@@ -3,32 +3,30 @@ const db = require('../utils/db');
 class FriendController {
 
    async allUsers(req, res) {
-      const user_id = req.params.id
+      const user_id = req.params.id;
 
       try {
-         const findUsers = await db.query('SELECT id,name,surname,img,username FROM person WHERE id != $1', [user_id])
+         const findUsers = await db.query('SELECT id,name,surname,img,username FROM person WHERE id != $1', [user_id]);
 
-         res.json(findUsers.rows)
+         res.json(findUsers.rows);
 
       } catch (error) {
-         console.log(error)
       }
 
    }
 
    async oneUser(req, res) {
-      const username = req.params.username
+      const username = req.params.username;
 
       try {
 
-         const findUser = await db.query('SELECT id,name,surname,img,username FROM person WHERE username = $1', [username])
+         const findUser = await db.query('SELECT id,name,surname,img,username FROM person WHERE username = $1', [username]);
 
-         res.json(findUser.rows)
+         res.json(findUser.rows);
 
       } catch (error) {
-         console.log(error)
       }
    }
 }
 
-module.exports = new FriendController()
+module.exports = new FriendController();

@@ -3,10 +3,10 @@ import { Provider } from 'react-redux';
 import { HashRouter as Router } from 'react-router-dom';
 import { ToastContainer } from "react-toastify";
 
-import './assest/styles/index.css';
+import './assest/styles/index.scss';
 import { store } from 'store/store';
 
-import App from './components/Common/App/App';
+import { App } from 'components/common/app';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLDivElement);
 

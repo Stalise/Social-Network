@@ -1,18 +1,22 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import createSagaMiddleware from 'redux-saga';
 
-import userSlice from "./slices/UserSlice/UserSlice";
-import personSlice from "./slices/PersonSlice/PersonSlice";
-import postsSlice from "./slices/PostsSlice/PostsSlice";
-import chatsSlice from "./slices/ChatsSlice/ChatsSlice";
-import rootSaga from './sagas/rootSaga';
+import userSlice from "./slices/user-slice";
+import personSlice from "./slices/person-slice";
+import friendsSlice from './slices/friends-slice';
+import postsSlice from "./slices/posts-slice";
+import chatsSlice from "./slices/chats-slice";
+import photosSlice from "./slices/photos-slice";
+import rootSaga from './sagas/root-saga';
 
 const sagaMiddleware = createSagaMiddleware();
 
 export const rootReducer = combineReducers({
    userSlice,
    personSlice,
+   friendsSlice,
    postsSlice,
+   photosSlice,
    chatsSlice,
 });
 

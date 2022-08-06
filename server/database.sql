@@ -28,11 +28,11 @@ create TABLE likes(
    FOREIGN KEY (post_id) REFERENCES posts (id) ON DELETE CASCADE
 );
 
-create TABLE person_photos(
+create TABLE photos(
    id SERIAL PRIMARY KEY,
    img VARCHAR(255),
    user_username VARCHAR(255),
-   FOREIGN KEY (user_username) REFERENCES persons (username)
+   FOREIGN KEY (user_username) REFERENCES persons (username) ON DELETE CASCADE
 );
 
 create TABLE friends(

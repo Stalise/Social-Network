@@ -1,0 +1,25 @@
+@import "./null.css";
+@import "./icofont.css";
+@import "./toast.css";
+
+/*======================================================================*/
+
+body {
+   font-family: 'Roboto', sans-serif;
+}
+
+.fslightbox-fade-out-strong {
+   background-image: none !important;
+
+   .fslightbox-source {
+      display: none !important;
+   }
+
+   .fslightbox-nav {
+      display: none !important;
+   }
+
+   .fslightbox-slide-btn-container {
+      display: none !important;
+   }
+}

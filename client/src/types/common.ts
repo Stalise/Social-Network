@@ -25,7 +25,12 @@ export interface IFriend {
    status: FriendStatusType,
 }
 
-export type FriendStatusType = "no" | "friend" | "request" | "sent"
+export interface IPhoto {
+   id: number,
+   img: string,
+}
+
+export type FriendStatusType = "no" | "friend" | "request" | "sent";
 
 export interface ILike {
    username: string,

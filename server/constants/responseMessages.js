@@ -8,7 +8,8 @@ const responseMessages = {
    successAuth: "You are successfully logged in.",
    successReg: "You have successfully registered.",
    entityExist: "Entity already exists.",
+   successAddPhoto: "Photo successfully added.",
    requestExpired: "The waiting time has expired, rejected by server. Please update the request.",
-}
+};
 
 module.exports = responseMessages;
