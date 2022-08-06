@@ -16,7 +16,7 @@ const chatRouter = require('./routes/chat.router');
 
 app.enable("trust proxy");
 app.use(cors({
-   origin: ['http://localhost:3000', 'https://stalise-social-network.netlify.app'],
+   origin: ['https://stalise-social-network.netlify.app', 'http://localhost:3000'],
    credentials: true,
 }));
 app.use(express.json({ limit: '50mb' }));
