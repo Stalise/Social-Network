@@ -1,15 +1,16 @@
 import { FC } from "react";
 
-import s from "./style.module.scss";
 import { useAppDispatch, useAppSelector } from "hooks/redux";
 import { sagaActionCreator, sagasConstantsPerson } from "data/constants/saga";
 import { IPost, ILike } from "types/common";
+
+import s from "./style.module.scss";
 
 interface IProps {
    data: IPost,
 }
 
-export const Like: FC<IProps> = ({ data }) => {
+export const Heart: FC<IProps> = ({ data }) => {
 
    const dispatch = useAppDispatch();
 

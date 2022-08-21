@@ -4,8 +4,8 @@ import { useAppDispatch } from "hooks/redux";
 import { sagasConstantsPosts, sagaActionCreator } from "data/constants/saga";
 import { IPost } from "types/common";
 
-// import { Like } from "./like";
 import { Image } from './image';
+import { Heart } from './heart';
 
 import s from "./style.module.scss";
 
@@ -32,7 +32,7 @@ export const Item: FC<IProps> = ({ data }) => {
             { data.img && <Image image={ data.img }/> }
          </div>
          <div className={ s.bottom }>
-            { /* <Like data={ data } /> */ }
+            <Heart data={ data } />
          </div>
       </div>
    );
