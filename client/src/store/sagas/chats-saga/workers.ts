@@ -28,6 +28,8 @@ export function* workerGetChats() {
 }
 
 export function* workerCreateChat(data: IWorker<ICreateChatPayload>) {
+   yield put(changeChatsStatusAction("create"));
+
    const { username } = yield select(store => store.userSlice.data);
 
    const response: string | IChat = yield call<any>(chatApi.createChat, [username, data.payload.person_username]);
@@ -35,11 +37,14 @@ export function* workerCreateChat(data: IWorker<ICreateChatPayload>) {
    if (response === apiResponsesMessage.needAuth) {
       yield put(changeAuthUserAction(false));
    } else if (response === apiResponsesMessage.unexpected) {
+      yield put(changeChatsStatusAction("ready"));
       return;
    } else if (typeof (response) !== "string") {
       yield put(addChatAction(response));
 
       data.payload.navigate(`/chat/${response.id}`);
+
+      yield put(changeChatsStatusAction("ready"));
    }
 }
 

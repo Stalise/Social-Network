@@ -8,11 +8,7 @@ import { validationSchema } from "helpers/forms/auth-form-validate";
 import { sagasConstantsUser, sagaActionCreator } from "data/constants/saga";
 import { IAuthFormState } from "./types";
 
-interface IProps {
-   tabStatus: boolean,
-}
-
-export const AuthForm: FC<IProps> = ({ tabStatus }) => {
+export const AuthForm: FC = () => {
 
    const dispatch = useAppDispatch();
 
@@ -27,7 +23,7 @@ export const AuthForm: FC<IProps> = ({ tabStatus }) => {
          onSubmit={ submitHandler }
       >
          { ({ isValid, dirty }) => (
-            <Form className={ `${s.form} ${tabStatus ? s._active : ''}` }>
+            <Form className={ s.form }>
                <label className={ s.inputContainer }>
                   Username
                   <Field

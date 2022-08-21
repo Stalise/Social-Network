@@ -9,11 +9,7 @@ import { initialValues } from "data/registerForm";
 import { sagasConstantsUser, sagaActionCreator } from "data/constants/saga";
 import { IRegFormState } from "./types";
 
-interface IProps {
-   tabStatus: boolean,
-}
-
-export const RegForm: FC<IProps> = ({ tabStatus }) => {
+export const RegForm: FC = () => {
 
    const dispatch = useAppDispatch();
 
@@ -34,7 +30,7 @@ export const RegForm: FC<IProps> = ({ tabStatus }) => {
    });
 
    return (
-      <form onSubmit={ formik.handleSubmit } className={ `${s.form} ${tabStatus ? s._active : ''}` }>
+      <form onSubmit={ formik.handleSubmit } className={ s.form }>
          <label className={ s.inputContainer }>
             Username
             <input

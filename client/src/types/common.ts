@@ -32,6 +32,8 @@ export interface IPhoto {
 
 export type FriendStatusType = "no" | "friend" | "request" | "sent";
 
+export type TabsType = 'tab-1' | 'tab-2';
+
 export interface ILike {
    username: string,
    postId: number,
@@ -53,4 +55,11 @@ export interface IMessage {
    avatar: string,
    name: string,
    surname: string,
+}
+
+export interface ISearchUser {
+   username: string,
+   name: string,
+   surname: string,
+   avatar: string,
 }

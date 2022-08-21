@@ -1,0 +1,86 @@
+.wrapper {
+   max-width: 170px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   border: 1px solid #ccc;
+   border-radius: 10px;
+   padding: 10px;
+
+   .nameContainer {
+      max-width: 100%;
+      width: 100%;
+      text-align: center;
+      margin-bottom: 15px;
+
+      .forename {
+         font-size: 21px;
+         margin-bottom: 5px;
+         word-wrap: break-word;
+      }
+
+      .surname {
+         font-size: 21px;
+         word-wrap: break-word;
+      }
+   }
+
+   .avatarContainer {
+      min-width: 150px;
+      height: 150px;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 15px;
+      cursor: pointer;
+
+      .avatar {
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+         transition-duration: 0.3s;
+
+         &:hover {
+            transform: scale(1.05, 1.05);
+         }
+      }
+   }
+
+   .message {
+      max-width: 150px;
+      width: 100%;
+      height: 38px;
+      background-color: #d7e7fc;
+      margin-bottom: 10px;
+      font-size: 18px;
+      border-radius: 5px;
+      letter-spacing: 0.5px;
+      transition-duration: 0.3s;
+      position: relative;
+
+      &:hover {
+         background-color: #ccc;
+         color: #ffffff;
+         -webkit-text-stroke-color: #ffffff;
+      }
+
+      &:active {
+         transform: translateY(-5px);
+      }
+
+      &._create {
+         pointer-events: none;
+         color: transparent;
+
+         &:before {
+            font-family: "IcoFont";
+            content: "\efd1";
+            position: absolute;
+            font-size: 23px;
+            color: #2d2d2d;
+            top: 6px;
+            left: calc(50% - 9px);
+            transition-duration: 0.3s;
+         }
+      }
+   }
+}

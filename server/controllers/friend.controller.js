@@ -8,18 +8,34 @@ class FriendController {
       const { username } = req.params;
 
       try {
-         const response = await db.query(`SELECT * FROM friends WHERE user_first = $1 OR user_second = $1`, [username]);
+         const response = await db.query(`
+            SELECT *
+            FROM friends
+            WHERE user_first = $1
+            OR user_second = $1`,
+         [username]);
 
          const friends = [];
 
          // получаем всех друзей юзера с пришедших username, и устанавливаем статус дружбы для каждого
          for (const item of response.rows) {
             if (item.user_first === username) {
-               const response = await db.query('SELECT username, name, surname, avatar FROM persons WHERE username = $1', [item.user_second]);
+               const response = await db.query(`
+                  SELECT username, name, surname, avatar
+                  FROM persons
+                  WHERE username = $1`,
+               [item.user_second]);
+
                response.rows[0].status = item.status;
+
                friends.push(response.rows[0]);
             } else {
-               const response = await db.query('SELECT username, name, surname, avatar FROM persons WHERE username = $1', [item.user_first]);
+               const response = await db.query(`
+                  SELECT username, name, surname, avatar
+                  FROM persons
+                  WHERE username = $1`,
+               [item.user_first]);
+
                let trueStatus;
 
                if (item.status === "friend") trueStatus = "friend";
@@ -45,23 +61,29 @@ class FriendController {
 
       try {
          const checkAvailable = await db.query(`
-         SELECT *
-         FROM friends
-         WHERE (user_first = $1
-         AND user_second = $2)
-         OR (user_first = $2
-         AND user_second = $1)`,
-         [user_username, person_username],
-         );
+            SELECT *
+            FROM friends
+            WHERE (user_first = $1
+            AND user_second = $2)
+            OR (user_first = $2
+            AND user_second = $1)`,
+         [user_username, person_username]);
 
          // если друга не найдено в бд, то создаем сущность
          if (!checkAvailable.rows.length) {
-            await db.query(
-               "INSERT INTO friends (user_first, user_second, status) values ($1, $2, $3) RETURNING *",
-               [user_username, person_username, "sent"],
+            await db.query(`
+               INSERT INTO friends (user_first, user_second, status)
+               values ($1, $2, $3)
+               RETURNING *`,
+            [user_username, person_username, "sent"]);
+
+            const response = await db.query(`
+               SELECT *
+               FROM persons
+               WHERE username = $1`,
+            [person_username],
             );
 
-            const response = await db.query(`SELECT * FROM persons WHERE username = $1`, [person_username]);
             let friendData = response.rows[0];
 
             friendData = {
@@ -74,7 +96,8 @@ class FriendController {
 
             res.status(200).json({ message: responseMessages.success, friendData });
          } else {
-            // если друг уже есть в бд, то смотрим на статус, и в зависимости от него отправляет ответ c новым статусом
+            // если друг уже есть в бд, то смотрим на статус,
+            // и в зависимости от него отправляет ответ c новым статусом
             const friendData = checkAvailable.rows[0];
 
             if (friendData.status === "friend") {
@@ -100,7 +123,12 @@ class FriendController {
       const user_username = getUsername(req.cookies.token);
 
       try {
-         await db.query(`UPDATE friends SET status = 'friend' WHERE user_first = $1 AND user_second = $2`, [person_username, user_username]);
+         await db.query(`
+            UPDATE friends
+            SET status = 'friend'
+            WHERE user_first = $1
+            AND user_second = $2`,
+         [person_username, user_username]);
 
          res.status(200).json({ message: responseMessages.success });
       } catch (error) {
@@ -116,16 +144,18 @@ class FriendController {
       try {
 
          const response = await db.query(`
-         SELECT *
-         FROM friends
-         WHERE (user_first = $1
-         AND user_second = $2)
-         OR (user_first = $2
-         AND user_second = $1)`,
-         [user_username, person_username],
-         );
+            SELECT *
+            FROM friends
+            WHERE (user_first = $1
+            AND user_second = $2)
+            OR (user_first = $2
+            AND user_second = $1)`,
+         [user_username, person_username]);
 
-         await db.query(`DELETE FROM friends WHERE id = $1`, [response.rows[0].id]);
+         await db.query(`
+            DELETE FROM friends
+            WHERE id = $1`,
+         [response.rows[0].id]);
 
          res.status(200).json({ message: responseMessages.success });
       } catch (error) {

@@ -18,7 +18,6 @@ module.exports = async function (req, res, next) {
       }
 
       if (checkAccess === jwtMessages.timeExpired) {
-         console.log('update tok');
          const decoded = jwt.decode(req.cookies.token);
          const username = decoded.username;
 

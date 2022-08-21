@@ -1,5 +1,8 @@
 const db = require('../utils/db');
 
+//! функционал новостей не реализован в новом приложении.
+//! Это из старого проекта, здесь все нужно переписывать
+
 class NewsController {
 
    async getNews(req, res) {
@@ -7,17 +10,34 @@ class NewsController {
 
       try {
 
-         const userFriends = await db.query(`SELECT friend_id FROM friends WHERE user_id = $1 AND status = 'friend'`, [user_id]);
+         const userFriends = await db.query(`
+            SELECT friend_id
+            FROM friends
+            WHERE user_id = $1
+            AND status = 'friend'`,
+         [user_id]);
+
          const allNews = [];
 
          for (const i of userFriends.rows) {
-            const getPosts = await db.query('SELECT * FROM post WHERE user_id = $1', [i.friend_id]);
+            const getPosts = await db.query(`
+               SELECT *
+               FROM post
+               WHERE user_id = $1`,
+            [i.friend_id],
+            );
 
             // проверка на количество полученных постов для пользователя и добавление к ним username из бд
             if (getPosts.rows.length != 0) {
                if (getPosts.rows.length > 1) {
                   for (const i of getPosts.rows) {
-                     const getUsername = await db.query('SELECT username FROM person WHERE id = $1', [i.user_id]);
+                     const getUsername = await db.query(`
+                        SELECT username
+                        FROM person
+                        WHERE id = $1`,
+                     [i.user_id],
+                     );
+
                      i.username = getUsername.rows[0].username;
                      allNews.push(i);
                   }

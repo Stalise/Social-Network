@@ -10,6 +10,7 @@ const responseMessages = {
    entityExist: "Entity already exists.",
    successAddPhoto: "Photo successfully added.",
    requestExpired: "The waiting time has expired, rejected by server. Please update the request.",
+   userNotFound: "User with such username was not found.",
 };
 
 module.exports = responseMessages;
