@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from 'hooks/redux';
 import { sagasConstantsChat, sagaActionCreator } from "data/constants/saga";
 import { ICreateChatPayload } from "types/sagas/chat";
 
-export const Write: FC = () => {
+export const Writing: FC = () => {
 
    const dispatch = useAppDispatch();
    const navigate: NavigateFunction = useNavigate();

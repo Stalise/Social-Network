@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from "hooks/redux";
 import { sagasConstantsFriend, sagaActionCreator } from "data/constants/saga";
 import { FriendStatusType } from "types/common";
 
-import { Write } from './write';
+import { Writing } from './writing';
 
 export const Actions: FC = () => {
 
@@ -39,7 +39,7 @@ export const Actions: FC = () => {
 
    return (
       <div className={ s.wrapper }>
-         <Write />
+         <Writing />
 
          <button
             onClick={ friendHandler }

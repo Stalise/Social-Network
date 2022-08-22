@@ -4,7 +4,7 @@ import s from "./style.module.scss";
 import { IPost } from "types/common";
 
 import { Image } from "./image";
-import { Heart } from './heart';
+import { Like } from './like';
 
 interface IProps {
    data: IPost,
@@ -20,7 +20,7 @@ export const Item: FC<IProps> = ({ data }) => (
          { data.img && <Image image={ data.img }/> }
       </div>
       <div className={ s.bottom }>
-         <Heart data={ data } />
+         <Like data={ data } />
       </div>
    </div>
 );

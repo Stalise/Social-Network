@@ -10,7 +10,7 @@ interface IProps {
    data: IPost,
 }
 
-export const Heart: FC<IProps> = ({ data }) => {
+export const Like: FC<IProps> = ({ data }) => {
 
    const dispatch = useAppDispatch();
 
