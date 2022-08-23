@@ -9,10 +9,13 @@ class PhotoController {
       const user_username = getUsername(req.cookies.token);
 
       try {
-         let response = await db.query(
-            `SELECT * FROM photos WHERE user_username = $1 ORDER BY id DESC`,
-            [user_username],
-         );
+         let response = await db.query(`
+            SELECT *
+            FROM photos
+            WHERE user_username = $1
+            ORDER BY id DESC`,
+         [user_username]);
+
          response = response.rows;
 
          res.status(200).json({ message: responseMessages.success, data: response });
@@ -31,11 +34,10 @@ class PhotoController {
             upload_preset: 'op6ycuoi',
          });
 
-         let response = await db.query(
-            `INSERT INTO photos (img, user_username)
+         let response = await db.query(`
+            INSERT INTO photos (img, user_username)
             values ($1, $2) RETURNING *`,
-            [uploadCloudinary.public_id, user_username],
-         );
+         [uploadCloudinary.public_id, user_username]);
 
          response = response.rows[0];
 
@@ -50,13 +52,21 @@ class PhotoController {
 
       try {
          // получаем данные фото из таблицы в бд
-         let response = await db.query(`SELECT img FROM photos WHERE id = $1`, [idPhoto]);
+         let response = await db.query(`
+            SELECT img
+            FROM photos
+            WHERE id = $1`,
+         [idPhoto]);
+
          response = response.rows[0].img;
 
          // удаляем фото из облака
          await cloudinary.uploader.destroy(response);
 
-         await db.query(`DELETE FROM photos WHERE id = $1`, [idPhoto]);
+         await db.query(`
+            DELETE FROM photos
+            WHERE id = $1`,
+         [idPhoto]);
 
          res.status(200).json({ message: responseMessages.success });
       } catch (error) {

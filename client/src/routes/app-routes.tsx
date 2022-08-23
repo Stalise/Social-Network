@@ -11,6 +11,7 @@ import { PersonPage } from 'pages/person-page';
 import { MessagesPage } from 'pages/messages-page';
 import { ChatPage } from 'pages/chat-page';
 import { PhotosPage } from 'pages/photos-page';
+import { SearchPage } from 'pages/search-page';
 
 export const AppRoutes: FC = () => {
 
@@ -26,6 +27,7 @@ export const AppRoutes: FC = () => {
                <Route path="/chat/:id" element={ <ChatPage /> } />
                <Route path="/friends" element={ <FriendsPage /> } />
                <Route path="/photos" element={ <PhotosPage /> } />
+               <Route path="/search" element={ <SearchPage /> } />
                <Route path="/:username" element={ <PersonPage /> } />
                <Route path="*" element={ <MainPage /> } />
             </Route>

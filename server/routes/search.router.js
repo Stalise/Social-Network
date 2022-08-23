@@ -1,8 +1,10 @@
 const Router = require('express');
-const router = new Router();
+
 const searchController = require('../controllers/search.controller');
 
+const router = new Router();
+
+router.get('/search', searchController.allUsers);
 router.get('/search/one/:username', searchController.oneUser);
-router.get('/search/:id', searchController.allUsers);
 
 module.exports = router;

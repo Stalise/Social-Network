@@ -18,8 +18,8 @@ class ChatController {
             SELECT *
             FROM chats
             WHERE user_first = $1
-            OR user_second = $1
-            `, [user_username]);
+            OR user_second = $1`,
+         [user_username]);
 
          for (const elem of chats.rows) {
             const interlocutor = elem.user_first === user_username ? elem.user_second : elem.user_first;
@@ -27,8 +27,9 @@ class ChatController {
             let person = await db.query(`
                SELECT *
                FROM persons
-               WHERE username = $1
-               `, [interlocutor]);
+               WHERE username = $1`,
+            [interlocutor]);
+
             person = person.rows[0];
 
             const messages = await db.query(`
@@ -63,8 +64,9 @@ class ChatController {
       let person = await db.query(`
          SELECT *
          FROM persons
-         WHERE username = $1
-         `, [person_username]);
+         WHERE username = $1`,
+      [person_username]);
+
       person = person.rows[0];
 
       try {
@@ -73,8 +75,8 @@ class ChatController {
             SELECT *
             FROM chats
             WHERE (user_first = $1 AND user_second = $2)
-            OR (user_first = $2 AND user_second = $1)
-            `, [user_username, person_username]);
+            OR (user_first = $2 AND user_second = $1)`,
+         [user_username, person_username]);
 
          if (checkAvailable.rows.length) {
             const messages = await db.query(`
@@ -82,8 +84,8 @@ class ChatController {
                FROM messages
                WHERE chat_id = $1
                ORDER BY id DESC
-               LIMIT 100
-               `, [checkAvailable.rows[0].id]);
+               LIMIT 100`,
+            [checkAvailable.rows[0].id]);
 
             const chatData = {
                id: elem.id,
@@ -99,8 +101,9 @@ class ChatController {
             let chat = await db.query(`
                INSERT INTO chats (user_first, user_second)
                VALUES ($1, $2)
-               RETURNING *
-               `, [user_username, person_username]);
+               RETURNING *`,
+            [user_username, person_username]);
+
             chat = chat.rows[0];
 
             const chatData = {
@@ -125,8 +128,8 @@ class ChatController {
       try {
          await db.query(`
             DELETE FROM chats
-            WHERE id = $1
-            `, [id]);
+            WHERE id = $1`,
+         [id]);
 
          res.status(200).json({ message: responseMessages.success });
       } catch (error) {
@@ -144,8 +147,8 @@ class ChatController {
          const response = await db.query(`
             INSERT INTO messages (text, date, user_username, chat_id)
             VALUES ($1, $2, $3, $4)
-            RETURNING *
-            `, [text, date, user_username, chat_id]);
+            RETURNING *`,
+         [text, date, user_username, chat_id]);
 
          //джойним данные таблиц чтобы сделать ответ для клиента, вернуть сообщение в нужном формате
          const message = await db.query(`
