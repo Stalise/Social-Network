@@ -15,7 +15,9 @@ export enum Urls {
    person_friends = "person/friends",
    person_photos = "person/photos",
    photo = "photo",
-   message = "chat/message"
+   message = "chat/message",
+   search = "search",
+   searchOne = "search/one/",
 };
 
 export enum apiResponsesMessage {

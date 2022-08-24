@@ -1,0 +1,19 @@
+.wrapper {
+   max-width: 930px;
+   width: 100%;
+   min-height: 150px;
+   max-height: 600px;
+   display: flex;
+   justify-content: center;
+   cursor: pointer;
+
+   &:not(:first-child) {
+      margin-top: 20px;
+   }
+
+   .image {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+   }
+}

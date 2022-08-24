@@ -40,14 +40,23 @@ class PostController {
       const username = getUsername(req.cookies.token);
 
       try {
-         const response = await db.query("SELECT * FROM posts WHERE user_username = $1 ORDER BY id DESC", [username]);
+         const response = await db.query(`
+            SELECT *
+            FROM posts
+            WHERE user_username = $1
+            ORDER BY id DESC`,
+         [username]);
+
          const posts = response.rows;
 
          // проверяем на наличие лайков пользователя под постом
          if (posts.length) {
             for (let i = 0; i < posts.length; i++) {
                const response = await db.query(`
-               SELECT * FROM likes WHERE user_username = $1 AND post_id = $2`,
+                  SELECT *
+                  FROM likes
+                  WHERE user_username = $1
+                  AND post_id = $2`,
                [username, posts[i].id]);
 
                if (response.rows.length) {
@@ -68,7 +77,12 @@ class PostController {
       const idPost = req.params.id;
 
       try {
-         const response = await db.query(`SELECT * FROM posts WHERE id = $1`, [idPost]);
+         const response = await db.query(`
+            SELECT *
+            FROM posts
+            WHERE id = $1`,
+         [idPost]);
+
          const post = response.rows[0];
 
          if (post.img.length) {
@@ -77,7 +91,10 @@ class PostController {
          }
 
          // удаляем пост из таблицы
-         await db.query(`DELETE FROM posts WHERE id = $1`, [idPost]);
+         await db.query(`
+            DELETE FROM posts
+            WHERE id = $1`,
+         [idPost]);
 
          res.status(200).json({ message: responseMessages.success });
       } catch (error) {
@@ -90,19 +107,27 @@ class PostController {
 
       try {
          const response = await db.query(`
-         SELECT * FROM likes WHERE user_username = $1 AND post_id = $2`,
+            SELECT *
+            FROM likes
+            WHERE user_username = $1
+            AND post_id = $2`,
          [username, postId]);
 
          if (response.rows.length) {
             return res.status(409).json({ message: responseMessages.entityExist });
          }
 
-         await db.query(
-            `INSERT INTO likes (user_username, post_id)
-            values ($1, $2) RETURNING *`,
-            [username, postId]);
+         await db.query(`
+            INSERT INTO likes (user_username, post_id)
+            values ($1, $2)
+            RETURNING *`,
+         [username, postId]);
 
-         await db.query(`UPDATE posts SET likes = likes + 1 WHERE id = $1`, [postId]);
+         await db.query(`
+            UPDATE posts
+            SET likes = likes + 1
+            WHERE id = $1`,
+         [postId]);
 
          res.status(200).json({ message: responseMessages.success });
       } catch (error) {
@@ -116,9 +141,17 @@ class PostController {
 
       try {
          // удаляем лайк из таблицы
-         await db.query(`DELETE FROM likes WHERE user_username = $1 AND post_id = $2`, [username, postId]);
+         await db.query(`
+            DELETE FROM likes
+            WHERE user_username = $1
+            AND post_id = $2`,
+         [username, postId]);
 
-         await db.query(`UPDATE posts SET likes = likes - 1 WHERE id = $1`, [postId]);
+         await db.query(`
+            UPDATE posts
+            SET likes = likes - 1
+            WHERE id = $1`,
+         [postId]);
 
          res.status(200).json({ message: responseMessages.success });
       } catch (error) {

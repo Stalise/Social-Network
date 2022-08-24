@@ -32,9 +32,9 @@
 * RESTfull API
 
 ##### Обзор:
-![screenshots](./images/SOCIAL_FON.png)
+![screenshots](./client/public/images/SOCIAL_FON.png)
 
 Кто досмотрел до конца - тот молодец 👍
 Если нет желания регистрироваться, тестовые данные для входа:
 username - testacc
-password - zoro00
+password - checkwork5
