@@ -10,4 +10,4 @@ export interface INewPostData {
    date: string,
 }
 
-export type FieldOverflowType = "hidden" | "auto";
+export type FieldOverflowType = 'hidden' | 'auto';

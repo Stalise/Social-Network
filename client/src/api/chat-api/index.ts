@@ -1,11 +1,10 @@
-import axios from "axios";
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
-import { Urls } from "data/constants/api";
-import { apiResponsesMessage } from "data/constants/api";
-import { defaultToast } from "data/constants/toast";
-import { IChat, IMessage } from "types/common";
-import { ICreateMessagePayload, IGetMessagePayload } from "types/sagas/chat";
+import { apiResponsesMessage, Urls } from 'data/constants/api';
+import { defaultToast } from 'data/constants/toast';
+import { IChat, IMessage } from 'types/common';
+import { ICreateMessagePayload, IGetMessagePayload } from 'types/sagas/chat';
 
 export const instance = axios.create({
    baseURL: Urls.server_url,
@@ -33,7 +32,7 @@ export const chatApi = {
          const response = await instance.post<{ message: string, chat: IChat }>(
             Urls.chat,
             { user_username: data[0], person_username: data[1] },
-            { headers: { "Content-Type": "application/json" } },
+            { headers: { 'Content-Type': 'application/json' } },
          );
 
          return response.data.chat;
@@ -63,7 +62,7 @@ export const chatApi = {
          await instance.post<{ message: string }>(
             Urls.message,
             { ...data },
-            { headers: { "Content-Type": "application/json" } },
+            { headers: { 'Content-Type': 'application/json' } },
          );
 
          return apiResponsesMessage.success;

@@ -1,12 +1,14 @@
-import { FC } from "react";
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { FC } from 'react';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 
-import s from "./style.module.scss";
-import { useAppDispatch } from "hooks/redux";
-import { initialValues } from "data/auth-form";
-import { validationSchema } from "helpers/forms/auth-form-validate";
-import { sagasConstantsUser, sagaActionCreator } from "data/constants/saga";
-import { IAuthFormState } from "./types";
+import { initialValues } from 'data/auth-form';
+import { sagaActionCreator, sagasConstantsUser } from 'data/constants/saga';
+import { validationSchema } from 'helpers/forms/auth-form-validate';
+import { useAppDispatch } from 'hooks/redux';
+
+import { IAuthFormState } from './types';
+
+import s from './style.module.scss';
 
 export const AuthForm: FC = () => {
 

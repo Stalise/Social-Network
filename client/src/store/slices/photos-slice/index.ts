@@ -1,12 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
-import { IPhoto } from "types/common";
-import { IState, StatusType } from "./types";
+import { IPhoto } from 'types/common';
+
+import { IState, StatusType } from './types';
 
 
 const initialState: IState = {
    photos: [],
-   status: "ready",
+   status: 'ready',
 };
 
 export const userSlice = createSlice({

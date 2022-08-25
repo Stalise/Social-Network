@@ -30,7 +30,7 @@ export interface IPhoto {
    img: string,
 }
 
-export type FriendStatusType = "no" | "friend" | "request" | "sent";
+export type FriendStatusType = 'no' | 'friend' | 'request' | 'sent';
 
 export type TabsType = 'tab-1' | 'tab-2';
 

@@ -1,8 +1,9 @@
-import { FC, memo } from "react";
+import { FC, memo } from 'react';
 
-import s from "./style.module.scss";
-import { Urls } from "data/constants/api";
-import { IMessage } from "types/common";
+import { Urls } from 'data/constants/api';
+import { IMessage } from 'types/common';
+
+import s from './style.module.scss';
 
 interface IProps {
    data: IMessage,

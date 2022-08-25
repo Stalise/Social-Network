@@ -1,10 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
-import { IState, StatusType, ICreateMessagePayload } from './types';
-import { IChat } from "types/common";
+import { IChat } from 'types/common';
+
+import { ICreateMessagePayload, IState, StatusType } from './types';
 
 const initialState: IState = {
-   status: "ready",
+   status: 'ready',
    chats: [],
 };
 

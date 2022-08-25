@@ -8,7 +8,7 @@ export const transformFile = async (file: File): Promise<string> => {
       reader.readAsDataURL(file);
 
       reader.onload = () => {
-         if (typeof (reader.result) === "string") {
+         if (typeof (reader.result) === 'string') {
             resolve(reader.result);
          }
       };

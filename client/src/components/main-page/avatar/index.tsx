@@ -1,9 +1,10 @@
-import { FC, useState } from "react";
+import { FC, useState } from 'react';
 import LightBox from 'fslightbox-react';
 
-import s from "./style.module.scss";
-import { useAppSelector } from "hooks/redux";
-import { Urls } from "data/constants/api";
+import { Urls } from 'data/constants/api';
+import { useAppSelector } from 'hooks/redux';
+
+import s from './style.module.scss';
 
 export const Avatar: FC = () => {
 

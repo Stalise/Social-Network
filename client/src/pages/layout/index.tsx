@@ -1,14 +1,15 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import s from "./style.module.scss";
-import 'react-toastify/dist/ReactToastify.css';
-import { sagasConstantsUser, sagaActionCreator } from "data/constants/saga";
-import { useAppDispatch, useAppSelector } from "hooks/redux";
+import { sagaActionCreator, sagasConstantsUser } from 'data/constants/saga';
+import { useAppDispatch, useAppSelector } from 'hooks/redux';
 
-import { Header } from "components/layout/header";
-import { Navigation } from "components/layout/navigation";
-import { Loader } from "components/common/loader";
+import { Loader } from 'components/common/loader';
+import { Header } from 'components/layout/header';
+import { Navigation } from 'components/layout/navigation';
+
+import 'react-toastify/dist/ReactToastify.css';
+import s from './style.module.scss';
 
 export const Layout: FC = () => {
 
@@ -26,9 +27,9 @@ export const Layout: FC = () => {
             <div className={ s.mainContainer }>
                <Navigation />
 
-               { status === "data" && <Loader /> }
+               { status === 'data' && <Loader /> }
 
-               { status === "ready" && <Outlet /> }
+               { status === 'ready' && <Outlet /> }
             </div>
          </div>
       </div>

@@ -1,10 +1,11 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-import s from "./style.module.scss";
-import { IPost } from "types/common";
+import { IPost } from 'types/common';
 
-import { Image } from "./image";
+import { Image } from './image';
 import { Like } from './like';
+
+import s from './style.module.scss';
 
 interface IProps {
    data: IPost,

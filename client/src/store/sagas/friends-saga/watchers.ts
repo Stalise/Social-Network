@@ -1,7 +1,8 @@
-import { takeLatest } from "redux-saga/effects";
+import { takeLatest } from 'redux-saga/effects';
 
-import { sagasConstantsFriend } from "data/constants/saga";
-import { workerCreateFriend, workerGetFriends,workerAcceptFriend, workerDeleteFriend } from "./workers";
+import { sagasConstantsFriend } from 'data/constants/saga';
+
+import { workerAcceptFriend, workerCreateFriend, workerDeleteFriend, workerGetFriends } from './workers';
 
 export function* watcherGetFriends() {
    yield takeLatest(sagasConstantsFriend.SAGA_GET_FRIENDS, workerGetFriends);

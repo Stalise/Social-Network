@@ -1,11 +1,12 @@
-import { FC, useState } from "react";
+import { FC, useState } from 'react';
 import { useFormik } from 'formik';
 
-import s from "./style.module.scss";
-import { initialValues } from "data/editing-form";
-import { validate } from "helpers/forms/edition-form-validate";
+import { initialValues } from 'data/editing-form';
+import { validate } from 'helpers/forms/edition-form-validate';
 
-import { Modal } from "components/common/modal";
+import { Modal } from 'components/common/modal';
+
+import s from './style.module.scss';
 
 export const EditingForm: FC = () => {
 
@@ -31,7 +32,7 @@ export const EditingForm: FC = () => {
                      <input
                         className={ s.field }
                         type="text"
-                        placeholder={ "Name" }
+                        placeholder={ 'Name' }
                         name="forename"
                         onChange={ formik.handleChange }
                         value={ formik.values.forename }
@@ -45,7 +46,7 @@ export const EditingForm: FC = () => {
                      <input
                         className={ s.field }
                         type="text"
-                        placeholder={ "Surname" }
+                        placeholder={ 'Surname' }
                         name="surname"
                         onChange={ formik.handleChange }
                         value={ formik.values.surname }
@@ -73,7 +74,7 @@ export const EditingForm: FC = () => {
                      <input
                         className={ s.field }
                         type="text"
-                        placeholder={ "London" }
+                        placeholder={ 'London' }
                         name="city"
                         onChange={ formik.handleChange }
                         value={ formik.values.city }
@@ -89,7 +90,7 @@ export const EditingForm: FC = () => {
                            className={ s.photoField }
                            type="file"
                            name="file"
-                           onChange={ event => formik.setFieldValue("file", event.target.files?.length ? event.target.files[0] : null) }
+                           onChange={ event => formik.setFieldValue('file', event.target.files?.length ? event.target.files[0] : null) }
                         />
                      </label>
 

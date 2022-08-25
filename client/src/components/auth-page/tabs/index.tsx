@@ -1,7 +1,8 @@
 import { FC } from 'react';
 
-import s from "./style.module.scss";
 import { TabsType } from 'types/common';
+
+import s from './style.module.scss';
 
 interface IProps {
    activeTab: TabsType,

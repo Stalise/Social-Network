@@ -2,8 +2,8 @@ import { FC, useState } from 'react';
 
 import { ISearchUser } from 'types/common';
 
-import { Loader } from 'components/common/loader';
 import { Empty } from 'components/common/empty';
+import { Loader } from 'components/common/loader';
 import { Search } from 'components/search-page/search';
 import { Users } from 'components/search-page/users';
 

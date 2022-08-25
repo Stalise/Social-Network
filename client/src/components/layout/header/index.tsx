@@ -1,11 +1,12 @@
-import { FC } from "react";
+import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-import s from "./style.module.scss";
-import { useAppDispatch } from "hooks/redux";
-import { sagasConstantsUser, sagaActionCreator } from "data/constants/saga";
+import { sagaActionCreator, sagasConstantsUser } from 'data/constants/saga';
+import { useAppDispatch } from 'hooks/redux';
 
-import { EditingForm } from "./editing-form";
+import { EditingForm } from './editing-form';
+
+import s from './style.module.scss';
 
 export const Header: FC = () => {
 

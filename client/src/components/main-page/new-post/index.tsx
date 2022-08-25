@@ -1,24 +1,26 @@
-import { FC, useLayoutEffect, useRef, useState, FormEvent } from "react";
+import { FC, FormEvent, useLayoutEffect, useRef, useState } from 'react';
 
-import s from "./style.module.scss";
-import { useAppDispatch, useAppSelector } from "hooks/redux";
-import { heightHandler } from "helpers/post";
-import { transformFile, dateHandler } from "helpers/common";
-import { sagasConstantsPosts, sagaActionCreator } from "data/constants/saga";
-import { IPostState, INewPostData, FieldOverflowType } from "./types";
+import { sagaActionCreator, sagasConstantsPosts } from 'data/constants/saga';
+import { dateHandler, transformFile } from 'helpers/common';
+import { heightHandler } from 'helpers/post';
+import { useAppDispatch, useAppSelector } from 'hooks/redux';
 
-import { Loader } from "components/common/loader";
+import { Loader } from 'components/common/loader';
+
+import { FieldOverflowType, INewPostData, IPostState } from './types';
+
+import s from './style.module.scss';
 
 export const NewPost: FC = () => {
 
    const dispatch = useAppDispatch();
    const cloneField = useRef<HTMLDivElement | null>(null);
 
-   const [fieldOverflow, setFieldOverflow] = useState<FieldOverflowType>("hidden");
+   const [fieldOverflow, setFieldOverflow] = useState<FieldOverflowType>('hidden');
    const [heightField, setHeightField] = useState<number>(70);
    const [post, setPost] = useState<IPostState>({
-      text: "",
-      img: "",
+      text: '',
+      img: '',
    });
 
    const { status } = useAppSelector(state => state.postsSlice);
@@ -30,16 +32,16 @@ export const NewPost: FC = () => {
 
       const postData: INewPostData = {
          text: post.text,
-         img: "",
+         img: '',
          date: dateHandler(),
       };
 
-      if (typeof (post.img) !== "string") {
+      if (typeof (post.img) !== 'string') {
          postData.img = await transformFile(post.img);
       }
 
       dispatch(sagaActionCreator<INewPostData>(sagasConstantsPosts.SAGA_USER_CREATE_POST, postData));
-      setPost({ text: "", img: "" });
+      setPost({ text: '', img: '' });
    };
 
    useLayoutEffect(() => {
@@ -52,29 +54,29 @@ export const NewPost: FC = () => {
 
    return (
       <form onSubmit={ submitHandler } className={ s.form }>
-         { status === "create" && <Loader /> }
+         { status === 'create' && <Loader /> }
 
-         { status === "ready" &&
+         { status === 'ready' &&
             <>
                <div className={ s.text }>
                   <textarea
-                     className={ `${s.textField} ${fieldOverflow === "auto" ? s._auto : ""}` }
+                     className={ `${s.textField} ${fieldOverflow === 'auto' ? s._auto : ''}` }
                      onChange={ e => setPost({ ...post, text: e.target.value }) }
                      value={ post.text }
                      placeholder="Write something..."
-                     style={{ height: heightField + "px" }}
+                     style={{ height: heightField + 'px' }}
                   >
                   </textarea>
 
                   <div ref={ cloneField } className={ s.textFieldClone }>{ post.text }</div>
                </div>
                <div className={ s.actions }>
-                  <label className={ `${s.inputContainer} ${post.img ? s._active : ""}` }>
+                  <label className={ `${s.inputContainer} ${post.img ? s._active : ''}` }>
                      <input
                         className={ s.field }
                         type="file"
                         accept="image/jpeg, image/png"
-                        onChange={ e => setPost({ ...post, img: e.target.files?.length ? e.target.files[0] : "" }) }
+                        onChange={ e => setPost({ ...post, img: e.target.files?.length ? e.target.files[0] : '' }) }
                      />
                   </label>
 

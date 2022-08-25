@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import "./style.scss";
+import './style.scss';
 
 export const Loader: FC = () => (
    <div className="container" data-test-id="loader-spinner">

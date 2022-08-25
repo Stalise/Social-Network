@@ -1,10 +1,9 @@
-import axios from "axios";
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
-import { Urls } from "data/constants/api";
-import { apiResponsesMessage } from "data/constants/api";
-import { defaultToast } from "data/constants/toast";
-import { IFriend } from "types/common";
+import { apiResponsesMessage, Urls } from 'data/constants/api';
+import { defaultToast } from 'data/constants/toast';
+import { IFriend } from 'types/common';
 
 export const instance = axios.create({
    baseURL: Urls.server_url,
@@ -32,7 +31,7 @@ export const friendApi = {
          const response = await instance.post<{ message: string, friendData: IFriend }>(
             Urls.friend,
             { person_username: data },
-            { headers: { "Content-Type": "application/json" } },
+            { headers: { 'Content-Type': 'application/json' } },
          );
 
          return response.data.friendData;
@@ -55,7 +54,7 @@ export const friendApi = {
          await instance.patch<{ message: string }>(
             Urls.friend,
             { person_username: data },
-            { headers: { "Content-Type": "application/json" } },
+            { headers: { 'Content-Type': 'application/json' } },
          );
 
          return apiResponsesMessage.success;
@@ -74,7 +73,7 @@ export const friendApi = {
          await instance.delete<{ message: string }>(
             Urls.friend,
             {
-               headers: { "Content-Type": "application/json" },
+               headers: { 'Content-Type': 'application/json' },
                data: { person_username: data },
             });
 

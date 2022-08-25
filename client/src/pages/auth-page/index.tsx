@@ -1,14 +1,15 @@
-import { FC, useState } from "react";
+import { FC, useState } from 'react';
 
-import s from "./style.module.scss";
-import { useAppSelector } from "hooks/redux";
+import { useAppSelector } from 'hooks/redux';
 import { TabsType } from 'types/common';
 
-import { Loader } from "components/common/loader";
-import { Intro } from "components/auth-page/intro";
+import { AuthForm } from 'components/auth-page/auth-form';
+import { Intro } from 'components/auth-page/intro';
+import { RegForm } from 'components/auth-page/reg-form';
 import { Tabs } from 'components/auth-page/tabs';
-import { RegForm } from "components/auth-page/reg-form";
-import { AuthForm } from "components/auth-page/auth-form";
+import { Loader } from 'components/common/loader';
+
+import s from './style.module.scss';
 
 const TabsComponents = {
    'tab-1': <RegForm />,
@@ -28,7 +29,7 @@ export const AuthPage: FC = () => {
 
             <Tabs activeTab={ activeTab } setActiveTab={ setActiveTab } />
 
-            { status === "auth"
+            { status === 'auth'
                ?
                <Loader />
                :

@@ -1,15 +1,15 @@
-import { FC, useMemo } from "react";
+import { FC, useMemo } from 'react';
 
-import { useAppSelector } from "hooks/redux";
+import { useAppSelector } from 'hooks/redux';
 
-import { Item } from "./item";
+import { Item } from './item';
 
 export const Friends: FC = () => {
 
    const allFriends = useAppSelector(state => state.friendsSlice.friends);
 
    const friends = useMemo(() => {
-      return allFriends.filter(elem => elem.status === "friend");
+      return allFriends.filter(elem => elem.status === 'friend');
    }, [allFriends]);
 
    if (!friends.length) {

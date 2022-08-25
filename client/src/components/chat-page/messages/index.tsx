@@ -1,12 +1,14 @@
-import { FC, useLayoutEffect, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { FC, useLayoutEffect, useRef } from 'react';
+import { useParams } from 'react-router-dom';
 
-import s from "./style.module.scss";
-import { useAppSelector } from "hooks/redux";
-import { IChat } from "types/common";
+import { useAppSelector } from 'hooks/redux';
+import { IChat } from 'types/common';
 
-import { Empty } from "components/common/empty";
-import { Item } from "./item";
+import { Empty } from 'components/common/empty';
+
+import { Item } from './item';
+
+import s from './style.module.scss';
 
 export const Messages: FC = () => {
 

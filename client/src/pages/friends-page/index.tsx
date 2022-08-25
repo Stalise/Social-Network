@@ -1,12 +1,13 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-import s from "./style.module.scss";
-import { useAppSelector } from "hooks/redux";
+import { useAppSelector } from 'hooks/redux';
 
-import { Empty } from "components/common/empty";
-import { Friends } from "components/friends-page/friends";
-import { Requests } from "components/friends-page/requests";
-import { Sents } from "components/friends-page/sents";
+import { Empty } from 'components/common/empty';
+import { Friends } from 'components/friends-page/friends';
+import { Requests } from 'components/friends-page/requests';
+import { Sents } from 'components/friends-page/sents';
+
+import s from './style.module.scss';
 
 export const FriendsPage: FC = () => {
 

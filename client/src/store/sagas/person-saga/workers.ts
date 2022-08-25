@@ -1,12 +1,12 @@
-import { call, put, select } from "redux-saga/effects";
+import { call, put, select } from 'redux-saga/effects';
 
-import { changeAuthUserAction } from "store/slices/user-slice";
-import { addPersonDataAction, addPersonPostsAction, changePersonLikePostAction, addFriends, addPhotos } from "store/slices/person-slice";
-import { personApi } from "api/person-api";
-import { postApi } from "api/post-api";
-import { apiResponsesMessage } from "data/constants/api";
-import { IUserData, IPost, ILike, IFriend, IPhoto } from "types/common";
-import { IWorker } from "types/helpers";
+import { personApi } from 'api/person-api';
+import { postApi } from 'api/post-api';
+import { apiResponsesMessage } from 'data/constants/api';
+import { addFriends, addPersonDataAction, addPersonPostsAction, addPhotos, changePersonLikePostAction } from 'store/slices/person-slice';
+import { changeAuthUserAction } from 'store/slices/user-slice';
+import { IFriend, ILike, IPhoto, IPost, IUserData } from 'types/common';
+import { IWorker } from 'types/helpers';
 
 export function* workerGetPersonData(data: IWorker<string>) {
    const response: IUserData | string = yield call(personApi.getPersonData, data.payload);
@@ -14,7 +14,7 @@ export function* workerGetPersonData(data: IWorker<string>) {
    if (response === apiResponsesMessage.needAuth) yield put(changeAuthUserAction(false));
    else if (response === apiResponsesMessage.unexpected) return;
 
-   if (typeof (response) !== "string") {
+   if (typeof (response) !== 'string') {
       yield put(addPersonDataAction(response));
    }
 };
@@ -25,7 +25,7 @@ export function* workerGetPersonPosts(data: IWorker<string>) {
    if (response === apiResponsesMessage.needAuth) yield put(changeAuthUserAction(false));
    else if (response === apiResponsesMessage.unexpected) return;
 
-   if (typeof (response) !== "string") {
+   if (typeof (response) !== 'string') {
       yield put(addPersonPostsAction(response));
    }
 }
@@ -75,7 +75,7 @@ export function* workerGetPersonFriends(data: IWorker<string>) {
       yield put(changeAuthUserAction(false));
    } else if (response === apiResponsesMessage.unexpected) {
       return;
-   } else if (typeof (response) !== "string") {
+   } else if (typeof (response) !== 'string') {
       yield put(addFriends(response));
    }
 };
@@ -87,7 +87,7 @@ export function* workerFetchPersonPhotos(data: IWorker<string>) {
       yield put(changeAuthUserAction(false));
    } else if (response === apiResponsesMessage.unexpected) {
       return;
-   } else if (typeof (response) !== "string") {
+   } else if (typeof (response) !== 'string') {
       yield put(addPhotos(response));
    }
 };

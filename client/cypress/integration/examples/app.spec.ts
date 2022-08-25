@@ -1,6 +1,6 @@
 // TODO: проверить работу cypress, настроить под него husky.
 // TODO: отредактировать все файлы с новыми настройками, добавит cly-jsx в eslint
-import { Urls } from "../../../src/data/constants/api";
+import { Urls } from '../../../src/data/constants/api';
 
 describe('app', () => {
    it('should show auth-page after auth request', () => {
@@ -11,7 +11,7 @@ describe('app', () => {
       cy.intercept('GET', `${Urls.server_url}${Urls.userAuth}`, {
          statusCode: 401,
          body: {
-            message: "Need authorization",
+            message: 'Need authorization',
          },
       }).as('checkAuth');
 

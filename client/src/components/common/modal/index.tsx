@@ -1,4 +1,4 @@
-import { FC, ReactElement, SyntheticEvent } from "react";
+import { FC, ReactElement, SyntheticEvent } from 'react';
 
 import s from './style.module.scss';
 
@@ -11,9 +11,9 @@ interface IProps {
 export const Modal: FC<IProps> = ({ isModal, setIsModal, children }) => {
 
    if (isModal === true) {
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = 'hidden';
    } else {
-      document.body.style.overflow = "visible";
+      document.body.style.overflow = 'visible';
    }
 
    const closeModal = (e: SyntheticEvent) => {

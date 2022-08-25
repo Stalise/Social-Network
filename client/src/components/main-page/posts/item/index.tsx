@@ -1,13 +1,13 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-import { useAppDispatch } from "hooks/redux";
-import { sagasConstantsPosts, sagaActionCreator } from "data/constants/saga";
-import { IPost } from "types/common";
+import { sagaActionCreator, sagasConstantsPosts } from 'data/constants/saga';
+import { useAppDispatch } from 'hooks/redux';
+import { IPost } from 'types/common';
 
 import { Image } from './image';
 import { Like } from './like';
 
-import s from "./style.module.scss";
+import s from './style.module.scss';
 
 interface IProps {
    data: IPost,

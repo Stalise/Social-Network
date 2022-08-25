@@ -1,11 +1,12 @@
-import { FC, useState, useMemo } from "react";
+import { FC, useMemo, useState } from 'react';
 import LightBox from 'fslightbox-react';
 
-import s from "./style.module.scss";
-import { useAppSelector } from "hooks/redux";
+import { getUrlsImages } from 'helpers/photo';
+import { useAppSelector } from 'hooks/redux';
 
-import { Item } from "./item";
-import { getUrlsImages } from "helpers/photo";
+import { Item } from './item';
+
+import s from './style.module.scss';
 
 export const Images: FC = () => {
 

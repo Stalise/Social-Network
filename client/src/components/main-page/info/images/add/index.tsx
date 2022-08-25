@@ -1,9 +1,10 @@
 import { FC } from 'react';
 
-import s from "./style.module.scss";
+import { sagaActionCreator, sagasConstantsPhoto } from 'data/constants/saga';
+import { transformFile } from 'helpers/common';
 import { useAppDispatch, useAppSelector } from 'hooks/redux';
-import { transformFile } from "helpers/common";
-import { sagasConstantsPhoto, sagaActionCreator } from "data/constants/saga";
+
+import s from './style.module.scss';
 
 export const Add: FC = () => {
 
@@ -20,7 +21,7 @@ export const Add: FC = () => {
    };
 
    return (
-      <label className={ `${s.wrapper} ${status === "create" ? s._pending : ""}` }>
+      <label className={ `${s.wrapper} ${status === 'create' ? s._pending : ''}` }>
          <input
             className={ s.field }
             onChange={ e => createHandler(e.target.files?.length ? e.target.files[0] : null) }

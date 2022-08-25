@@ -1,8 +1,8 @@
 export const navigationItems: string[] = [
-   "/",
-   "/news",
-   "/messages",
-   "/friends",
-   "/photos",
-   "/search",
+   '/',
+   '/news',
+   '/messages',
+   '/friends',
+   '/photos',
+   '/search',
 ];
