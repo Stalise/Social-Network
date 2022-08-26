@@ -1,8 +1,11 @@
 {
    "extends": [
       "stylelint-config-standard-scss",
-      "stylelint-config-rational-order-fix",
       "stylelint-config-prettier"
+   ],
+   "plugins": [
+      "stylelint-order",
+      "stylelint-config-rational-order-fix/plugin"
    ],
    "rules": {
       "order/properties-order": [],

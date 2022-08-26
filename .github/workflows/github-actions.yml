@@ -32,6 +32,10 @@ jobs:
         run: |
           cd client
           npm run lint
+      - name: stylelint client
+        run: |
+          cd client
+          npm run stylelint
       - name: install modules server
         run: |
           cd server
