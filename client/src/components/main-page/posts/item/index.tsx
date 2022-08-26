@@ -4,8 +4,8 @@ import { sagaActionCreator, sagasConstantsPosts } from 'data/constants/saga';
 import { useAppDispatch } from 'hooks/redux';
 import { IPost } from 'types/common';
 
+import { Heart } from './Heart';
 import { Image } from './image';
-import { Like } from './Like';
 
 import s from './style.module.scss';
 
@@ -32,7 +32,7 @@ export const Item: FC<IProps> = ({ data }) => {
             { data.img && <Image image={ data.img }/> }
          </div>
          <div className={ s.bottom }>
-            <Like data={ data } />
+            <Heart data={ data } />
          </div>
       </div>
    );
