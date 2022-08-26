@@ -11,7 +11,6 @@ module.exports = {
       ecmaVersion: 2018,
       sourceType: "module",
    },
-   plugins: ["sort-imports-requires"],
    rules: {
       "no-console": "warn",
       "arrow-parens": ["warn", "as-needed"],
@@ -24,9 +23,7 @@ module.exports = {
          },
       ],
       indent: ["error", 3],
-      /* Требует или запрещает заключительные запятые */
       "comma-dangle": ["warn", "always-multiline"],
-      /* Максимальнаяы длина строки */
       "max-len": [
          "warn",
          {
@@ -35,11 +32,8 @@ module.exports = {
             ignorePattern: "import",
          },
       ],
-      /* Вставляет пустую строку в конце файла */
       "eol-last": ["warn", "always"],
       "object-curly-spacing": ["warn", "always"],
       "no-useless-escape": "off",
-      "sort-imports-requires/sort-imports": "error",
-      "sort-imports-requires/sort-requires": "error",
    },
 };
