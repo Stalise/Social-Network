@@ -23,4 +23,3 @@ export function* watcherCreateMessage() {
 export function* watcherGetMessage() {
    yield takeLatest(sagasConstantsChat.SAGA_GET_MESSAGE, workerGetMessage);
 }
-

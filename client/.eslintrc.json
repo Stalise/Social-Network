@@ -31,13 +31,15 @@
             "after": true
          }
       ],
-      /* Пустые строки */
-      "no-unexpected-multiline": "error",
+      /* Пустые строки - максимум 1 */
+      "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 0 }],
+      /* Пустая строка перед return */
+      "newline-before-return": "error",
       /* Максимальная длина строки */
       "max-len": [
          "warn",
          {
-            "code": 100,
+            "code": 150,
             "ignoreComments": true,
             "ignoreUrls": true,
             "ignorePattern": "import"
@@ -82,8 +84,7 @@
       "testing-library/no-debugging-utils": "warn",
       "testing-library/await-async-utils": "off",
       "simple-import-sort/imports": "error",
-      "simple-import-sort/exports": "error",
-      "space-before-function-paren": ["error", "always"]
+      "simple-import-sort/exports": "error"
    },
    /* Сортирует импорты по группам */
    "overrides": [

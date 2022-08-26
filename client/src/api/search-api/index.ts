@@ -23,10 +23,12 @@ export const userApi = {
 
          if (error.response?.status === 412) {
             toast.info(error.response.data.message, defaultToast);
+            
             return apiResponsesMessage.unexpected;
          }
 
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
+         
          return apiResponsesMessage.unexpected;
       }
    },

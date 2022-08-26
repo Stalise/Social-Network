@@ -22,6 +22,7 @@ export const photoApi = {
          }
 
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
+         
          return apiResponsesMessage.unexpected;
       }
    },
@@ -35,6 +36,7 @@ export const photoApi = {
          );
 
          toast.success(response.data.message, defaultToast);
+         
          return response.data.data;
       } catch (error: any) {
          if (error.response?.status === 401) {
@@ -42,6 +44,7 @@ export const photoApi = {
          }
 
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
+         
          return apiResponsesMessage.unexpected;
       }
    },
@@ -57,6 +60,7 @@ export const photoApi = {
          }
 
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
+         
          return apiResponsesMessage.unexpected;
       }
    },

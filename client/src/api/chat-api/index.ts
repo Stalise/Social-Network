@@ -23,6 +23,7 @@ export const chatApi = {
          }
 
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
+         
          return apiResponsesMessage.unexpected;
       }
    },
@@ -38,6 +39,7 @@ export const chatApi = {
          return response.data.chat;
       } catch (error) {
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
+         
          return apiResponsesMessage.unexpected;
       }
    },
@@ -53,6 +55,7 @@ export const chatApi = {
          }
 
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
+         
          return apiResponsesMessage.unexpected;
       }
    },
@@ -68,6 +71,7 @@ export const chatApi = {
          return apiResponsesMessage.success;
       } catch (error) {
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
+         
          return apiResponsesMessage.unexpected;
       }
    },
@@ -96,6 +100,7 @@ export const chatApi = {
          };
 
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
+         
          return apiResponsesMessage.unexpected;
       }
    },

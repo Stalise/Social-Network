@@ -29,6 +29,7 @@ export const postsSlice = createSlice({
       changeLikePostAction(state, { payload }: { payload: IPost }) {
          state.posts = state.posts.map(elem => {
             if (elem.id === payload.id) return payload;
+            
             return elem;
          });
       },

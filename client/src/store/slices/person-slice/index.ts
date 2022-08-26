@@ -35,6 +35,7 @@ export const personSlice = createSlice({
       changePersonLikePostAction(state, { payload }: { payload: IPost }) {
          state.posts = state.posts.map(elem => {
             if (elem.id === payload.id) return payload;
+            
             return elem;
          });
       },

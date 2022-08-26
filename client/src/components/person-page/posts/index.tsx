@@ -6,14 +6,12 @@ import { Empty } from 'components/common/empty';
 
 import { Item } from './item';
 
-import s from './style.module.scss';
-
 export const Posts: FC = () => {
 
    const { posts } = useAppSelector(state => state.personSlice);
 
    return (
-      <div className={ s.wrapper }>
+      <div>
          { !posts.length && <Empty title="No posts yet 🙁" image="write.png"/> }
 
          { posts.length > 0 &&

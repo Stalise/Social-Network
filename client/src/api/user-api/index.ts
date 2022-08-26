@@ -24,6 +24,7 @@ export const userApi = {
          }
 
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
+         
          return apiResponsesMessage.unexpected;
       }
    },
@@ -35,14 +36,17 @@ export const userApi = {
          });
 
          toast.success(response.data.message, defaultToast);
+         
          return apiResponsesMessage.success;
       } catch (error: any) {
          if (error.response?.status === 401) {
             toast.warn(error.response.data.message, defaultToast);
+            
             return error.response.data.message;
          }
 
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
+         
          return apiResponsesMessage.unexpected;
       }
    },
@@ -54,14 +58,17 @@ export const userApi = {
          });
 
          toast.success(response.data.message, defaultToast);
+         
          return apiResponsesMessage.success;
       } catch (error: any) {
          if (error.response?.status === 401) {
             toast.warn(error.response.data.message, defaultToast);
+            
             return error.response.data.message;
          }
 
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
+         
          return apiResponsesMessage.unexpected;
       }
    },
@@ -74,6 +81,7 @@ export const userApi = {
       } catch (error: any) {
 
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
+         
          return apiResponsesMessage.unexpected;
       }
    },
@@ -89,6 +97,7 @@ export const userApi = {
          }
 
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
+         
          return apiResponsesMessage.unexpected;
       }
    },

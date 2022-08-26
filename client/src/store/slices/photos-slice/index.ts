@@ -4,7 +4,6 @@ import { IPhoto } from 'types/common';
 
 import { IState, StatusType } from './types';
 
-
 const initialState: IState = {
    photos: [],
    status: 'ready',

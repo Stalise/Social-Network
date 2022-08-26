@@ -5,7 +5,7 @@ import { useAppDispatch } from 'hooks/redux';
 import { IPost } from 'types/common';
 
 import { Image } from './image';
-import { Like } from './like';
+import { Like } from './Like';
 
 import s from './style.module.scss';
 

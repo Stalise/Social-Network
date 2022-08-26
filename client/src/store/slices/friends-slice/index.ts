@@ -4,7 +4,6 @@ import { IFriend } from 'types/common';
 
 import { IState } from './types';
 
-
 const initialState: IState = {
    friends: [],
    status: 'ready',
@@ -23,6 +22,7 @@ export const friendsSlice = createSlice({
       changeFriendStatus(state, { payload }: { payload: IFriend }) {
          state.friends = state.friends.map(elem => {
             if (elem.username === payload.username) return payload;
+            
             return elem;
          });
       },

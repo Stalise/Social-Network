@@ -38,6 +38,7 @@ export function* workerCreateChat(data: IWorker<ICreateChatPayload>) {
       yield put(changeAuthUserAction(false));
    } else if (response === apiResponsesMessage.unexpected) {
       yield put(changeChatsStatusAction('ready'));
+      
       return;
    } else if (typeof (response) !== 'string') {
       yield put(addChatAction(response));
