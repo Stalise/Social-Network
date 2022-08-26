@@ -1,10 +1,10 @@
 .wrapper {
-   max-width: 930px;
-   width: 100%;
-   min-height: 150px;
-   max-height: 600px;
    display: flex;
    justify-content: center;
+   width: 100%;
+   max-width: 930px;
+   min-height: 150px;
+   max-height: 600px;
    cursor: pointer;
 
    &:not(:first-child) {

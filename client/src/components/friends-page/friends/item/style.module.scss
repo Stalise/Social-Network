@@ -1,10 +1,10 @@
 .wrapper {
-   width: 100%;
-   border: 1px solid #ccc;
-   border-radius: 5px;
-   padding: 10px 15px;
    display: flex;
    justify-content: space-between;
+   width: 100%;
+   padding: 10px 15px;
+   border: 1px solid #ccc;
+   border-radius: 5px;
 
    &:not(:last-child) {
       margin-bottom: 20px;
@@ -12,8 +12,8 @@
 
    .content {
       display: flex;
-      max-width: 100%;
       width: 100%;
+      max-width: 100%;
 
       .link {
          display: inline-block;
@@ -23,8 +23,8 @@
             min-width: 100px;
             max-width: 100px;
             height: 100px;
-            border-radius: 10px;
             overflow: hidden;
+            border-radius: 10px;
             cursor: pointer;
 
             &:hover {
@@ -34,8 +34,8 @@
             }
 
             .avatarImage {
-               max-width: 100%;
                width: 100%;
+               max-width: 100%;
                height: 100%;
                object-fit: cover;
                transition-duration: 0.3s;
@@ -44,57 +44,57 @@
       }
 
       .text {
-         max-width: 100%;
          width: 100%;
+         max-width: 100%;
 
          .name {
             display: flex;
-            margin: 0 15px 15px 0;
             flex-wrap: wrap;
+            margin: 0 15px 15px 0;
 
             .forename {
-               font-size: 20px;
-               font-weight: 700;
-               letter-spacing: 0.7px;
                margin-right: 5px;
+               font-weight: 700;
+               font-size: 20px;
+               letter-spacing: 0.7px;
             }
 
             .surname {
-               font-size: 20px;
                font-weight: 700;
+               font-size: 20px;
                letter-spacing: 0.7px;
             }
          }
 
          .write {
-            max-width: 120px;
+            position: relative;
             width: 100%;
+            max-width: 120px;
             height: 35px;
+            font-size: 17px;
+            letter-spacing: 0.3px;
             background-color: #d7e7fc;
             border-radius: 5px;
-            letter-spacing: 0.3px;
             transition-duration: 0.3s;
-            font-size: 17px;
-            position: relative;
 
             &:hover {
-               color: #ffffff;
+               color: #fff;
                background-color: #ccc;
             }
 
             &._pending {
-               pointer-events: none;
                color: transparent;
+               pointer-events: none;
 
-               &:before {
-                  font-family: "IcoFont";
-                  content: "\efd1";
+               &::before {
                   position: absolute;
-                  font-size: 23px;
-                  color: #2d2d2d;
                   top: 5px;
                   left: calc(50% - 9px);
+                  color: #2d2d2d;
+                  font-size: 23px;
+                  font-family: 'IcoFont';
                   transition-duration: 0.3s;
+                  content: '\efd1';
                }
             }
          }
@@ -102,25 +102,24 @@
    }
 
    .delete {
+      position: relative;
       width: 22px;
       height: 20px;
-      // border: 1px solid black;
-      position: relative;
 
-      &:before {
-         font-family: "IcoFont";
-         content: "\eee4";
+      &::before {
          position: absolute;
-         font-size: 26px;
-         color: #2d2d2d;
          top: -1px;
          left: -1px;
-         transition-duration: 0.3s;
-         cursor: pointer;
+         color: #2d2d2d;
          color: #ccc;
+         font-size: 26px;
+         font-family: 'IcoFont';
+         cursor: pointer;
+         transition-duration: 0.3s;
+         content: '\eee4';
       }
 
-      &:hover:before {
+      &:hover::before {
          color: #2d2d2d;
       }
    }

@@ -2,45 +2,44 @@
    display: flex;
    flex-direction: column;
    width: 100%;
-   background-color: #ffffff;
+   padding: 20px 15px;
+   background-color: #fff;
    border-radius: 10px;
-   padding: 20px 15px 20px 15px;
 
    &:not(:last-child) {
       margin-bottom: 30px;
    }
 
    .top {
-      width: 100%;
       display: flex;
-      justify-content: left;
       align-items: flex-end;
+      justify-content: left;
+      width: 100%;
+      margin-bottom: 20px;
       padding-bottom: 10px;
       border-bottom: 2px solid #e8e8e8;
-      margin-bottom: 20px;
 
       .data {
-         font-size: 18px;
          color: #2d2d2d;
+         font-size: 18px;
       }
    }
 
    .content {
-      // border: 1px solid black;
+      margin-bottom: 20px;
       padding-bottom: 20px;
       border-bottom: 2px solid #e8e8e8;
-      margin-bottom: 20px;
 
       .text {
-         font-size: 20px;
          color: black;
+         font-size: 20px;
          line-height: 25px;
       }
    }
 
    .bottom {
-      width: 100%;
       display: flex;
       justify-content: center;
+      width: 100%;
    }
 }

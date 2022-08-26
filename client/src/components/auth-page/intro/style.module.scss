@@ -1,39 +1,39 @@
 .wrapper {
-   max-width: 600px;
-   width: 100%;
    display: flex;
    justify-content: center;
+   width: 100%;
+   max-width: 600px;
    margin-bottom: 40px;
 
    .title {
-      font-size: 60px;
-      font-weight: 700;
       margin-right: 15px;
-      transform: rotate(-1.5deg);
       color: #2d2d2d;
+      font-weight: 700;
+      font-size: 60px;
+      transform: rotate(-1.5deg);
    }
 
    .logo {
       display: block;
-      max-width: 140px;
-      width: 100%;
       display: flex;
       align-items: center;
+      width: 100%;
+      max-width: 140px;
 
       .logoIcon {
          position: relative;
+         width: 100%;
          max-width: 70px;
          height: 60px;
-         width: 100%;
 
-         &:after {
-            font-family: "IcoFont";
-            content: "\ed1d";
+         &::after {
             position: absolute;
-            font-size: 65px;
-            color: #2d2d2d;
             left: -8px;
+            color: #2d2d2d;
+            font-size: 65px;
+            font-family: 'IcoFont';
             transition: 0.3s;
+            content: '\ed1d';
          }
       }
 

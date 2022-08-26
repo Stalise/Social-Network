@@ -1,0 +1,28 @@
+{
+   "extends": [
+      "stylelint-config-standard-scss",
+      "stylelint-config-rational-order-fix",
+      "stylelint-config-prettier"
+   ],
+   "rules": {
+      "order/properties-order": [],
+      "plugin/rational-order": [
+         true,
+         {
+            "border-in-box-model": false,
+            "empty-line-between-groups": false
+         }
+      ],
+      "scss/selector-no-redundant-nesting-selector": true,
+      "selector-class-pattern": null,
+      "no-descending-specificity": null,
+      "font-family-no-missing-generic-family-keyword": null,
+      "font-family-name-quotes": null,
+      "alpha-value-notation": null,
+      "selector-id-pattern": null,
+      "property-no-vendor-prefix": null,
+      "value-keyword-case": null,
+      "keyframes-name-pattern": null,
+      "at-rule-no-vendor-prefix": null
+   }
+}

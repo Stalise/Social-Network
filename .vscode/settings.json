@@ -1,0 +1,15 @@
+{
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+      "editor.formatOnSave": true,
+    // позволяет включать правила esling при форматировании кода
+    "eslint.format.enable": true,
+    // позволяет редактировать код при сохранении согласно указанных настроек eslint
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true,
+    },
+}

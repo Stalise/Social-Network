@@ -1,12 +1,12 @@
 .wrapper {
-   max-width: 220px;
-   width: 100%;
-   height: 200px;
-   border-radius: 10px;
-   overflow: hidden;
-   transition-duration: 0.3s;
    position: relative;
+   width: 100%;
+   max-width: 220px;
+   height: 200px;
+   overflow: hidden;
+   border-radius: 10px;
    cursor: pointer;
+   transition-duration: 0.3s;
 
    .image {
       width: 100%;
@@ -20,28 +20,28 @@
    }
 
    .delete {
-      width: 30px;
-      height: 30px;
       position: absolute;
       top: 5px;
       right: 3px;
-      opacity: 0.3;
       z-index: 1;
+      width: 30px;
+      height: 30px;
+      opacity: 0.3;
       transition-duration: 0.3s;
 
       &:hover {
          opacity: 1;
       }
 
-      &:after {
-         font-family: "IcoFont";
-         content: "\eee4";
+      &::after {
          position: absolute;
-         font-size: 35px;
-         color: #f25c5c;
          top: -3px;
          left: -3px;
+         color: #f25c5c;
+         font-size: 35px;
+         font-family: 'IcoFont';
          transition-duration: 0.3s;
+         content: '\eee4';
       }
    }
 }

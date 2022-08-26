@@ -4,88 +4,88 @@
    width: 100%;
 
    .add {
-      max-width: 100%;
+      position: relative;
       width: 100%;
+      max-width: 100%;
       height: 45px;
       font-size: 20px;
-      border-radius: 5px;
-      background-color: #f0f0f0;
       letter-spacing: 0.5px;
+      background-color: #f0f0f0;
+      border-radius: 5px;
       transition-duration: 0.3s;
-      position: relative;
 
       &._sent {
          pointer-events: none;
 
-         &:before {
-            content: "Request sent";
+         &::before {
             position: absolute;
             top: 10px;
             left: calc(50% - 73px);
+            content: 'Request sent';
          }
 
-         &:after {
-            font-family: "IcoFont";
-            content: "\efd1";
+         &::after {
             position: absolute;
             top: 10px;
             left: calc(50% + 55px);
             font-size: 25px;
+            font-family: 'IcoFont';
+            content: '\efd1';
          }
       }
 
       &._request {
-         &:before {
-            content: "Accept request";
+         &::before {
             position: absolute;
             top: 10px;
             left: calc(50% - 85px);
+            content: 'Accept request';
          }
 
-         &:after {
-            font-family: "IcoFont";
-            content: "+";
+         &::after {
             position: absolute;
             top: 10px;
             left: calc(50% + 66px);
-            font-size: 25px;
             font-weight: 700;
+            font-size: 25px;
+            font-family: 'IcoFont';
+            content: '+';
          }
       }
 
       &._friend {
-         pointer-events: none;
          background-color: #ccffd4;
+         pointer-events: none;
 
-         &:before {
-            content: "Your friend";
+         &::before {
             position: absolute;
             top: 10px;
             left: calc(50% - 60px);
+            content: 'Your friend';
          }
 
-         &:after {
-            font-family: "IcoFont";
-            content: "\eed8";
+         &::after {
             position: absolute;
             top: 8px;
             left: calc(50% + 43px);
             font-size: 25px;
+            font-family: 'IcoFont';
+            content: '\eed8';
          }
       }
 
       &:hover {
+         color: #fff;
          background-color: #ccc;
-         color: #ffffff;
-         -webkit-text-stroke-color: #ffffff;
+         -webkit-text-stroke-color: #fff;
       }
 
       &:active {
          transform: translateY(-5px);
       }
 
-      &:before {
-         content: "Add friend";
+      &::before {
+         content: 'Add friend';
       }
    }
 }

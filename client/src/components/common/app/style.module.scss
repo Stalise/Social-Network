@@ -1,10 +1,10 @@
 .wrapper {
-   min-height: 100vh;
-   width: 100%;
-   overflow: hidden;
    display: flex;
-   justify-content: center;
    align-items: center;
+   justify-content: center;
+   width: 100%;
+   min-height: 100vh;
+   padding: 50px 15px 100px;
+   overflow: hidden;
    background-color: #d7e7fc;
-   padding: 50px 15px 100px 15px;
 }

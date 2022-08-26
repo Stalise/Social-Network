@@ -1,44 +1,44 @@
 .navigation {
-   max-width: 250px;
    width: 100%;
+   max-width: 250px;
    height: 365px;
-   background-color: #ffffff;
-   padding: 20px 15px;
-   border-radius: 10px;
    margin-right: 20px;
+   padding: 20px 15px;
+   background-color: #fff;
+   border-radius: 10px;
 
    .list {
       .listItem {
          position: relative;
-         padding-left: 40px;
          height: 25px;
+         padding-left: 40px;
          cursor: pointer;
 
          .listLink {
-            &:before {
-               font-family: "IcoFont";
-               content: "\ed1d";
+            &::before {
                position: absolute;
-               font-size: 25px;
+               left: 0;
                color: #2d2d2d;
-               left: 0px;
+               font-size: 25px;
+               font-family: 'IcoFont';
                transition: 0.3s;
+               content: '\ed1d';
             }
 
-            &:after {
+            &::after {
                position: absolute;
-               content: "My page";
-               font-size: 22px;
-               color: #2d2d2d;
-               left: 0;
                top: 0;
+               left: 0;
                padding-left: 45px;
+               color: #2d2d2d;
+               font-size: 22px;
+               content: 'My page';
             }
          }
 
          &:hover {
             .listLink {
-               &:before {
+               &::before {
                   transform: scale(1.2, 1.2);
                }
             }
@@ -46,81 +46,81 @@
 
          &:nth-child(1) {
             .listLink {
-               &:before {
-                  content: "\ecfd";
-                  font-size: 20px;
-                  top: 0px;
+               &::before {
+                  top: 0;
                   left: 2px;
+                  font-size: 20px;
+                  content: '\ecfd';
                }
             }
          }
 
          &:nth-child(2) {
             .listLink {
-               &:before {
-                  content: "\efa7";
-                  font-size: 24px;
+               &::before {
                   top: -1px;
+                  font-size: 24px;
+                  content: '\efa7';
                }
 
-               &:after {
-                  content: "News";
+               &::after {
+                  content: 'News';
                }
             }
          }
 
          &:nth-child(3) {
             .listLink {
-               &:before {
-                  content: "\eff2";
-                  font-size: 24px;
+               &::before {
                   top: -1px;
+                  font-size: 24px;
+                  content: '\eff2';
                }
 
-               &:after {
-                  content: "Messages";
+               &::after {
+                  content: 'Messages';
                }
             }
          }
 
          &:nth-child(4) {
             .listLink {
-               &:before {
-                  content: "\ed08";
-                  font-size: 24px;
+               &::before {
                   top: -2px;
+                  font-size: 24px;
+                  content: '\ed08';
                }
 
-               &:after {
-                  content: "Friends";
+               &::after {
+                  content: 'Friends';
                }
             }
          }
 
          &:nth-child(5) {
             .listLink {
-               &:before {
-                  content: "\efbc";
-                  font-size: 24px;
+               &::before {
                   top: -2px;
+                  font-size: 24px;
+                  content: '\efbc';
                }
 
-               &:after {
-                  content: "Photos";
+               &::after {
+                  content: 'Photos';
                }
             }
          }
 
          &:nth-child(6) {
             .listLink {
-               &:before {
-                  content: "\ec82";
-                  font-size: 24px;
+               &::before {
                   top: -1px;
+                  font-size: 24px;
+                  content: '\ec82';
                }
 
-               &:after {
-                  content: "Search";
+               &::after {
+                  content: 'Search';
                }
             }
          }
@@ -134,16 +134,16 @@
 
 @media (max-width: 992px) {
    .navigation {
-      max-width: calc(100% - 30px);
       position: fixed;
       bottom: 0;
       left: 15px;
       z-index: 101;
+      max-width: calc(100% - 30px);
       height: 50px;
-      padding: 15px 15px 20px 15px;
-      box-shadow: 0px 0px 8px 0px rgba(34, 60, 80, 0.2);
-      border-bottom-left-radius: 0;
+      padding: 15px;
       border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+      box-shadow: 0 0 8px 0 #223c5033;
 
       .list {
          display: flex;
@@ -154,47 +154,47 @@
             padding-left: 0;
 
             .listLink {
-               &:after {
-                  content: "";
+               &::after {
+                  content: '';
                }
             }
 
             &:nth-child(2) {
                .listLink {
-                  &:after {
-                     content: "";
+                  &::after {
+                     content: '';
                   }
                }
             }
 
             &:nth-child(3) {
                .listLink {
-                  &:after {
-                     content: "";
+                  &::after {
+                     content: '';
                   }
                }
             }
 
             &:nth-child(4) {
                .listLink {
-                  &:after {
-                     content: "";
+                  &::after {
+                     content: '';
                   }
                }
             }
 
             &:nth-child(5) {
                .listLink {
-                  &:after {
-                     content: "";
+                  &::after {
+                     content: '';
                   }
                }
             }
 
             &:nth-child(6) {
                .listLink {
-                  &:after {
-                     content: "";
+                  &::after {
+                     content: '';
                   }
                }
             }

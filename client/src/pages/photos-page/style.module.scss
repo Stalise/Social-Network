@@ -1,18 +1,18 @@
 .wrapper {
-   max-width: 100%;
    width: 100%;
-   background-color: #ffffff;
+   max-width: 100%;
+   padding: 20px 15px;
+   background-color: #fff;
    border-radius: 10px;
-   padding: 20px 15px 20px 15px;
 
    .title {
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      color: #2d2d2d;
+      font-weight: 700;
+      font-size: 24px;
+      letter-spacing: 0.5px;
       text-align: center;
       border-bottom: 2px solid #e8e8e8;
-      padding-bottom: 10px;
-      margin-bottom: 20px;
-      font-size: 24px;
-      font-weight: 700;
-      color: #2d2d2d;
-      letter-spacing: 0.5px;
    }
 }

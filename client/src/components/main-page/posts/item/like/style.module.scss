@@ -3,30 +3,29 @@
    align-items: center;
 
    .icon {
+      position: relative;
       width: 30px;
       height: 25px;
-      position: relative;
       margin-right: 10px;
 
-      &:before {
-         font-family: "IcoFont";
-         content: "\ef45";
+      &::before {
          position: absolute;
-         font-size: 35px;
-         color: #2d2d2d;
          top: -6px;
          left: -3px;
-         transition-duration: 0.3s;
-         cursor: pointer;
          color: #2d2d2d;
+         font-size: 35px;
+         font-family: 'IcoFont';
+         cursor: pointer;
+         transition-duration: 0.3s;
+         content: '\ef45';
       }
 
-      &:hover:before {
+      &:hover::before {
          transform: scale(1.15, 1.15);
       }
 
       &._active {
-         &:before {
+         &::before {
             color: #f08080;
          }
       }

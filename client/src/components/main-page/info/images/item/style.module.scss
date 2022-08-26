@@ -1,13 +1,13 @@
 .wrapper {
-   max-width: 24%;
    width: 100%;
+   max-width: 24%;
    max-height: 140px;
    cursor: pointer;
 
-   &:before {
-      content: "";
-      padding-top: 100%;
+   &::before {
       float: left;
+      padding-top: 100%;
+      content: '';
    }
 
    &:not(:last-child) {
