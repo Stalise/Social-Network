@@ -1,11 +1,11 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-import s from "./style.module.scss";
+import { Avatar } from 'components/main-page/avatar';
+import { UserInfo } from 'components/main-page/info';
+import { NewPost } from 'components/main-page/new-post';
+import { Posts } from 'components/main-page/posts';
 
-import { Avatar } from "components/main-page/avatar";
-import { NewPost } from "components/main-page/new-post";
-import { UserInfo } from "components/main-page/info";
-import { Posts } from "components/main-page/posts";
+import s from './style.module.scss';
 
 export const MainPage: FC = () => (
    <div className={ s.wrapper } data-test-id="main-page">

@@ -1,12 +1,12 @@
-import { call, spawn, all } from "redux-saga/effects";
+import { all, call, spawn } from 'redux-saga/effects';
 
-import { watcherGetUserData, watcherCheckAuth, watcherAuthUser, watcherLogoutUser, watcherRegUser } from './user-saga/watchers';
-import { watcherGetUserPosts, watcherCreatePost, watcherCreateLike, watcherDeletePost, watcherDeleteLike } from './post-saga/watchers';
-import { watcherGetPersonData, watcherGetPersonPosts, watcherCreatePostLike, watcherDeletePostLike, watcherGetPersonFriends, watcherGetPersonPhotos } from "./person-saga/watchers";
-import { watcherGetFriends, watcherCreateFriend, watcherAcceptFriend, watcherDeleteFriend } from "./friends-saga/watchers";
-import { watcherGetChats, watcherCreateChat, watcherDeleteChat, watcherCreateMessage, watcherGetMessage } from "./chats-saga/watchers";
-import { watcherAddPhoto, watcherGetPhotos, watcherDeletePhoto } from "./photo-saga/watchers";
-import { watcherAllUserParams, watcherAllPersonParams } from "./common-saga/watchers";
+import { watcherCreateChat, watcherCreateMessage, watcherDeleteChat, watcherGetChats, watcherGetMessage } from './chats-saga/watchers';
+import { watcherAllPersonParams, watcherAllUserParams } from './common-saga/watchers';
+import { watcherAcceptFriend, watcherCreateFriend, watcherDeleteFriend, watcherGetFriends } from './friends-saga/watchers';
+import { watcherCreatePostLike, watcherDeletePostLike, watcherGetPersonData, watcherGetPersonFriends, watcherGetPersonPhotos, watcherGetPersonPosts } from './person-saga/watchers';
+import { watcherAddPhoto, watcherDeletePhoto, watcherGetPhotos } from './photo-saga/watchers';
+import { watcherCreateLike, watcherCreatePost, watcherDeleteLike, watcherDeletePost, watcherGetUserPosts } from './post-saga/watchers';
+import { watcherAuthUser, watcherCheckAuth, watcherGetUserData, watcherLogoutUser, watcherRegUser } from './user-saga/watchers';
 
 const userSagas = [watcherGetUserData, watcherCheckAuth, watcherAuthUser, watcherLogoutUser, watcherRegUser];
 const postsSagas = [watcherGetUserPosts, watcherCreatePost, watcherCreateLike, watcherDeletePost, watcherDeleteLike];

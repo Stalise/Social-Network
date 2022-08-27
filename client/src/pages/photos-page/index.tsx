@@ -1,18 +1,19 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-import s from "./style.module.scss";
-import { useAppSelector } from "hooks/redux";
+import { useAppSelector } from 'hooks/redux';
 
-import { Empty } from "components/common/empty";
-import { Loader } from "components/common/loader";
-import { Add } from "components/photos-page/add";
-import { Images } from "components/photos-page/images";
+import { Empty } from 'components/common/empty';
+import { Loader } from 'components/common/loader';
+import { Add } from 'components/photos-page/add';
+import { Images } from 'components/photos-page/images';
+
+import s from './style.module.scss';
 
 export const PhotosPage: FC = () => {
 
    const { photos, status } = useAppSelector(state => state.photosSlice);
 
-   if (status === "pending") {
+   if (status === 'pending') {
       return <Loader />;
    }
 
@@ -22,7 +23,7 @@ export const PhotosPage: FC = () => {
 
          <Add />
 
-         { !photos.length && <Empty title={ "No photos yet 🙁" } image={ "photos.png" }/> }
+         { !photos.length && <Empty title={ 'No photos yet 🙁' } image={ 'photos.png' }/> }
 
          <Images />
       </div>

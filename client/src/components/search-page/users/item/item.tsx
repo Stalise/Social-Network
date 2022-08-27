@@ -1,11 +1,11 @@
 import { FC } from 'react';
-import { Link, useNavigate, NavigateFunction } from 'react-router-dom';
+import { Link, NavigateFunction, useNavigate } from 'react-router-dom';
 
+import { Urls } from 'data/constants/api';
+import { sagaActionCreator, sagasConstantsChat } from 'data/constants/saga';
 import { useAppDispatch, useAppSelector } from 'hooks/redux';
-import { sagasConstantsChat, sagaActionCreator } from "data/constants/saga";
-import { ICreateChatPayload } from "types/sagas/chat";
-import { Urls } from "data/constants/api";
 import { ISearchUser } from 'types/common';
+import { ICreateChatPayload } from 'types/sagas/chat';
 
 import s from './style.module.scss';
 

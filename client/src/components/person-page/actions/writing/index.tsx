@@ -1,10 +1,11 @@
 import { FC } from 'react';
-import { NavigateFunction, useNavigate } from "react-router-dom";
+import { NavigateFunction, useNavigate } from 'react-router-dom';
 
-import s from "./style.module.scss";
+import { sagaActionCreator, sagasConstantsChat } from 'data/constants/saga';
 import { useAppDispatch, useAppSelector } from 'hooks/redux';
-import { sagasConstantsChat, sagaActionCreator } from "data/constants/saga";
-import { ICreateChatPayload } from "types/sagas/chat";
+import { ICreateChatPayload } from 'types/sagas/chat';
+
+import s from './style.module.scss';
 
 export const Writing: FC = () => {
 
@@ -28,7 +29,7 @@ export const Writing: FC = () => {
       <button
          onClick={ writeHandler }
          type="button"
-         className={ `${s.write} ${ status === "create" && s._pending}` }
+         className={ `${s.write} ${ status === 'create' && s._pending}` }
       >
          Write
       </button>

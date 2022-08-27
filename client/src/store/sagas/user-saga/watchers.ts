@@ -1,7 +1,8 @@
-import { takeLatest } from "redux-saga/effects";
+import { takeLatest } from 'redux-saga/effects';
 
-import { sagasConstantsUser } from "data/constants/saga";
-import { workerGetUserData, workerCheckAuth, workerAuthUser, workerLogoutUser, workerRegUser } from "./workers";
+import { sagasConstantsUser } from 'data/constants/saga';
+
+import { workerAuthUser, workerCheckAuth, workerGetUserData, workerLogoutUser, workerRegUser } from './workers';
 
 export function* watcherCheckAuth() {
    yield takeLatest(sagasConstantsUser.SAGA_CHECK_AUTH, workerCheckAuth);

@@ -1,11 +1,11 @@
-import axios from "axios";
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
-import { Urls } from "data/constants/api";
-import { apiResponsesMessage } from "data/constants/api";
-import { defaultToast } from "data/constants/toast";
-import { IRegFormState } from "components/auth-page/reg-form/types";
-import { IUserData } from "types/common";
+import { apiResponsesMessage, Urls } from 'data/constants/api';
+import { defaultToast } from 'data/constants/toast';
+import { IUserData } from 'types/common';
+
+import { IRegFormState } from 'components/auth-page/reg-form/types';
 
 export const instance = axios.create({
    baseURL: Urls.server_url,
@@ -24,6 +24,7 @@ export const userApi = {
          }
 
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
+         
          return apiResponsesMessage.unexpected;
       }
    },
@@ -35,14 +36,17 @@ export const userApi = {
          });
 
          toast.success(response.data.message, defaultToast);
+         
          return apiResponsesMessage.success;
       } catch (error: any) {
          if (error.response?.status === 401) {
             toast.warn(error.response.data.message, defaultToast);
+            
             return error.response.data.message;
          }
 
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
+         
          return apiResponsesMessage.unexpected;
       }
    },
@@ -54,14 +58,17 @@ export const userApi = {
          });
 
          toast.success(response.data.message, defaultToast);
+         
          return apiResponsesMessage.success;
       } catch (error: any) {
          if (error.response?.status === 401) {
             toast.warn(error.response.data.message, defaultToast);
+            
             return error.response.data.message;
          }
 
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
+         
          return apiResponsesMessage.unexpected;
       }
    },
@@ -74,6 +81,7 @@ export const userApi = {
       } catch (error: any) {
 
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
+         
          return apiResponsesMessage.unexpected;
       }
    },
@@ -89,6 +97,7 @@ export const userApi = {
          }
 
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
+         
          return apiResponsesMessage.unexpected;
       }
    },

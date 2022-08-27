@@ -1,18 +1,18 @@
 .write {
-   max-width: 100%;
+   position: relative;
    width: 100%;
+   max-width: 100%;
    height: 45px;
-   background-color: #d7e7fc;
    margin-bottom: 10px;
    font-size: 20px;
-   border-radius: 5px;
    letter-spacing: 0.5px;
+   background-color: #d7e7fc;
+   border-radius: 5px;
    transition-duration: 0.3s;
-   position: relative;
 
    &:hover {
+      color: #fff;
       background-color: #ccc;
-      color: #ffffff;
    }
 
    &:active {
@@ -20,18 +20,18 @@
    }
 
    &._pending {
-      pointer-events: none;
       color: transparent;
+      pointer-events: none;
 
-      &:before {
-         font-family: "IcoFont";
-         content: "\efd1";
+      &::before {
          position: absolute;
-         font-size: 23px;
-         color: #2d2d2d;
          top: 11px;
          left: calc(50% - 7px);
+         color: #2d2d2d;
+         font-size: 23px;
+         font-family: 'IcoFont';
          transition-duration: 0.3s;
+         content: '\efd1';
       }
    }
 }

@@ -1,6 +1,6 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-import s from "./style.module.scss";
+import s from './style.module.scss';
 
 export const Intro: FC = () => (
    <div className={ s.wrapper }>

@@ -1,1 +1,1 @@
-export type StatusType = "ready" | "pending";
+export type StatusType = 'ready' | 'pending';

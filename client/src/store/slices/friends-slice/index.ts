@@ -1,12 +1,12 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
-import { IFriend } from "types/common";
-import { IState } from "./types";
+import { IFriend } from 'types/common';
 
+import { IState } from './types';
 
 const initialState: IState = {
    friends: [],
-   status: "ready",
+   status: 'ready',
 };
 
 export const friendsSlice = createSlice({
@@ -22,6 +22,7 @@ export const friendsSlice = createSlice({
       changeFriendStatus(state, { payload }: { payload: IFriend }) {
          state.friends = state.friends.map(elem => {
             if (elem.username === payload.username) return payload;
+            
             return elem;
          });
       },

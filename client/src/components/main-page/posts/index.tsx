@@ -1,10 +1,11 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-import s from "./style.module.scss";
-import { useAppSelector } from "hooks/redux";
+import { useAppSelector } from 'hooks/redux';
 
-import { Empty } from "components/common/empty";
-import { Item } from "components/main-page/posts/item";
+import { Empty } from 'components/common/empty';
+import { Item } from 'components/main-page/posts/item';
+
+import s from './style.module.scss';
 
 export const Posts: FC = () => {
 

@@ -1,10 +1,9 @@
-import axios from "axios";
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
-import { Urls } from "data/constants/api";
-import { apiResponsesMessage } from "data/constants/api";
-import { defaultToast } from "data/constants/toast";
-import { IUserData, IFriend, IPhoto, IPost } from "types/common";
+import { apiResponsesMessage, Urls } from 'data/constants/api';
+import { defaultToast } from 'data/constants/toast';
+import { IFriend, IPhoto, IPost, IUserData } from 'types/common';
 
 export const instance = axios.create({
    baseURL: Urls.server_url,
@@ -23,6 +22,7 @@ export const personApi = {
          }
 
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
+         
          return apiResponsesMessage.unexpected;
       }
    },
@@ -38,6 +38,7 @@ export const personApi = {
          }
 
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
+         
          return apiResponsesMessage.unexpected;
       }
    },
@@ -53,6 +54,7 @@ export const personApi = {
          }
 
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
+         
          return apiResponsesMessage.unexpected;
       }
    },
@@ -68,6 +70,7 @@ export const personApi = {
          }
 
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
+         
          return apiResponsesMessage.unexpected;
       }
    },

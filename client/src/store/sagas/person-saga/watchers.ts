@@ -1,14 +1,15 @@
-import { takeLatest } from "redux-saga/effects";
+import { takeLatest } from 'redux-saga/effects';
 
-import { sagasConstantsPerson } from "data/constants/saga";
+import { sagasConstantsPerson } from 'data/constants/saga';
+
 import {
-   workerGetPersonData,
-   workerGetPersonPosts,
    workerCreatePersonLikePost,
    workerDeletePersonLikePost,
-   workerGetPersonFriends,
    workerFetchPersonPhotos,
-} from "./workers";
+   workerGetPersonData,
+   workerGetPersonFriends,
+   workerGetPersonPosts,
+} from './workers';
 
 export function* watcherGetPersonData() {
    yield takeLatest(sagasConstantsPerson.SAGA_GET_PERSON_DATA, workerGetPersonData);

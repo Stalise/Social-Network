@@ -1,10 +1,9 @@
-import axios from "axios";
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
-import { Urls } from "data/constants/api";
-import { apiResponsesMessage } from "data/constants/api";
-import { defaultToast } from "data/constants/toast";
-import { IPhoto } from "types/common";
+import { apiResponsesMessage, Urls } from 'data/constants/api';
+import { defaultToast } from 'data/constants/toast';
+import { IPhoto } from 'types/common';
 
 export const instance = axios.create({
    baseURL: Urls.server_url,
@@ -23,6 +22,7 @@ export const photoApi = {
          }
 
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
+         
          return apiResponsesMessage.unexpected;
       }
    },
@@ -32,10 +32,11 @@ export const photoApi = {
          const response = await instance.post<{ message: string, data: IPhoto }>(
             Urls.photo,
             { data },
-            { headers: { "Content-Type": "application/json" } },
+            { headers: { 'Content-Type': 'application/json' } },
          );
 
          toast.success(response.data.message, defaultToast);
+         
          return response.data.data;
       } catch (error: any) {
          if (error.response?.status === 401) {
@@ -43,6 +44,7 @@ export const photoApi = {
          }
 
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
+         
          return apiResponsesMessage.unexpected;
       }
    },
@@ -58,6 +60,7 @@ export const photoApi = {
          }
 
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
+         
          return apiResponsesMessage.unexpected;
       }
    },

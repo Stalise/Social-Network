@@ -1,7 +1,8 @@
-import { takeLatest } from "redux-saga/effects";
+import { takeLatest } from 'redux-saga/effects';
 
-import { sagasConstantsPosts } from "data/constants/saga";
-import { workerGetUserPosts, workerCreatePost, workerDeletePost, workerCreateLike, workerDeleteLike } from './workers';
+import { sagasConstantsPosts } from 'data/constants/saga';
+
+import { workerCreateLike, workerCreatePost, workerDeleteLike, workerDeletePost, workerGetUserPosts } from './workers';
 
 export function* watcherGetUserPosts() {
    yield takeLatest(sagasConstantsPosts.SAGA_GET_USER_POSTS, workerGetUserPosts);

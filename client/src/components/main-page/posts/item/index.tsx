@@ -1,13 +1,13 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-import { useAppDispatch } from "hooks/redux";
-import { sagasConstantsPosts, sagaActionCreator } from "data/constants/saga";
-import { IPost } from "types/common";
+import { sagaActionCreator, sagasConstantsPosts } from 'data/constants/saga';
+import { useAppDispatch } from 'hooks/redux';
+import { IPost } from 'types/common';
 
+import { Heart } from './Heart';
 import { Image } from './image';
-import { Like } from './like';
 
-import s from "./style.module.scss";
+import s from './style.module.scss';
 
 interface IProps {
    data: IPost,
@@ -32,7 +32,7 @@ export const Item: FC<IProps> = ({ data }) => {
             { data.img && <Image image={ data.img }/> }
          </div>
          <div className={ s.bottom }>
-            <Like data={ data } />
+            <Heart data={ data } />
          </div>
       </div>
    );

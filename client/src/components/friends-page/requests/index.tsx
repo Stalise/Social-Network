@@ -1,16 +1,17 @@
-import { FC, useMemo } from "react";
+import { FC, useMemo } from 'react';
 
-import s from "./style.module.scss";
+import { useAppSelector } from 'hooks/redux';
 
-import { Item } from "./item";
-import { useAppSelector } from "hooks/redux";
+import { Item } from './item';
+
+import s from './style.module.scss';
 
 export const Requests: FC = () => {
 
    const allFriends = useAppSelector(state => state.friendsSlice.friends);
 
    const requests = useMemo(() => {
-      return allFriends.filter(elem => elem.status === "request");
+      return allFriends.filter(elem => elem.status === 'request');
    }, [allFriends]);
 
    if (!requests.length) {

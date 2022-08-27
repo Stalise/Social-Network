@@ -1,15 +1,16 @@
-import { FC, useEffect } from "react";
-import { Params, useParams } from "react-router-dom";
+import { FC, useEffect } from 'react';
+import { Params, useParams } from 'react-router-dom';
 
-import s from "./style.module.scss";
-import { useAppDispatch, useAppSelector } from "hooks/redux";
-import { sagasConstantsChat, sagaActionCreator } from "data/constants/saga";
-import { IChat } from "types/common";
-import { IGetMessagePayload } from "types/sagas/chat";
+import { sagaActionCreator, sagasConstantsChat } from 'data/constants/saga';
+import { useAppDispatch, useAppSelector } from 'hooks/redux';
+import { IChat } from 'types/common';
+import { IGetMessagePayload } from 'types/sagas/chat';
 
-import { Info } from "components/chat-page/info";
-import { Messages } from "components/chat-page/messages";
-import { Write } from "components/chat-page/write";
+import { Info } from 'components/chat-page/info';
+import { Messages } from 'components/chat-page/messages';
+import { Write } from 'components/chat-page/write';
+
+import s from './style.module.scss';
 
 export const ChatPage: FC = () => {
 

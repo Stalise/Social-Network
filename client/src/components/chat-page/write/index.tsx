@@ -1,14 +1,16 @@
-import { FC, useState, useLayoutEffect, useRef, KeyboardEvent } from "react";
-import { useParams } from "react-router-dom";
+import { FC, KeyboardEvent, useLayoutEffect, useRef, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
-import s from "./style.module.scss";
-import { useAppDispatch, useAppSelector } from "hooks/redux";
-import { heightHandler } from "helpers/post";
-import { dateHandler } from "helpers/common";
-import { sagasConstantsChat, sagaActionCreator } from "data/constants/saga";
-import { IChat } from "types/common";
-import { FieldOverflowType } from "./types";
-import { ICreateMessagePayload } from "types/sagas/chat";
+import { sagaActionCreator, sagasConstantsChat } from 'data/constants/saga';
+import { dateHandler } from 'helpers/common';
+import { heightHandler } from 'helpers/post';
+import { useAppDispatch, useAppSelector } from 'hooks/redux';
+import { IChat } from 'types/common';
+import { ICreateMessagePayload } from 'types/sagas/chat';
+
+import { FieldOverflowType } from './types';
+
+import s from './style.module.scss';
 
 export const Write: FC = () => {
 
@@ -16,9 +18,9 @@ export const Write: FC = () => {
    const dispatch = useAppDispatch();
    const cloneField = useRef<HTMLDivElement | null>(null);
 
-   const [fieldOverflow, setFieldOverflow] = useState<FieldOverflowType>("hidden");
+   const [fieldOverflow, setFieldOverflow] = useState<FieldOverflowType>('hidden');
    const [heightField, setHeightField] = useState<number>(45);
-   const [text, setText] = useState<string>("");
+   const [text, setText] = useState<string>('');
 
    const chat: IChat = useAppSelector(state => state.chatsSlice.chats.filter(elem => elem.id === Number(params.id))[0]);
    const { status } = useAppSelector(state => state.chatsSlice);
@@ -33,11 +35,11 @@ export const Write: FC = () => {
       };
 
       dispatch(sagaActionCreator<ICreateMessagePayload>(sagasConstantsChat.SAGA_CREATE_MESSAGE, messageData));
-      setText("");
+      setText('');
    };
 
    const pressEnterHandler = (event: KeyboardEvent) => {
-      if (event.key === "Enter" && text.length) {
+      if (event.key === 'Enter' && text.length) {
          event.preventDefault();
          writeHandler();
       };
@@ -56,12 +58,12 @@ export const Write: FC = () => {
       <div className={ s.wrapper }>
          <div className={ s.text }>
             <textarea
-               className={ `${s.textField} ${fieldOverflow === "auto" ? s._auto : ""}` }
+               className={ `${s.textField} ${fieldOverflow === 'auto' ? s._auto : ''}` }
                onChange={ e => setText(e.target.value) }
                value={ text }
                onKeyDown={ pressEnterHandler }
                placeholder="Write something..."
-               style={{ height: heightField + "px" }}
+               style={{ height: heightField + 'px' }}
             >
             </textarea>
 
@@ -70,8 +72,8 @@ export const Write: FC = () => {
 
          <button
             onClick={ writeHandler }
-            className={ `${s.send} ${status === "message" ? s._active : ""}` }
-            disabled={ status === "message" ? true : false }
+            className={ `${s.send} ${status === 'message' ? s._active : ''}` }
+            disabled={ status === 'message' ? true : false }
             type="button">
             Send
          </button>

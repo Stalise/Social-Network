@@ -1,12 +1,13 @@
-import { FC, memo } from "react";
-import { Link, useNavigate, NavigateFunction } from "react-router-dom";
+import { FC, memo } from 'react';
+import { Link, NavigateFunction, useNavigate } from 'react-router-dom';
 
-import s from "./style.module.scss";
-import { useAppDispatch, useAppSelector } from "hooks/redux";
-import { Urls } from "data/constants/api";
-import { sagasConstantsFriend, sagasConstantsChat, sagaActionCreator } from "data/constants/saga";
-import { ICreateChatPayload } from "types/sagas/chat";
-import { IFriend } from "types/common";
+import { Urls } from 'data/constants/api';
+import { sagaActionCreator, sagasConstantsChat, sagasConstantsFriend } from 'data/constants/saga';
+import { useAppDispatch, useAppSelector } from 'hooks/redux';
+import { IFriend } from 'types/common';
+import { ICreateChatPayload } from 'types/sagas/chat';
+
+import s from './style.module.scss';
 
 interface IProps {
    data: IFriend,
@@ -49,7 +50,7 @@ export const Item: FC<IProps> = memo(({ data }) => {
                <button
                   onClick={ writeHandler }
                   type="button"
-                  className={ `${s.write} ${ status === "create" && s._pending}` }
+                  className={ `${s.write} ${ status === 'create' && s._pending}` }
                >
                   Write
                </button>

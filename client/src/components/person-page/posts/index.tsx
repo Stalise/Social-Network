@@ -1,17 +1,17 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-import s from "./style.module.scss";
-import { useAppSelector } from "hooks/redux";
+import { useAppSelector } from 'hooks/redux';
 
-import { Empty } from "components/common/empty";
-import { Item } from "./item";
+import { Empty } from 'components/common/empty';
+
+import { Item } from './item';
 
 export const Posts: FC = () => {
 
    const { posts } = useAppSelector(state => state.personSlice);
 
    return (
-      <div className={ s.wrapper }>
+      <div>
          { !posts.length && <Empty title="No posts yet 🙁" image="write.png"/> }
 
          { posts.length > 0 &&

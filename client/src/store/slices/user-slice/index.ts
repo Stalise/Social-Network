@@ -1,18 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
+
+import { IUserData } from 'types/common';
 
 import { IState, StatusType } from './types';
-import { IUserData } from "types/common";
 
 const initialState: IState = {
    isAuth: false,
-   status: "pending",
+   status: 'pending',
    data: {
-      username: "",
-      name: "",
-      surname: "",
-      birth: "",
-      city: "",
-      avatar: "",
+      username: '',
+      name: '',
+      surname: '',
+      birth: '',
+      city: '',
+      avatar: '',
    },
 };
 

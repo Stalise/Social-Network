@@ -1,33 +1,33 @@
 .wrapper {
+   position: relative;
    display: inline-block;
    width: 170px;
    height: 45px;
-   background-color: #d7e7fc;
-   font-size: 20px;
-   border-radius: 5px;
-   position: relative;
    padding: 12px 15px 0 50px;
-   cursor: pointer;
+   font-size: 20px;
    text-align: center;
+   background-color: #d7e7fc;
+   border-radius: 5px;
+   cursor: pointer;
    transition-duration: 0.3s;
 
-   &:after {
-      font-family: "IcoFont";
-      content: "\eece";
+   &::after {
       position: absolute;
-      font-size: 30px;
-      color: #2d2d2d;
       top: 6px;
       left: 15px;
+      color: #2d2d2d;
+      font-size: 30px;
+      font-family: 'IcoFont';
       transition-duration: 0.3s;
+      content: '\eece';
    }
 
    &:hover {
+      color: #fff;
       background-color: #ccc;
-      color: #ffffff;
 
-      &:after {
-         color: #ffffff;
+      &::after {
+         color: #fff;
       }
    }
 
@@ -39,15 +39,15 @@
       color: transparent;
       pointer-events: none;
 
-      &:after {
-         font-family: "IcoFont";
-         content: "\efd1";
+      &::after {
          position: absolute;
-         font-size: 30px;
-         color: gray;
          top: 8px;
          left: calc(43%);
+         color: gray;
+         font-size: 30px;
+         font-family: 'IcoFont';
          transition-duration: 0.3s;
+         content: '\efd1';
       }
    }
 

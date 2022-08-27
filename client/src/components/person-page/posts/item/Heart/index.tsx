@@ -1,16 +1,16 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-import { useAppDispatch, useAppSelector } from "hooks/redux";
-import { sagaActionCreator, sagasConstantsPerson } from "data/constants/saga";
-import { IPost, ILike } from "types/common";
+import { sagaActionCreator, sagasConstantsPerson } from 'data/constants/saga';
+import { useAppDispatch, useAppSelector } from 'hooks/redux';
+import { ILike, IPost } from 'types/common';
 
-import s from "./style.module.scss";
+import s from './style.module.scss';
 
 interface IProps {
    data: IPost,
 }
 
-export const Like: FC<IProps> = ({ data }) => {
+export const Heart: FC<IProps> = ({ data }) => {
 
    const dispatch = useAppDispatch();
 
@@ -33,7 +33,7 @@ export const Like: FC<IProps> = ({ data }) => {
       <div className={ s.wrapper }>
          <div
             onClick={ clickHandler }
-            className={ `${s.icon} ${data.isLike ? s._active : ""}` }
+            className={ `${s.icon} ${data.isLike ? s._active : ''}` }
          />
          <div className={ s.number }>
             { data.likes }

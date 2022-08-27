@@ -1,11 +1,12 @@
-import { FC, useLayoutEffect, useState } from "react";
+import { FC, useLayoutEffect, useState } from 'react';
 
-import s from "./style.module.scss";
-import { useAppDispatch, useAppSelector } from "hooks/redux";
-import { sagasConstantsFriend, sagaActionCreator } from "data/constants/saga";
-import { FriendStatusType } from "types/common";
+import { sagaActionCreator, sagasConstantsFriend } from 'data/constants/saga';
+import { useAppDispatch, useAppSelector } from 'hooks/redux';
+import { FriendStatusType } from 'types/common';
 
 import { Writing } from './writing';
+
+import s from './style.module.scss';
 
 export const Actions: FC = () => {
 
@@ -14,14 +15,14 @@ export const Actions: FC = () => {
    const { friends } = useAppSelector(state => state.friendsSlice);
    const person_username = useAppSelector(state => state.personSlice.data.username);
 
-   const [status, setStatus] = useState<FriendStatusType>("no");
+   const [status, setStatus] = useState<FriendStatusType>('no');
 
    const friendHandler = () => {
-      if (status === "friend" || status === "sent") return;
+      if (status === 'friend' || status === 'sent') return;
 
-      if (status === "no") {
+      if (status === 'no') {
          dispatch(sagaActionCreator<string>(sagasConstantsFriend.SAGA_CREATE_FRIEND, person_username));
-      } else if (status === "request") {
+      } else if (status === 'request') {
          dispatch(sagaActionCreator<string>(sagasConstantsFriend.SAGA_ACCEPT_FRIEND, person_username));
       }
    };
@@ -32,7 +33,7 @@ export const Actions: FC = () => {
       if (checkStatus.length) {
          setStatus(checkStatus[0].status);
       } else {
-         setStatus("no");
+         setStatus('no');
       }
 
    }, [friends]);
@@ -46,9 +47,9 @@ export const Actions: FC = () => {
             type="button"
             className={ `
                ${s.add}
-               ${status === "friend" ? s._friend : ""}
-               ${status === "request" ? s._request : ""}
-               ${status === "sent" ? s._sent : ""}
+               ${status === 'friend' ? s._friend : ''}
+               ${status === 'request' ? s._request : ''}
+               ${status === 'sent' ? s._sent : ''}
             ` }
          />
       </div>

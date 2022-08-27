@@ -1,10 +1,9 @@
-import axios from "axios";
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
-import { Urls } from "data/constants/api";
-import { apiResponsesMessage } from "data/constants/api";
-import { defaultToast } from "data/constants/toast";
-import { IUserData } from "types/common";
+import { apiResponsesMessage, Urls } from 'data/constants/api';
+import { defaultToast } from 'data/constants/toast';
+import { IUserData } from 'types/common';
 
 export const instance = axios.create({
    baseURL: Urls.server_url,
@@ -24,10 +23,12 @@ export const userApi = {
 
          if (error.response?.status === 412) {
             toast.info(error.response.data.message, defaultToast);
+            
             return apiResponsesMessage.unexpected;
          }
 
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
+         
          return apiResponsesMessage.unexpected;
       }
    },

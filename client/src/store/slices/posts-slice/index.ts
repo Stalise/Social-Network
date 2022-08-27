@@ -1,22 +1,23 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
-import { IState, StatusType } from "./types";
-import { IPost } from "types/common";
+import { IPost } from 'types/common';
+
+import { IState, StatusType } from './types';
 
 const initialState: IState = {
    posts: [],
-   status: "ready",
+   status: 'ready',
 };
 
 export const postsSlice = createSlice({
-   name: "posts",
+   name: 'posts',
    initialState,
    reducers: {
       changePostStatusAction(state, { payload }: { payload: StatusType }) {
          state.status = payload;
       },
       addPostsAction(state, { payload }: { payload: IPost[] }) {
-         // console.log(payload);
+      // console.log(payload);
          state.posts = payload;
       },
       addPostAction(state, { payload }: { payload: IPost }) {
@@ -28,6 +29,7 @@ export const postsSlice = createSlice({
       changeLikePostAction(state, { payload }: { payload: IPost }) {
          state.posts = state.posts.map(elem => {
             if (elem.id === payload.id) return payload;
+            
             return elem;
          });
       },

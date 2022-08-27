@@ -2,119 +2,118 @@
    display: flex;
    flex-direction: column;
    align-items: left;
-   display: flex;
 
    .inputContainer {
-      max-width: 100%;
-      width: 100%;
       display: block;
+      width: 100%;
+      max-width: 100%;
       margin-bottom: 5px;
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: 0.3px;
       margin-bottom: 20px;
       color: #2d2d2d;
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 0.3px;
 
       .field {
-         max-width: 100%;
          width: 100%;
-         border: 1px solid #ccc;
-         padding: 10px 15px;
-         border-radius: 5px;
-         font-size: 20px;
+         max-width: 100%;
          margin-top: 5px;
+         padding: 10px 15px;
+         font-size: 20px;
+         border: 1px solid #ccc;
+         border-radius: 5px;
       }
 
       .error {
-         font-weight: 400;
-         color: #f25c5c;
          position: relative;
-         font-size: 18px;
+         margin: 7px 0 5px;
          padding-left: 25px;
-         margin: 7px 0 5px 0;
+         color: #f25c5c;
+         font-weight: 400;
+         font-size: 18px;
 
-         &:before {
-            font-family: "IcoFont";
-            content: "\ef1b";
+         &::before {
             position: absolute;
-            font-size: 20px;
-            color: #f25c5c;
             top: -2px;
-            left: 0px;
+            left: 0;
+            color: #f25c5c;
+            font-size: 20px;
+            font-family: 'IcoFont';
             transition-duration: 0.3s;
+            content: '\ef1b';
          }
       }
 
-      input[type="date"] {
+      input[type='date'] {
          position: relative;
       }
 
-      input[type="date"]::-webkit-calendar-picker-indicator {
+      input[type='date']::-webkit-calendar-picker-indicator {
          position: absolute;
          top: 0;
-         left: 0;
          right: 0;
          bottom: 0;
+         left: 0;
          width: auto;
          height: auto;
          color: transparent;
          background: transparent;
       }
 
-      input[type="date"]::-webkit-inner-spin-button,
-      input[type="date"]::-webkit-clear-button {
+      input[type='date']::-webkit-inner-spin-button,
+      input[type='date']::-webkit-clear-button {
          z-index: 1;
       }
    }
 
    .photoContainer {
-      max-width: 100%;
       width: 100%;
+      max-width: 100%;
       margin-bottom: 30px;
 
       .photoLabel {
+         position: relative;
          display: inline-block;
          width: 130px;
          height: 45px;
-         background-color: #d7e7fc;
-         font-size: 20px;
-         border-radius: 5px;
-         position: relative;
          padding: 12px 15px 0 50px;
-         cursor: pointer;
+         font-size: 20px;
          text-align: center;
+         background-color: #d7e7fc;
+         border-radius: 5px;
+         cursor: pointer;
          transition: background-color 0.3s, color 0.3s, transform 0.3s;
 
-         &:before {
-            font-family: "IcoFont";
-            content: "\eece";
+         &::before {
             position: absolute;
-            font-size: 30px;
-            color: #2d2d2d;
             top: 6px;
             left: 15px;
+            color: #2d2d2d;
+            font-size: 30px;
+            font-family: 'IcoFont';
             transition: color 0.3s;
+            content: '\eece';
          }
 
-         &:after {
-            font-family: "IcoFont";
-            content: "\eed8";
+         &::after {
             position: absolute;
-            font-size: 47px;
-            color: #aafab7;
             top: 1px;
             right: -50px;
-            transition: opacity 0.1s, transform 0.3s;
+            color: #aafab7;
+            font-size: 47px;
+            font-family: 'IcoFont';
             transform: scale(0.3, 0.3);
             opacity: 0;
+            transition: opacity 0.1s, transform 0.3s;
+            content: '\eed8';
          }
 
          &:hover {
+            color: #fff;
             background-color: #ccc;
-            color: #ffffff;
 
-            &:before {
-               color: #ffffff;
+            &::before {
+               color: #fff;
             }
          }
 
@@ -129,7 +128,7 @@
 
       &._active {
          .photoLabel {
-            &:after {
+            &::after {
                transform: scale(1, 1);
                opacity: 1;
             }
@@ -138,18 +137,18 @@
    }
 
    .submit {
-      max-width: 100%;
       width: 100%;
+      max-width: 100%;
       height: 45px;
       font-size: 20px;
-      border-radius: 5px;
-      background-color: #f0f0f0;
       letter-spacing: 0.5px;
+      background-color: #f0f0f0;
+      border-radius: 5px;
       transition-duration: 0.3s;
 
       &:hover {
+         color: #fff;
          background-color: #ccc;
-         color: #ffffff;
       }
 
       &:active {

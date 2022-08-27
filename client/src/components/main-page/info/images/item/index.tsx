@@ -1,7 +1,8 @@
 import { FC } from 'react';
 
-import s from "./style.module.scss";
-import { Urls } from "data/constants/api";
+import { Urls } from 'data/constants/api';
+
+import s from './style.module.scss';
 
 interface IProps {
    url: string,

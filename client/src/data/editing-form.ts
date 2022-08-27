@@ -1,4 +1,4 @@
-import { IFormState } from "components/layout/header/editing-form/types";
+import { IFormState } from 'components/layout/header/editing-form/types';
 
 export const initialValues: IFormState = {
    forename: '',

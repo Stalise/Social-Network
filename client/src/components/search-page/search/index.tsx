@@ -1,9 +1,9 @@
 import { FC, useState } from 'react';
 
-import { useAppDispatch } from 'hooks/redux';
-import { changeAuthUserAction } from "store/slices/user-slice";
 import { userApi } from 'api/search-api/index';
-import { apiResponsesMessage } from "data/constants/api";
+import { apiResponsesMessage } from 'data/constants/api';
+import { useAppDispatch } from 'hooks/redux';
+import { changeAuthUserAction } from 'store/slices/user-slice';
 import { ISearchUser } from 'types/common';
 
 import s from './style.module.scss';

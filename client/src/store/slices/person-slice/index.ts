@@ -1,17 +1,18 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
+
+import { IFriend, IPhoto, IPost, IUserData } from 'types/common';
 
 import { IState, StatusType } from './types';
-import { IUserData, IPost, IFriend, IPhoto } from "types/common";
 
 const initialState: IState = {
-   status: "ready",
+   status: 'ready',
    data: {
-      username: "",
-      name: "",
-      surname: "",
-      birth: "",
-      city: "",
-      avatar: "",
+      username: '',
+      name: '',
+      surname: '',
+      birth: '',
+      city: '',
+      avatar: '',
    },
    posts: [],
    friends: [],
@@ -19,7 +20,7 @@ const initialState: IState = {
 };
 
 export const personSlice = createSlice({
-   name: "person",
+   name: 'person',
    initialState,
    reducers: {
       changePersonStatusAction(state, { payload }: { payload: StatusType }) {
@@ -34,6 +35,7 @@ export const personSlice = createSlice({
       changePersonLikePostAction(state, { payload }: { payload: IPost }) {
          state.posts = state.posts.map(elem => {
             if (elem.id === payload.id) return payload;
+            
             return elem;
          });
       },

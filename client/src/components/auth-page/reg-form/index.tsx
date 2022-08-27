@@ -1,13 +1,15 @@
-import { FC } from "react";
+import { FC } from 'react';
 import { useFormik } from 'formik';
 
-import s from "./style.module.scss";
-import { useAppDispatch } from "hooks/redux";
-import { validationSchema } from "helpers/forms/register-form";
-import { transformFile } from "helpers/common";
-import { initialValues } from "data/registerForm";
-import { sagasConstantsUser, sagaActionCreator } from "data/constants/saga";
-import { IRegFormState } from "./types";
+import { sagaActionCreator, sagasConstantsUser } from 'data/constants/saga';
+import { initialValues } from 'data/registerForm';
+import { transformFile } from 'helpers/common';
+import { validationSchema } from 'helpers/forms/register-form';
+import { useAppDispatch } from 'hooks/redux';
+
+import { IRegFormState } from './types';
+
+import s from './style.module.scss';
 
 export const RegForm: FC = () => {
 
@@ -20,7 +22,7 @@ export const RegForm: FC = () => {
          const duplicateObj = { ...values };
 
          // typeguard на то, что в values.file не null и не строка, чтобы передать именно файл
-         if (values.file !== null && typeof values.file !== "string") {
+         if (values.file !== null && typeof values.file !== 'string') {
             const updatedFile: string = await transformFile(values.file);
 
             duplicateObj.file = updatedFile;
@@ -73,7 +75,7 @@ export const RegForm: FC = () => {
                className={ s.field }
                type="date"
                min="1960-01-01" max="2015-01-01"
-               { ...formik.getFieldProps("birth") }
+               { ...formik.getFieldProps('birth') }
             />
 
             { formik.errors.birth && formik.touched.birth && <div className={ s.error }>{ formik.errors.birth }</div> }
@@ -84,8 +86,8 @@ export const RegForm: FC = () => {
             <input
                className={ s.field }
                type="text"
-               placeholder={ "London" }
-               { ...formik.getFieldProps("city") }
+               placeholder={ 'London' }
+               { ...formik.getFieldProps('city') }
             />
 
             { formik.errors.city && formik.touched.city && <div className={ s.error }>{ formik.errors.city }</div> }
@@ -99,7 +101,7 @@ export const RegForm: FC = () => {
                   type="file"
                   name="file"
                   accept="image/jpeg, image/png"
-                  onChange={ event => formik.setFieldValue("file", event.target.files?.length ? event.target.files[0] : "") }
+                  onChange={ event => formik.setFieldValue('file', event.target.files?.length ? event.target.files[0] : '') }
                />
             </label>
 
@@ -112,7 +114,7 @@ export const RegForm: FC = () => {
                className={ s.field }
                type="password"
                placeholder="Example: bend12AW"
-               { ...formik.getFieldProps("password") }
+               { ...formik.getFieldProps('password') }
             />
 
             { formik.errors.password && formik.touched.password && <div className={ s.error }>{ formik.errors.password }</div> }

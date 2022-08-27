@@ -1,15 +1,16 @@
-import { FC, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { FC, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
-import s from "./style.module.scss";
-import { useAppDispatch, useAppSelector } from "hooks/redux";
-import { sagasConstantsPerson, sagaActionCreator } from "data/constants/saga";
+import { sagaActionCreator, sagasConstantsPerson } from 'data/constants/saga';
+import { useAppDispatch, useAppSelector } from 'hooks/redux';
 
-import { Avatar } from "components/person-page/avatar";
-import { Actions } from "components/person-page/actions";
-import { Info } from "components/person-page/info";
-import { Posts } from "components/person-page/posts";
-import { Loader } from "components/common/loader";
+import { Loader } from 'components/common/loader';
+import { Actions } from 'components/person-page/actions';
+import { Avatar } from 'components/person-page/avatar';
+import { Info } from 'components/person-page/info';
+import { Posts } from 'components/person-page/posts';
+
+import s from './style.module.scss';
 
 export const PersonPage: FC = () => {
 
@@ -22,7 +23,7 @@ export const PersonPage: FC = () => {
       dispatch(sagaActionCreator<string>(sagasConstantsPerson.SAGA_GET_ALL_PARAMS_PERSON, params.username));
    }, [params]);
 
-   if (status === "data") return <Loader />;
+   if (status === 'data') return <Loader />;
 
    return (
       <div className={ s.wrapper }>

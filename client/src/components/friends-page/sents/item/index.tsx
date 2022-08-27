@@ -1,11 +1,12 @@
-import { FC, memo } from "react";
-import { Link } from "react-router-dom";
+import { FC, memo } from 'react';
+import { Link } from 'react-router-dom';
 
-import s from "./style.module.scss";
-import { useAppDispatch } from "hooks/redux";
-import { Urls } from "data/constants/api";
-import { sagasConstantsFriend, sagaActionCreator } from "data/constants/saga";
-import { IFriend } from "types/common";
+import { Urls } from 'data/constants/api';
+import { sagaActionCreator, sagasConstantsFriend } from 'data/constants/saga';
+import { useAppDispatch } from 'hooks/redux';
+import { IFriend } from 'types/common';
+
+import s from './style.module.scss';
 
 interface IProps {
    data: IFriend,

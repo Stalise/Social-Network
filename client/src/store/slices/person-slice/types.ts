@@ -1,6 +1,6 @@
-import { IUserData, IPost, IFriend, IPhoto } from "types/common";
+import { IFriend, IPhoto, IPost, IUserData } from 'types/common';
 
-export type StatusType = "ready" | "data";
+export type StatusType = 'ready' | 'data';
 
 export interface IState {
    status: StatusType,

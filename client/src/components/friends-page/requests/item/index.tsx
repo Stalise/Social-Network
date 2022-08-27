@@ -1,26 +1,27 @@
-import { FC, memo } from "react";
-import { Link } from "react-router-dom";
+import { FC, memo } from 'react';
+import { Link } from 'react-router-dom';
 
-import s from "./style.module.scss";
-import { useAppDispatch } from "hooks/redux";
-import { Urls } from "data/constants/api";
-import { sagasConstantsFriend, sagaActionCreator } from "data/constants/saga";
-import { IFriend } from "types/common";
+import { Urls } from 'data/constants/api';
+import { sagaActionCreator, sagasConstantsFriend } from 'data/constants/saga';
+import { useAppDispatch } from 'hooks/redux';
+import { IFriend } from 'types/common';
+
+import s from './style.module.scss';
 
 interface IProps {
    data: IFriend,
 }
 
-type ActionsType = "accept" | "reject";
+type ActionsType = 'accept' | 'reject';
 
 export const Item: FC<IProps> = memo(({ data }) => {
 
    const dispatch = useAppDispatch();
 
    const actionsHandler = (arg: ActionsType) => {
-      if (arg === "accept") {
+      if (arg === 'accept') {
          dispatch(sagaActionCreator<string>(sagasConstantsFriend.SAGA_ACCEPT_FRIEND, data.username));
-      } else if (arg === "reject") {
+      } else if (arg === 'reject') {
          dispatch(sagaActionCreator<string>(sagasConstantsFriend.SAGA_DELETE_FRIEND, data.username));
       }
    };
@@ -38,8 +39,8 @@ export const Item: FC<IProps> = memo(({ data }) => {
                <p className={ s.surname }>{ data.surname }</p>
             </div>
             <div className={ s.actions }>
-               <button onClick={ () => actionsHandler("accept") } type="button" className={ s.accept }>Accept</button>
-               <button onClick={ () => actionsHandler("reject") } type="button" className={ s.reject }>Reject</button>
+               <button onClick={ () => actionsHandler('accept') } type="button" className={ s.accept }>Accept</button>
+               <button onClick={ () => actionsHandler('reject') } type="button" className={ s.reject }>Reject</button>
             </div>
          </div>
       </div>

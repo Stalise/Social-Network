@@ -1,10 +1,11 @@
-import { FC } from "react";
-import { useParams } from "react-router-dom";
+import { FC } from 'react';
+import { useParams } from 'react-router-dom';
 
-import s from "./style.module.scss";
-import { useAppSelector } from "hooks/redux";
-import { Urls } from "data/constants/api";
-import { IChat } from "types/common";
+import { Urls } from 'data/constants/api';
+import { useAppSelector } from 'hooks/redux';
+import { IChat } from 'types/common';
+
+import s from './style.module.scss';
 
 export const Info: FC = () => {
 

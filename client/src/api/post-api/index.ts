@@ -1,11 +1,11 @@
-import axios from "axios";
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
-import { Urls } from "data/constants/api";
-import { apiResponsesMessage } from "data/constants/api";
-import { defaultToast } from "data/constants/toast";
-import { IPost, ILike } from "types/common";
-import { INewPostData } from "components/main-page/new-post/types";
+import { apiResponsesMessage, Urls } from 'data/constants/api';
+import { defaultToast } from 'data/constants/toast';
+import { ILike, IPost } from 'types/common';
+
+import { INewPostData } from 'components/main-page/new-post/types';
 
 export const instance = axios.create({
    baseURL: Urls.server_url,
@@ -26,6 +26,7 @@ export const postApi = {
          }
 
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
+         
          return apiResponsesMessage.unexpected;
       }
    },
@@ -33,7 +34,7 @@ export const postApi = {
    createPost: async (data: INewPostData) => {
       try {
          const response = await instance.post<{ message: string, post: IPost }>(Urls.post, { ...data }, {
-            headers: { "Content-Type": "application/json" },
+            headers: { 'Content-Type': 'application/json' },
          });
 
          return response.data.post;
@@ -43,6 +44,7 @@ export const postApi = {
          }
 
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
+         
          return apiResponsesMessage.unexpected;
       }
    },
@@ -58,6 +60,7 @@ export const postApi = {
          }
 
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
+         
          return apiResponsesMessage.unexpected;
       }
    },
@@ -79,6 +82,7 @@ export const postApi = {
          }
 
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
+         
          return apiResponsesMessage.unexpected;
       }
    },
@@ -97,6 +101,7 @@ export const postApi = {
          }
 
          toast.warn(apiResponsesMessage.unexpected, defaultToast);
+         
          return apiResponsesMessage.unexpected;
       }
    },

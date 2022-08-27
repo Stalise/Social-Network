@@ -1,8 +1,9 @@
 import { FC, useState } from 'react';
 import LightBox from 'fslightbox-react';
 
-import s from "./style.module.scss";
-import { Urls } from "data/constants/api";
+import { Urls } from 'data/constants/api';
+
+import s from './style.module.scss';
 
 interface IProps {
    image: string,

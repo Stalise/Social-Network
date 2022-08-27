@@ -1,7 +1,8 @@
-import { takeLatest } from "redux-saga/effects";
+import { takeLatest } from 'redux-saga/effects';
 
-import { sagasConstantsPhoto } from "data/constants/saga";
-import { workerAddPhoto, workerFetchPhotos, workerDeletePhoto } from './workers';
+import { sagasConstantsPhoto } from 'data/constants/saga';
+
+import { workerAddPhoto, workerDeletePhoto, workerFetchPhotos } from './workers';
 
 export function* watcherGetPhotos() {
    yield takeLatest(sagasConstantsPhoto.SAGA_GET_PHOTOS, workerFetchPhotos);

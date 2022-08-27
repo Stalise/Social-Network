@@ -1,10 +1,11 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-import s from "./style.module.scss";
-import { IPost } from "types/common";
+import { IPost } from 'types/common';
 
-import { Image } from "./image";
-import { Like } from './like';
+import { Heart } from './Heart';
+import { Image } from './image';
+
+import s from './style.module.scss';
 
 interface IProps {
    data: IPost,
@@ -20,7 +21,7 @@ export const Item: FC<IProps> = ({ data }) => (
          { data.img && <Image image={ data.img }/> }
       </div>
       <div className={ s.bottom }>
-         <Like data={ data } />
+         <Heart data={ data } />
       </div>
    </div>
 );

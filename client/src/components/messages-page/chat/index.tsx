@@ -1,11 +1,12 @@
-import { FC, MouseEvent } from "react";
-import { Link } from "react-router-dom";
+import { FC, MouseEvent } from 'react';
+import { Link } from 'react-router-dom';
 
-import s from "./style.module.scss";
-import { useAppDispatch } from "hooks/redux";
-import { Urls } from "data/constants/api";
-import { sagasConstantsChat, sagaActionCreator } from "data/constants/saga";
-import { IChat } from "types/common";
+import { Urls } from 'data/constants/api';
+import { sagaActionCreator, sagasConstantsChat } from 'data/constants/saga';
+import { useAppDispatch } from 'hooks/redux';
+import { IChat } from 'types/common';
+
+import s from './style.module.scss';
 
 interface IProps {
    data: IChat,
@@ -37,13 +38,13 @@ export const Chat: FC<IProps> = ({ data }) => {
                         { `${data.messages[data.messages.length - 1]?.name} ${data.messages[data.messages.length - 1]?.surname}` }:
                      </p>
                      <span className={ s.message }>
-                        { data.messages[data.messages.length - 1]?.text ? data.messages[data.messages.length - 1]?.text : "" }
+                        { data.messages[data.messages.length - 1]?.text ? data.messages[data.messages.length - 1]?.text : '' }
                      </span>
                   </div>
                }
             </div>
             <div className={ s.info }>
-               <p className={ s.date }>{ data.messages[0]?.date ? data.messages[0].date : "" }</p>
+               <p className={ s.date }>{ data.messages[0]?.date ? data.messages[0].date : '' }</p>
                <div onClick={ deleteHandler } className={ s.delete } />
             </div>
          </div >

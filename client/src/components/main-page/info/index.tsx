@@ -1,9 +1,10 @@
-import { FC, useMemo } from "react";
+import { FC, useMemo } from 'react';
 
-import s from "./style.module.scss";
-import { useAppSelector } from "hooks/redux";
+import { useAppSelector } from 'hooks/redux';
 
 import { Images } from './images';
+
+import s from './style.module.scss';
 
 export const UserInfo: FC = () => {
 
@@ -13,7 +14,7 @@ export const UserInfo: FC = () => {
    const { photos } = useAppSelector(state => state.photosSlice);
 
    const friendsCount = useMemo(() => {
-      return allFriends.filter(elem => elem.status === "friend").length;
+      return allFriends.filter(elem => elem.status === 'friend').length;
    }, [allFriends]);
 
    return (

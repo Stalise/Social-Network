@@ -1,6 +1,6 @@
-import { IUserData } from "types/common";
+import { IUserData } from 'types/common';
 
-export type StatusType = "ready" | "pending" | "auth" | "data";
+export type StatusType = 'ready' | 'pending' | 'auth' | 'data';
 
 export interface IState {
    isAuth: boolean,

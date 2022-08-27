@@ -1,10 +1,11 @@
-import { FC, memo } from "react";
+import { FC, memo } from 'react';
 
-import s from "./style.module.scss";
-import { useAppDispatch } from "hooks/redux";
-import { Urls } from "data/constants/api";
-import { sagasConstantsPhoto, sagaActionCreator } from "data/constants/saga";
-import { IPhoto } from "types/common";
+import { Urls } from 'data/constants/api';
+import { sagaActionCreator, sagasConstantsPhoto } from 'data/constants/saga';
+import { useAppDispatch } from 'hooks/redux';
+import { IPhoto } from 'types/common';
+
+import s from './style.module.scss';
 
 interface IProps {
    data: IPhoto,

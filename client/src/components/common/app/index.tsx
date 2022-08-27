@@ -1,11 +1,12 @@
 import { FC, useEffect } from 'react';
-
-import s from "./style.module.scss";
-import { useAppDispatch, useAppSelector } from 'hooks/redux';
-import { sagasConstantsUser, sagaActionCreator } from "data/constants/saga";
-
 import { AppRoutes } from 'routes/app-routes';
+
+import { sagaActionCreator, sagasConstantsUser } from 'data/constants/saga';
+import { useAppDispatch, useAppSelector } from 'hooks/redux';
+
 import { Loader } from 'components/common/loader';
+
+import s from './style.module.scss';
 
 export const App: FC = () => {
 
