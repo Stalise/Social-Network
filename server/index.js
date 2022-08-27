@@ -15,9 +15,14 @@ const newsRouter = require('./routes/news.router');
 const chatRouter = require('./routes/chat.router');
 
 app.enable("trust proxy");
-//TODO: продумать как сюда добавить пути на бета версии деплоя в NETLIFY
+
 app.use(cors({
-   origin: ['https://stalise-social-network.netlify.app', 'http://localhost:3000'],
+   origin: [
+      'https://stalise-social-network.netlify.app',
+      'https://main--stalise-social-network.netlify.app',
+      /^https:\/\/deploy-preview-\d{1,}--stalise-social-network.netlify.app$/i,
+      'http://localhost:3000',
+   ],
    credentials: true,
 }));
 app.use(express.json({ limit: '50mb' }));

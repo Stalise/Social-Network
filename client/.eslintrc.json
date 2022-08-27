@@ -1,16 +1,35 @@
 {
-   "extends": ["react-app", "react-app/jest", "plugin:cypress/recommended"],
-   "plugins": ["simple-import-sort"],
+   "extends": [
+      "react-app",
+      "react-app/jest",
+      "plugin:cypress/recommended"
+   ],
+   "plugins": [
+      "eslint-plugin-cypress",
+      "eslint-plugin-simple-import-sort"
+   ],
    "rules": {
       /* Выбрасывает ошибку, если использовать console.log */
       "no-console": "warn",
       /* Убирает скобки в стрелочных функциях, если их можно опустить */
-      "arrow-parens": ["warn", "as-needed"],
-      "quotes": [1, "single"],
+      "arrow-parens": [
+         "warn",
+         "as-needed"
+      ],
+      "quotes": [
+         1,
+         "single"
+      ],
       /* Устанавливает двойные кавычки для пропсов в jsx */
-      "jsx-quotes": ["error", "prefer-double"],
+      "jsx-quotes": [
+         "error",
+         "prefer-double"
+      ],
       /* Устанавливает ; */
-      "semi": ["warn", "always"],
+      "semi": [
+         "warn",
+         "always"
+      ],
       /* Требует использования const для переменных, чье значение не меняется после объявления */
       "prefer-const": [
          "warn",
@@ -20,9 +39,15 @@
          }
       ],
       /* Устанавливает колличество пробелов при отступах */
-      "indent": ["error", 3],
+      "indent": [
+         "error",
+         3
+      ],
       /* Требует или запрещает заключительные запятые */
-      "comma-dangle": ["warn", "always-multiline"],
+      "comma-dangle": [
+         "warn",
+         "always-multiline"
+      ],
       /* Автоматически расставляет пробелы после запятых */
       "comma-spacing": [
          "error",
@@ -32,7 +57,13 @@
          }
       ],
       /* Пустые строки - максимум 1 */
-      "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 0 }],
+      "no-multiple-empty-lines": [
+         "error",
+         {
+            "max": 1,
+            "maxEOF": 0
+         }
+      ],
       /* Пустая строка перед return */
       "newline-before-return": "error",
       /* Максимальная длина строки */
@@ -46,7 +77,10 @@
          }
       ],
       /* Вставляет пустую строку в конце файла */
-      "eol-last": ["warn", "always"],
+      "eol-last": [
+         "warn",
+         "always"
+      ],
       /* Убирает пробелы внутри фигурных скобок внутри jsx*/
       "react/jsx-curly-spacing": [
          "warn",
@@ -64,11 +98,18 @@
          {
             "properties": "always",
             "ignoreDestructuring": true,
-            "allow": ["chat_id", "person_username", "user_username"]
+            "allow": [
+               "chat_id",
+               "person_username",
+               "user_username"
+            ]
          }
       ],
       /* Обеспечивает равномерное распределение интервалов внутри скобок */
-      "object-curly-spacing": ["warn", "always"],
+      "object-curly-spacing": [
+         "warn",
+         "always"
+      ],
       /* Сводит множественные пробелы до одного */
       "no-multi-spaces": "error",
       /* Запрещает повторный импорт */
@@ -89,22 +130,42 @@
    /* Сортирует импорты по группам */
    "overrides": [
       {
-         "files": ["*.ts", "*.tsx"],
+         "files": [
+            "*.ts",
+            "*.tsx"
+         ],
          "rules": {
             "simple-import-sort/imports": [
                "error",
                {
                   "groups": [
                      /* Библиотеки, react первый */
-                     ["^react", "-react", "^redux", "^a", "^formik", "^@?\\w"],
+                     [
+                        "^react",
+                        "-react",
+                        "^redux",
+                        "^a",
+                        "^formik",
+                        "^@?\\w"
+                     ],
                      /* Внутренние папки */
-                     ["^(hooks|store|api|helpers|data|types)"],
+                     [
+                        "^(hooks|store|api|helpers|data|types)"
+                     ],
                      /* Реакт-компоненты */
-                     ["^(components|pages)(/.*|$)"],
+                     [
+                        "^(components|pages)(/.*|$)"
+                     ],
                      /* Любые файлы из текущей папки */
-                     ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+                     [
+                        "^\\./(?=.*/)(?!/?$)",
+                        "^\\.(?!/?$)",
+                        "^\\./?$"
+                     ],
                      /* Импорт стилей */
-                     ["^.+\\.s?css$"]
+                     [
+                        "^.+\\.s?css$"
+                     ]
                   ]
                }
             ]
