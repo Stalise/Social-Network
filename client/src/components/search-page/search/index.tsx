@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, KeyboardEvent, useState } from 'react';
 
 import { userApi } from 'api/search-api/index';
 import { apiResponsesMessage } from 'data/constants/api';
@@ -38,6 +38,12 @@ export const Search: FC<IProps> = ({ setUsers, setIsLoading }) => {
       setIsLoading(false);
    };
 
+   const findOneHandlerOnKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
+      if(event.key === 'Enter'){
+         findOneHandler();
+      }
+   };
+
    return (
       <div className={ s.wrapper }>
          <button className={ s.buttonAll } onClick={ findAllHandler }>All</button>
@@ -45,6 +51,7 @@ export const Search: FC<IProps> = ({ setUsers, setIsLoading }) => {
          <input
             className={ s.field }
             onChange={ e => setField(e.target.value) }
+            onKeyPress={ findOneHandlerOnKeyPress }
             value={ field }
             type="text"
             placeholder="Write id"
