@@ -27,6 +27,8 @@ export const Search: FC<IProps> = ({ setUsers, setIsLoading }) => {
       setUsers([]);
       setIsLoading(true);
 
+      if (!field.trim().length) return;
+
       const response: string | ISearchUser = await userApi.findUser(field);
 
       if (response === apiResponsesMessage.needAuth) {
@@ -34,12 +36,11 @@ export const Search: FC<IProps> = ({ setUsers, setIsLoading }) => {
       } else if (typeof response !== 'string') {
          setUsers([response]);
       }
-
       setIsLoading(false);
    };
 
    const findOneHandlerOnKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
-      if(event.key === 'Enter'){
+      if(event.key === 'Enter' && field.trim().length){
          findOneHandler();
       }
    };
@@ -51,7 +52,7 @@ export const Search: FC<IProps> = ({ setUsers, setIsLoading }) => {
          <input
             className={ s.field }
             onChange={ e => setField(e.target.value) }
-            onKeyPress={ findOneHandlerOnKeyPress }
+            onKeyDown={ findOneHandlerOnKeyPress }
             value={ field }
             type="text"
             placeholder="Write id"
