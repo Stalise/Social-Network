@@ -38,10 +38,8 @@
       "cypress:run": "cypress run",
       "lint": "eslint -c .eslintrc.json --ext .js,.jsx,.ts,.tsx --max-warnings=0 .",
       "lint:fix": "npm run lint -- --fix",
-      "stylelint": "npx stylelint \"**/*.scss\"",
-      "stylelint:fix": "npm run stylelint --fix",
-      "stylelint:formatter": "npm run stylelint -f",
-      "stylelint:check": "stylelint-config-prettier-check"
+      "stylelint": "stylelint \"**/*.scss\" --max-warnings=0 .",
+      "stylelint:fix": "stylelint \"**/*.scss\" --fix"
    },
    "browserslist": {
       "production": [
@@ -64,9 +62,8 @@
       "eslint-plugin-simple-import-sort": "^7.0.0",
       "start-server-and-test": "^1.14.0",
       "stylelint": "^14.11.0",
-      "stylelint-config-prettier": "^9.0.3",
-      "stylelint-config-rational-order-fix": "^0.1.9",
-      "stylelint-config-standard-scss": "^5.0.0",
-      "stylelint-order": "^5.0.0"
+      "stylelint-config-rational-order": "^0.1.2",
+      "stylelint-order": "^5.0.0",
+      "stylelint-scss": "^4.3.0"
    }
 }

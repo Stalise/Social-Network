@@ -2,7 +2,7 @@
    width: 100%;
    margin-bottom: 20px;
    padding: 20px 15px;
-   background-color: #fff;
+   background-color: #ffffff;
    border-radius: 10px;
 
    .text {
@@ -18,7 +18,7 @@
          overflow: hidden;
          font-size: 20px;
          line-height: 20px;
-         border: 1px solid #ccc;
+         border: 1px solid #cccccc;
          border-radius: 5px;
          resize: none;
 
@@ -52,7 +52,7 @@
          font-size: 20px;
          line-height: 20px;
          word-wrap: break-word;
-         border: 1px solid #ccc;
+         border: 1px solid #cccccc;
          border-radius: 5px;
          opacity: 0;
          pointer-events: none;
@@ -112,8 +112,8 @@
          transition-duration: 0.3s;
 
          &:hover {
-            color: #fff;
-            background-color: #ccc;
+            color: #ffffff;
+            background-color: #cccccc;
          }
 
          &:active {

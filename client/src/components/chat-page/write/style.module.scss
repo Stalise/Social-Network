@@ -17,7 +17,7 @@
          overflow: hidden;
          font-size: 20px;
          line-height: 20px;
-         border: 1px solid #ccc;
+         border: 1px solid #cccccc;
          border-radius: 5px;
          resize: none;
 
@@ -30,7 +30,7 @@
          }
 
          &::-webkit-scrollbar-thumb {
-            background-color: lightgray;
+            background-color: #d3d3d3;
          }
 
          &._auto {
@@ -51,8 +51,8 @@
          font-size: 20px;
          line-height: 20px;
          word-wrap: break-word;
-         background-color: red;
-         border: 1px solid #ccc;
+         background-color: #ff0000;
+         border: 1px solid #cccccc;
          border-radius: 5px;
          opacity: 0;
          pointer-events: none;
@@ -72,8 +72,8 @@
       transition-duration: 0.3s;
 
       &:hover {
-         color: #fff;
-         background-color: #ccc;
+         color: #ffffff;
+         background-color: #cccccc;
       }
 
       &:active {

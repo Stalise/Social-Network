@@ -1,0 +1,6 @@
+node_modules/
+build/
+public/
+coverage/
+cypress/plugins/
+cypress/support/
