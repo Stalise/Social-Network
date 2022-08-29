@@ -39,7 +39,7 @@ export const Write: FC = () => {
    };
 
    const pressEnterHandler = (event: KeyboardEvent) => {
-      if (event.key === 'Enter' && text.trim().length) {
+      if (event.key === 'Enter') {
          event.preventDefault();
          writeHandler();
       };

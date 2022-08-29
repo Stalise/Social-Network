@@ -24,10 +24,9 @@ export const Search: FC<IProps> = ({ setUsers, setIsLoading }) => {
    };
 
    const findOneHandler = async () => {
+      if (!field.trim().length) return;
       setUsers([]);
       setIsLoading(true);
-
-      if (!field.trim().length) return;
 
       const response: string | ISearchUser = await userApi.findUser(field);
 
@@ -40,7 +39,7 @@ export const Search: FC<IProps> = ({ setUsers, setIsLoading }) => {
    };
 
    const findOneHandlerOnKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
-      if(event.key === 'Enter' && field.trim().length){
+      if(event.key === 'Enter'){
          findOneHandler();
       }
    };
