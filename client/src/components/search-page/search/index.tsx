@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, KeyboardEvent, useState } from 'react';
 
 import { userApi } from 'api/search-api/index';
 import { apiResponsesMessage } from 'data/constants/api';
@@ -24,6 +24,7 @@ export const Search: FC<IProps> = ({ setUsers, setIsLoading }) => {
    };
 
    const findOneHandler = async () => {
+      if (!field.trim().length) return;
       setUsers([]);
       setIsLoading(true);
 
@@ -34,8 +35,13 @@ export const Search: FC<IProps> = ({ setUsers, setIsLoading }) => {
       } else if (typeof response !== 'string') {
          setUsers([response]);
       }
-
       setIsLoading(false);
+   };
+
+   const findOneHandlerOnKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
+      if(event.key === 'Enter'){
+         findOneHandler();
+      }
    };
 
    return (
@@ -45,6 +51,7 @@ export const Search: FC<IProps> = ({ setUsers, setIsLoading }) => {
          <input
             className={ s.field }
             onChange={ e => setField(e.target.value) }
+            onKeyDown={ findOneHandlerOnKeyPress }
             value={ field }
             type="text"
             placeholder="Write id"

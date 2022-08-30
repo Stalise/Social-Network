@@ -26,7 +26,7 @@ export const Write: FC = () => {
    const { status } = useAppSelector(state => state.chatsSlice);
 
    const writeHandler = () => {
-      if (!text.length) return;
+      if (!text.trim().length) return;
 
       const messageData: ICreateMessagePayload = {
          text,
@@ -39,7 +39,7 @@ export const Write: FC = () => {
    };
 
    const pressEnterHandler = (event: KeyboardEvent) => {
-      if (event.key === 'Enter' && text.length) {
+      if (event.key === 'Enter') {
          event.preventDefault();
          writeHandler();
       };
