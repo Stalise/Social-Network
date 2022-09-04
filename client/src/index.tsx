@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { HashRouter as Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
 import { store } from 'store/store';
@@ -13,9 +13,9 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLDivEleme
 
 root.render(
    <Provider store={ store }>
-      <Router>
+      <BrowserRouter>
          <App />
          <ToastContainer limit={ 3 } />
-      </Router>
+      </BrowserRouter>
    </Provider>,
 );
