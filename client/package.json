@@ -38,7 +38,7 @@
       "cypress:run": "cypress run",
       "lint": "eslint -c .eslintrc.json --ext .js,.jsx,.ts,.tsx --max-warnings=0 .",
       "lint:fix": "npm run lint -- --fix",
-      "stylelint": "stylelint \"**/*.scss\" --max-warnings=0 .",
+      "stylelint": "stylelint \"**/*.scss\" --max-warnings=0",
       "stylelint:fix": "stylelint \"**/*.scss\" --fix"
    },
    "browserslist": {

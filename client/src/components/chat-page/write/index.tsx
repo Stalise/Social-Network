@@ -26,7 +26,7 @@ export const Write: FC = () => {
    const { status } = useAppSelector(state => state.chatsSlice);
 
    const writeHandler = () => {
-      if (!text.length) return;
+      if (!text.trim().length) return;
 
       const messageData: ICreateMessagePayload = {
          text,
@@ -38,8 +38,9 @@ export const Write: FC = () => {
       setText('');
    };
 
-   const pressEnterHandler = (event: KeyboardEvent) => {
-      if (event.key === 'Enter' && text.length) {
+   const pressEnterHandler = (event: KeyboardEvent<HTMLTextAreaElement>) => {
+      if (event.key === 'Enter') {
+         // preventDefault() отменяет перенос на другую строку при нажатии на Enter
          event.preventDefault();
          writeHandler();
       };
