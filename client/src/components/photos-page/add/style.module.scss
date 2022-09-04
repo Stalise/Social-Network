@@ -28,11 +28,11 @@
       }
 
       &:hover {
-         color: #fff;
-         background-color: #ccc;
+         color: #ffffff;
+         background-color: #cccccc;
 
          &::after {
-            color: #fff;
+            color: #ffffff;
          }
       }
 
@@ -48,7 +48,7 @@
             position: absolute;
             top: 8px;
             left: calc(50%);
-            color: gray;
+            color: #808080;
             font-size: 30px;
             font-family: 'IcoFont';
             transition-duration: 0.3s;

@@ -20,7 +20,7 @@
          margin-top: 5px;
          padding: 10px 15px;
          font-size: 20px;
-         border: 1px solid #ccc;
+         border: 1px solid #cccccc;
          border-radius: 5px;
       }
 
@@ -109,11 +109,11 @@
          }
 
          &:hover {
-            color: #fff;
-            background-color: #ccc;
+            color: #ffffff;
+            background-color: #cccccc;
 
             &::before {
-               color: #fff;
+               color: #ffffff;
             }
          }
 
@@ -147,8 +147,8 @@
       transition-duration: 0.3s;
 
       &:hover {
-         color: #fff;
-         background-color: #ccc;
+         color: #ffffff;
+         background-color: #cccccc;
       }
 
       &:active {

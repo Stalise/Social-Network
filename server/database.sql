@@ -61,4 +61,3 @@ create TABLE messages(
    FOREIGN KEY (user_username) REFERENCES persons (username) ON DELETE CASCADE,
    FOREIGN KEY (chat_id) REFERENCES chats (id) ON DELETE CASCADE
 );
-

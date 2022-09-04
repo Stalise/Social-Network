@@ -1,15 +1,27 @@
 {
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ],
-      "editor.formatOnSave": true,
-    // позволяет включать правила esling при форматировании кода
-    "eslint.format.enable": true,
-    // позволяет редактировать код при сохранении согласно указанных настроек eslint
-    "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true,
-    },
+   "eslint.validate": [
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact"
+   ],
+   // указыает что при сохранении нужно соблюдать установленный формат редактора или файла .editorconfig
+   "editor.formatOnSave": true,
+   // позволяет включать правила esling при форматировании кода
+   "eslint.format.enable": true,
+   // эти 2 правила отключают валидацию самого редактора, чтобы он не мешал stylelint
+   "css.validate": false,
+   "scss.validate": false,
+   // включает stylelint
+   "stylelint.enable": true,
+   // указывает расширения файлов которые обрабатывает stylelint
+   "stylelint.validate": [
+      "css",
+      "scss"
+   ],
+   // позволяет редактировать код при сохранении согласно указанных настроек eslint
+   "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true,
+      "source.fixAll.stylelint": true
+   },
 }
