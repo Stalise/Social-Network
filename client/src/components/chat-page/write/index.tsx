@@ -26,7 +26,7 @@ export const Write: FC = () => {
    const { status } = useAppSelector(state => state.chatsSlice);
 
    const writeHandler = () => {
-      if (!text.trim().length) return;
+      if (!text.trim().trim().length) return;
 
       const messageData: ICreateMessagePayload = {
          text,
