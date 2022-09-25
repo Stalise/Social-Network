@@ -2,7 +2,7 @@ export enum Urls {
    cloudinary_url = 'https://res.cloudinary.com/daggdfi3i/image/upload/',
    heroku_url = 'https://deploy-social.herokuapp.com/api/',
    local_url = 'http://localhost:8000/api/',
-   server_url = 'https://deploy-social.herokuapp.com/api/',
+   server_url = 'http://localhost:8000/api/',
    user = 'user',
    userAuth = 'user/auth',
    userLogout = 'user/logout',
