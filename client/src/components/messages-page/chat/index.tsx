@@ -21,6 +21,10 @@ export const Chat: FC<IProps> = ({ data }) => {
       dispatch(sagaActionCreator<number>(sagasConstantsChat.SAGA_DELETE_CHAT, data.id));
    };
 
+   const date = data.messages[0]?.date ? new Date(data.messages[0]?.date).toLocaleDateString('en',
+      { month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' },
+   ) : '';
+
    return (
 
       <Link to={ `/chat/${data.id}` } className={ s.link }>
@@ -35,16 +39,16 @@ export const Chat: FC<IProps> = ({ data }) => {
                   :
                   <div className={ s.text }>
                      <p className={ s.name }>
-                        { `${data.messages[data.messages.length - 1]?.name} ${data.messages[data.messages.length - 1]?.surname}` }:
+                        { `${data.messages[0]?.name} ${data.messages[0]?.surname}` }:
                      </p>
                      <span className={ s.message }>
-                        { data.messages[data.messages.length - 1]?.text ? data.messages[data.messages.length - 1]?.text : '' }
+                        { data.messages[0]?.text ? data.messages[0]?.text : '' }
                      </span>
                   </div>
                }
             </div>
             <div className={ s.info }>
-               <p className={ s.date }>{ data.messages[0]?.date ? data.messages[0].date : '' }</p>
+               <p className={ s.date }>{ date }</p>
                <div onClick={ deleteHandler } className={ s.delete } />
             </div>
          </div >

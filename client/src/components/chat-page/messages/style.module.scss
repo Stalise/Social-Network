@@ -4,4 +4,13 @@
    max-width: 100%;
    margin-bottom: 20px;
    overflow-y: auto;
+
+   .date {
+      display: flex;
+      justify-content: center;
+      padding: 5px 0 30px;
+      color: #a6a6a6;
+      font-size: 16px;
+   }
+
 }

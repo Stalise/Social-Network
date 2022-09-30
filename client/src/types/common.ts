@@ -63,3 +63,7 @@ export interface ISearchUser {
    surname: string,
    avatar: string,
 }
+
+export interface IMessageDateSections {
+   [section: string]: IMessage[];
+}

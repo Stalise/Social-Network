@@ -12,3 +12,9 @@
    background-color: #ffffff;
    border-radius: 10px;
 }
+
+@media (max-width: 980px) {
+   .wrapper {
+      width: 100%;
+   }
+}
