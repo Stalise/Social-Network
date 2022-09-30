@@ -7,7 +7,7 @@ const getUsername = require('../utils/helpers');
 const emitter = new events.EventEmitter();
 
 class ChatController {
-
+   
    async getChats(req, res) {
       const user_username = getUsername(req.cookies.token);
 
@@ -179,10 +179,12 @@ class ChatController {
 
          emitter.once("action", listener);
 
+         // Heroku не дает запросам висеть больше 30 секунд, иначе он выбивает ошибку
+         // поэтому тут задержка 25 сек, а не например 60
          const timeout = setTimeout(() => {
             emitter.removeListener("action", listener);
             res.status(307).json({ message: responseMessages.requestExpired });
-         }, 30000);
+         }, 25000);
       } catch (error) {
          res.status(500).json({ message: responseMessages.unexpected });
       }

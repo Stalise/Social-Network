@@ -1,31 +1,90 @@
 {
    "extends": [
-      "stylelint-config-standard-scss",
-      "stylelint-config-prettier"
+      "stylelint-config-rational-order"
    ],
    "plugins": [
-      "stylelint-order",
-      "stylelint-config-rational-order-fix/plugin"
+      "stylelint-scss",
+      "stylelint-order"
    ],
+   "customSyntax": "postcss-scss",
    "rules": {
-      "order/properties-order": [],
-      "plugin/rational-order": [
-         true,
+      "indentation": [
+         3,
          {
-            "border-in-box-model": false,
-            "empty-line-between-groups": false
+            "message": "Отступ должен быть 3 пробела"
          }
       ],
-      "scss/selector-no-redundant-nesting-selector": true,
-      "selector-class-pattern": null,
-      "no-descending-specificity": null,
-      "font-family-no-missing-generic-family-keyword": null,
-      "font-family-name-quotes": null,
-      "alpha-value-notation": null,
-      "selector-id-pattern": null,
-      "property-no-vendor-prefix": null,
-      "value-keyword-case": null,
-      "keyframes-name-pattern": null,
-      "at-rule-no-vendor-prefix": null
+      "length-zero-no-unit": [
+         true,
+         {
+            "message": "Нулю не нужны единицы измерения"
+         }
+      ],
+      "max-empty-lines": [
+         1,
+         {
+            "message": "Максимум линий пустых допустимо: 1"
+         }
+      ],
+      "string-quotes": [
+         "single",
+         {
+            "message": "Нужно использовать одинарные кавычки"
+         }
+      ],
+      "no-missing-end-of-source-newline": [
+         true,
+         {
+            "message": "Файл должен заканичваться пустой строкой"
+         }
+      ],
+      "color-named": [
+         "never",
+         {
+            "message": "Цвета ключевыми словами писать нельзя"
+         }
+      ],
+      "color-hex-case": [
+         "lower",
+         {
+            "message": "Следует использовать нижний регистр при написании цветов"
+         }
+      ],
+      "color-hex-length": [
+         "long",
+         {
+            "message": "Следует использовать полное описание цвета"
+         }
+      ],
+      "no-duplicate-selectors": [
+         true,
+         {
+            "message": "Повторное написание селектора запрещено"
+         }
+      ],
+      "selector-max-empty-lines": [
+         0,
+         {
+            "message": "Пустые строки в селекторах недопустимы"
+         }
+      ],
+      "block-no-empty": [
+         true,
+         {
+            "message": "Пустые блоки писать не следует"
+         }
+      ],
+      "declaration-block-semicolon-newline-after": [
+         "always",
+         {
+            "message": "После точки с запятой перенос строки необходим"
+         }
+      ],
+      "declaration-block-trailing-semicolon": [
+         "always",
+         {
+            "message": "Свойство должно заканчивать точкой с запятой"
+         }
+      ]
    }
 }

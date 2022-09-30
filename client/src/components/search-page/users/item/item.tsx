@@ -36,7 +36,7 @@ export const Item: FC<IProps> = ({ data }) => {
             <p className={ s.forename }>{ data.name }</p>
             <p className={ s.surname }>{ data.surname }</p>
          </div>
-         <Link to={ `/${data.username}` }>
+         <Link to={ `/person/${data.username}` }>
             <div className={ s.avatarContainer }>
                <img className={ s.avatar } src={ `${Urls.cloudinary_url}${data.avatar}` } alt="avatar"/>
             </div>

@@ -14,7 +14,7 @@
       height: 100%;
       margin: 0 auto;
       padding: 0 15px;
-      background-color: white;
+      background-color: #ffffff;
       border-radius: 10px;
 
       .exit {
@@ -36,8 +36,8 @@
             transition-duration: 0.3s;
 
             &:hover {
-               color: #fff;
-               background-color: #ccc;
+               color: #ffffff;
+               background-color: #cccccc;
             }
 
             &:active {

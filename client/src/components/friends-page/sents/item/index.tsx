@@ -22,7 +22,7 @@ export const Item: FC<IProps> = memo(({ data }) => {
 
    return (
       <div className={ s.wrapper }>
-         <Link to={ `/${data.username}` } className={ s.link }>
+         <Link to={ `/person/${data.username}` } className={ s.link }>
             <div className={ s.avatar }>
                <img
                   className={ s.avatarImage }

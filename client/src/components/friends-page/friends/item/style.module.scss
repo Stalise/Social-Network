@@ -3,7 +3,7 @@
    justify-content: space-between;
    width: 100%;
    padding: 10px 15px;
-   border: 1px solid #ccc;
+   border: 1px solid #cccccc;
    border-radius: 5px;
 
    &:not(:last-child) {
@@ -78,8 +78,8 @@
             transition-duration: 0.3s;
 
             &:hover {
-               color: #fff;
-               background-color: #ccc;
+               color: #ffffff;
+               background-color: #cccccc;
             }
 
             &._pending {
@@ -111,7 +111,7 @@
          top: -1px;
          left: -1px;
          color: #2d2d2d;
-         color: #ccc;
+         color: #cccccc;
          font-size: 26px;
          font-family: 'IcoFont';
          cursor: pointer;

@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { useAppSelector } from 'hooks/redux';
 
@@ -28,12 +28,12 @@ export const AppRoutes: FC = () => {
                <Route path="/friends" element={ <FriendsPage /> } />
                <Route path="/photos" element={ <PhotosPage /> } />
                <Route path="/search" element={ <SearchPage /> } />
-               <Route path="/:username" element={ <PersonPage /> } />
-               <Route path="*" element={ <MainPage /> } />
+               <Route path="/person/:username" element={ <PersonPage /> } />
+               <Route path="*" element={ <Navigate to="/" replace /> } />
             </Route>
             :
             <Route path="/" element={ <AuthPage /> } />
          }
-      </Routes >
+      </Routes>
    );
 };

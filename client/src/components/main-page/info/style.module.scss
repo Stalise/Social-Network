@@ -106,7 +106,7 @@
          max-width: 100%;
          margin-bottom: 20px;
          padding: 10px;
-         border: 1px solid #ccc;
+         border: 1px solid #cccccc;
          border-radius: 5px;
 
          .page-info__img-container {
@@ -162,11 +162,11 @@
             }
 
             &:hover {
-               color: #fff;
-               background-color: #ccc;
+               color: #ffffff;
+               background-color: #cccccc;
 
                &::after {
-                  color: #fff;
+                  color: #ffffff;
                }
             }
 

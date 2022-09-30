@@ -4,7 +4,7 @@
    align-items: center;
    max-width: 170px;
    padding: 10px;
-   border: 1px solid #ccc;
+   border: 1px solid #cccccc;
    border-radius: 10px;
 
    .nameContainer {
@@ -58,9 +58,9 @@
       transition-duration: 0.3s;
 
       &:hover {
-         color: #fff;
-         background-color: #ccc;
-         -webkit-text-stroke-color: #fff;
+         color: #ffffff;
+         background-color: #cccccc;
+         -webkit-text-stroke-color: #ffffff;
       }
 
       &:active {

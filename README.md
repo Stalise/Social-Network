@@ -1,8 +1,8 @@
 ### [Social-network - Fullstack SPA приложение на React/TS/NodeJs/PostgreSQL.](https://stalise-social-network.netlify.app)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/a968a3d3-00be-4277-96e7-dfcfc429a724/deploy-status?branch=main)](https://app.netlify.com/sites/stalise-social-network/deploys)
-Приложение предоставляет функционал социальной сети. Мною разработан: дизайн, фронтенд, бекенд, архитектура таблиц в базе данных. Деплой фронтенда на GitHub, а бекенда на Heroku.
+
+Приложение предоставляет функционал социальной сети. Разработан: дизайн, фронтенд, бекенд, архитектура таблиц в базе данных. Деплой фронтенда на Netlify, а бекенда на Heroku.
 Верстка адаптивно-отзывчивая до 320px.
-На данный момент моё самое большое приложение.
 
 ##### Функционал включает в себя:
 * Страницы пользователей и своя.
@@ -22,7 +22,7 @@
 * TS
 * React, Formik
 * Redux Toolkit, Redux-saga
-* Husky, Eslint
+* Husky, Eslint, Stylelint
 
 ##### Стек бекенда:
 * NodeJs
