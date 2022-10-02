@@ -4,33 +4,26 @@
 
    .row1 {
       display: flex;
-      align-items: center;
+      gap: 0 20px;
+      align-items: flex-start;
       justify-content: space-between;
       margin-bottom: 15px;
       padding-bottom: 5px;
       border-bottom: 2px solid #e8e8e8;
 
-      .fullname {
+      .fullName {
          display: flex;
          flex-wrap: wrap;
-         width: 100%;
-         max-width: 300px;
-         margin-right: 25px;
+         gap: 0 7px;
 
-         .forename {
-            margin-right: 10px;
-            font-size: 30px;
-            letter-spacing: 0.5px;
-         }
-
-         .surname {
-            font-size: 30px;
+         .forename, .surname {
+            font-size: calc(20px + 6 * (100vw / 1230));
             letter-spacing: 0.5px;
          }
       }
 
       .id {
-         font-size: 18px;
+         font-size: calc(14px + 4 * (100vw / 1230));
          opacity: 0.8;
       }
    }
@@ -46,13 +39,13 @@
 
          .ageTitle {
             margin-right: 10px;
-            font-size: 19px;
+            font-size: calc(14px + 5 * (100vw / 1230));
             opacity: 0.8;
          }
 
          .ageData {
             display: flex;
-            font-size: 19px;
+            font-size: calc(14px + 5 * (100vw / 1230));
          }
       }
 
@@ -61,12 +54,12 @@
 
          .cityTitle {
             margin-right: 10px;
-            font-size: 19px;
+            font-size: calc(14px + 5 * (100vw / 1230));
             opacity: 0.8;
          }
 
          .cityName {
-            font-size: 19px;
+            font-size: calc(14px + 5 * (100vw / 1230));
          }
       }
    }
@@ -91,13 +84,13 @@
             margin-bottom: 10px;
             color: #919090;
             font-weight: 700;
-            font-size: 37px;
+            font-size: calc(25px + 12 * (100vw / 1230));
             line-height: 20px;
          }
 
          .infoItemTitle {
             color: #a8a8a8;
-            font-size: 20px;
+            font-size: calc(15px + 5 * (100vw / 1230));
          }
       }
    }
@@ -150,7 +143,7 @@
             width: 170px;
             height: 45px;
             padding: 12px 15px 0 50px;
-            font-size: 20px;
+            font-size: calc(15px + 5 * (100vw / 1230));
             text-align: center;
             background-color: #d7e7fc;
             border-radius: 5px;
@@ -162,7 +155,7 @@
                top: 6px;
                left: 15px;
                color: #2d2d2d;
-               font-size: 30px;
+               font-size: calc(20px + 10 * (100vw / 1230));
                font-family: 'IcoFont';
                transition-duration: 0.3s;
                content: '\eece';

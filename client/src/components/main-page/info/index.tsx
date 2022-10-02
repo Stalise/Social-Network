@@ -20,7 +20,7 @@ export const UserInfo: FC = () => {
    return (
       <div className={ s.wrapper }>
          <div className={ s.row1 }>
-            <div className={ s.fullname }>
+            <div className={ s.fullName }>
                <p className={ s.forename }>{ name }</p>
                <p className={ s.surname }>{ surname }</p>
             </div>

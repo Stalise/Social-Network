@@ -3,9 +3,21 @@
 
    .info {
       display: flex;
+      gap: 25px;
+      align-items: center;
+      justify-content: space-between;
       margin-bottom: 20px;
       padding: 20px 15px;
       background-color: #ffffff;
       border-radius: 10px;
+   }
+}
+
+@media (max-width: 487px) {
+   .wrapper {
+      .info {
+         flex-wrap: wrap;
+         justify-content: center;
+      }
    }
 }
