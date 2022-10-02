@@ -1,13 +1,12 @@
 import { FC } from 'react';
 
 import { sagaActionCreator, sagasConstantsPhoto } from 'data/constants/saga';
-import { transformFile } from 'helpers/common';
 import { useAppDispatch, useAppSelector } from 'hooks/redux';
+import { transformFile } from 'utils';
 
 import s from './style.module.scss';
 
 export const Add: FC = () => {
-
    const dispatch = useAppDispatch();
 
    const { status } = useAppSelector(state => state.photosSlice);

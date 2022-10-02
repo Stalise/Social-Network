@@ -151,7 +151,7 @@
                      ],
                      /* Внутренние папки */
                      [
-                        "^(hooks|store|api|helpers|data|types)"
+                        "^(hooks|store|api|utils|data|types)"
                      ],
                      /* Реакт-компоненты */
                      [

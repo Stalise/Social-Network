@@ -3,9 +3,9 @@ import { useFormik } from 'formik';
 
 import { sagaActionCreator, sagasConstantsUser } from 'data/constants/saga';
 import { initialValues } from 'data/registerForm';
-import { transformFile } from 'helpers/common';
-import { validationSchema } from 'helpers/forms/register-form';
 import { useAppDispatch } from 'hooks/redux';
+import { validationSchema } from 'utils/forms/register-form';
+import { transformFile } from 'utils/transform-file';
 
 import { IRegFormState } from './types';
 

@@ -1,9 +1,8 @@
 import { FC, FormEvent, useLayoutEffect, useRef, useState } from 'react';
 
 import { sagaActionCreator, sagasConstantsPosts } from 'data/constants/saga';
-import { dateHandler, transformFile } from 'helpers/common';
-import { heightHandler } from 'helpers/post';
 import { useAppDispatch, useAppSelector } from 'hooks/redux';
+import { changeTextareaHeight, handleDate, transformFile } from 'utils';
 
 import { Loader } from 'components/common/loader';
 
@@ -12,7 +11,6 @@ import { FieldOverflowType, INewPostData, IPostState } from './types';
 import s from './style.module.scss';
 
 export const NewPost: FC = () => {
-
    const dispatch = useAppDispatch();
    const cloneField = useRef<HTMLDivElement | null>(null);
 
@@ -33,7 +31,7 @@ export const NewPost: FC = () => {
       const postData: INewPostData = {
          text: post.text,
          img: '',
-         date: dateHandler(),
+         date: handleDate(),
       };
 
       if (typeof (post.img) !== 'string') {
@@ -48,7 +46,7 @@ export const NewPost: FC = () => {
       const cloneCurrentHeight = cloneField.current?.offsetHeight;
 
       if (cloneCurrentHeight !== undefined && cloneCurrentHeight !== heightField) {
-         heightHandler(cloneCurrentHeight, heightField, setHeightField, setFieldOverflow, 220, 70);
+         changeTextareaHeight(cloneCurrentHeight, setHeightField, setFieldOverflow, 220, 70);
       }
    });
 
