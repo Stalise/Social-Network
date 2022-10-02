@@ -1,3 +1,4 @@
+//TODO: переписать с использованием date-fns
 /** делаем дату согласно нужному нам формату */
 export const handleDate = (): string => {
    const month = new Date().toDateString().substr(4, 3);
