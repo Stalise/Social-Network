@@ -7,7 +7,7 @@ const getUsername = require('../utils/helpers');
 const emitter = new events.EventEmitter();
 
 class ChatController {
-   
+
    async getChats(req, res) {
       const user_username = getUsername(req.cookies.token);
 
@@ -37,7 +37,8 @@ class ChatController {
                FROM messages
                JOIN persons ON messages.user_username = persons.username
                WHERE chat_id = $1
-               ORDER BY id LIMIT 100`,
+               ORDER BY id DESC
+               LIMIT 100`,
             [elem.id]);
 
             const chatData = {

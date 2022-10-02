@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
 import { sagaActionCreator, sagasConstantsPhoto } from 'data/constants/saga';
-import { transformFile } from 'helpers/common';
 import { useAppDispatch, useAppSelector } from 'hooks/redux';
+import { transformFile } from 'utils/transform-file';
 
 import s from './style.module.scss';
 

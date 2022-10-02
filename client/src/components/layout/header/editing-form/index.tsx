@@ -2,7 +2,7 @@ import { FC, useState } from 'react';
 import { useFormik } from 'formik';
 
 import { initialValues } from 'data/editing-form';
-import { validate } from 'helpers/forms/edition-form-validate';
+import { validate } from 'utils/forms/edition-form-validate';
 
 import { Modal } from 'components/common/modal';
 

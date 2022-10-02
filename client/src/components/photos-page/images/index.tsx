@@ -1,15 +1,14 @@
 import { FC, useMemo, useState } from 'react';
 import LightBox from 'fslightbox-react';
 
-import { getUrlsImages } from 'helpers/photo';
 import { useAppSelector } from 'hooks/redux';
+import { getImagesUrls } from 'utils';
 
 import { Item } from './item';
 
 import s from './style.module.scss';
 
 export const Images: FC = () => {
-
    const { photos } = useAppSelector(state => state.photosSlice);
 
    const [lightboxController, setLightboxController] = useState({
@@ -17,13 +16,12 @@ export const Images: FC = () => {
       slide: 1,
    });
 
-   const urls = useMemo(() => {
-      return getUrlsImages(photos);
-   }, [photos]);
+   const urls = useMemo(() => (
+      getImagesUrls(photos)
+   ), [photos]);
 
    const lightboxHandler = (index: number) => {
       setLightboxController({
-         ...lightboxController,
          toggler: !lightboxController.toggler,
          slide: index,
       });

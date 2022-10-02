@@ -2,11 +2,11 @@ import { FC, KeyboardEvent, useLayoutEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { sagaActionCreator, sagasConstantsChat } from 'data/constants/saga';
-import { dateHandler } from 'helpers/common';
-import { heightHandler } from 'helpers/post';
 import { useAppDispatch, useAppSelector } from 'hooks/redux';
 import { IChat } from 'types/common';
 import { ICreateMessagePayload } from 'types/sagas/chat';
+import { changeTextareaHeight } from 'utils';
+import { handleDate } from 'utils/handle-date';
 
 import { FieldOverflowType } from './types';
 
@@ -30,7 +30,7 @@ export const Write: FC = () => {
 
       const messageData: ICreateMessagePayload = {
          text,
-         date: dateHandler(),
+         date: handleDate(),
          chat_id: chat.id,
       };
 
@@ -49,9 +49,9 @@ export const Write: FC = () => {
    useLayoutEffect(() => {
       const cloneCurrentHeight = cloneField.current?.offsetHeight;
 
-      // если при вооде сообщения высота блока-клона становится больше чем textarea, то меняем высоту textarea
+      // если при ввооде сообщения высота блока-клона становится больше чем textarea, то меняем высоту textarea
       if (cloneCurrentHeight !== undefined && cloneCurrentHeight !== heightField) {
-         heightHandler(cloneCurrentHeight, heightField, setHeightField, setFieldOverflow, 220, 45);
+         changeTextareaHeight(cloneCurrentHeight, setHeightField, setFieldOverflow, 220, 45);
       }
    });
 

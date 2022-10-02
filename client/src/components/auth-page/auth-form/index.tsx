@@ -3,8 +3,8 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 
 import { initialValues } from 'data/auth-form';
 import { sagaActionCreator, sagasConstantsUser } from 'data/constants/saga';
-import { validationSchema } from 'helpers/forms/auth-form-validate';
 import { useAppDispatch } from 'hooks/redux';
+import { validationSchema } from 'utils/forms/auth-form-validate';
 
 import { IAuthFormState } from './types';
 
